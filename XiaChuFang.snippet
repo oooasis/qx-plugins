@@ -1,0 +1,14 @@
+#!name = 下厨房
+#!desc = 移除开屏广告、页面推广及横幅，精简首页标签。（转自可莉 XiaChuFang_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/XiaChuFang.png
+
+^https:\/\/api\.xiachufang\.com\/v2\/ad\/ url reject-dict
+^https:\/\/api\.xiachufang\.com\/v2\/homepage\/paged_waterfall_recommendations\.json$ url jsonjq-response-body 'del(.multiplex_cells[] | select(.recommendation_cell.impression_sensor_events[]?.properties.target_type? == "ad"))'
+^https:\/\/api\.xiachufang\.com\/v2\/config\/get\.json$ url jsonjq-response-body 'del(.["content"]["recipe_ad"], .["content"]["splash_ad_req_time"], .["content"]["splash_sdk_ad_req_time"], .["content"]["splash_ad_lifecycle_interval"], .["content"]["waterfall_ad_feedback"], .["content"]["homepage_waterfall_test_ad_pos"], .["content"]["ad_app_look_around"], .["content"]["ad_sdk_text_removal_keywords"])'
+^https:\/\/api\.xiachufang\.com\/v2\/account\/feeds_v7\.json url reject-dict
+^https:\/\/api\.xiachufang\.com\/v2\/homepage1810\/init_page\.json url reject-dict
+^https:\/\/api\.xiachufang\.com\/v2\/homepage\/ranking_list\/paged_homepage_ranking_list_section_v2\.json$ url jsonjq-response-body '.cells |= map(del(.side_slip_activity_cell, .dish_square_cell))'
+^https:\/\/api\.xiachufang\.com\/v2\/mark_mission\/get_sticker_info\.json url reject-dict
+
+hostname = api.xiachufang.com

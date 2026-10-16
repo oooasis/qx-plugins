@@ -1,0 +1,26 @@
+#!name = 蜻蜓FM
+#!desc = 移除开屏广告、信息流广告、各类相关内容推荐，精简我的页面。（转自可莉 QtingFM_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/QtingFM.png
+
+host, ad.qtfm.cn, reject
+host, adlaunch.qtfm.cn, reject
+^https:\/\/app\.qtfm\.cn\/recommendapi\/v8\/ai_assistant_point$ url reject-dict
+^https:\/\/app\.qtfm\.cn\/m-bff\/v1\/signin\/show_homepage_icon$ url reject-dict
+^https:\/\/app\.qtfm\.cn\/recommendapi\/v\d\/emotion$ url reject
+^https:\/\/search\.qtfm\.cn\/v\d\/keyword\/default$ url reject
+^https:\/\/app\.qtfm\.cn\/m-bff\/v\d\/signin\/show_homepage_icon$ url jsonjq-response-body '.["data"]["display_icon"] = false'
+^https:\/\/app\.qtfm\.cn\/recommendapi\/v\d\/hotpage\? url jsonjq-response-body '.data.head |= map(select(.type == "IconGrid")) | .data.feeds |= map(select(.type == "Channel" or .type == "Radio" or .type == "ListenListChannel"))'
+^https:\/\/app\.qtfm\.cn\/m-bff\/v\d\/channel\/\d{6}\/playpage\/\d{8} url jsonjq-response-body 'del(.["data"]["related_recommend"], .["data"]["recommend_bar"])'
+^https:\/\/app\.qtfm\.cn\/m-bff\/v1\/user\/task\/play$ url reject-dict
+^https:\/\/app\.qtfm\.cn\/m-bff\/v\d\/mylistenpage url jsonjq-response-body 'del(.["data"]["banner"])'
+^https:\/\/app\.qtfm\.cn\/m-bff\/v\d\/i_listen\/guess_you_like\? url reject-dict
+^https:\/\/recpage-c\.qtfm\.cn\/v\d\/favorites$ url reject-dict
+^https:\/\/user\.qtfm\.cn\/u\d\/api\/v\d\/user\/following_podcaster\? url reject-dict
+^https:\/\/app\.qtfm\.cn\/m-bff\/v\d\/subscribed_channels\? url jsonjq-response-body 'del(.["data"]["recommends"])'
+^https:\/\/entry\.qtfm\.cn\/api\/v\d\/personal\/\?carrier url reject-dict
+^https:\/\/app\.qtfm\.cn\/m-bff\/v1\/channelpage\/\d+$ url jsonjq-response-body 'del(.["data"]["vip_recommend"], .["data"]["recommend_delivery"])'
+^https:\/\/search\.qtfm\.cn\/v3\/entry$ url reject-dict
+^https:\/\/woqt2\.qtfm\.cn\/v2\/userConfig\? url reject-dict
+
+hostname = app.qtfm.cn, search.qtfm.cn, recpage-c.qtfm.cn, user.qtfm.cn, entry.qtfm.cn, woqt2.qtfm.cn

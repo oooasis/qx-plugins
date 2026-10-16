@@ -1,0 +1,8 @@
+#!name = 推栏
+#!desc = 过滤推栏广告（转自可莉 Daily_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Daily.png
+
+^https?:\/\/m\.pvp\.xoyo\.com\/conf\/server-mapping$ url jsonjq-response-body 'del(.["data"]["splashConf"], .["data"]["splashConfNew"])'
+
+hostname = m.pvp.xoyo.com

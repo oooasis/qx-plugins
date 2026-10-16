@@ -1,0 +1,20 @@
+#!name = 猫耳FM
+#!desc = 移除开屏广告、青少年模式弹窗、首页顶部入口，替换底栏的直播入口为发现入口。（转自可莉 CatEarFM_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/CatEarFM.png
+
+^https:\/\/app\.missevan\.com\/site\/launch\? url jsonjq-response-body 'del(.["info"]["splash"], .["info"]["splash_ready"])'
+^https:\/\/data\.missevan\.com\/site\/ad-track$ url reject-dict
+^https:\/\/app\.missevan\.com\/site\/config$ url jsonjq-response-body 'del(.["info"]["tab_bar_live"], .["0"], .["info"]["enable_tab_bar_live_notice"], .["false"], .["info"]["teenager_popup_mode"], .["0"])'
+^https:\/\/app\.missevan\.com\/site\/config$ url jsonjq-response-body 'del(.["info"]["httpdns"], .["info"]["homepage_top_task_button"])'
+^https:\/\/app\.missevan\.com\/site\/config$ url jsonjq-response-body '.info.cronet |= (fromjson | .quic=false | tojson)'
+^https:\/\/app\.missevan\.com\/x\/recommend\/get-popup$ url reject-dict
+^https:\/\/fm\.missevan\.com\/api\/v2\/meta\/banner$ url reject-dict
+^https:\/\/app\.missevan\.com\/site\/tabs\? url jsonjq-response-body '.info.tabs |= map(select(.title as $t | ["直播", "发现", "广播剧", "听书", "分类"] | index($t) != null))'
+^https:\/\/app\.missevan\.com\/site\/icons\? url jsonjq-response-body '.info.icons |= map(select(.title as $t | $t == "直播" or $t == "必听剧" or $t == "免费榜" or $t == "夜猫子" or $t == "启动音"))'
+^https:\/\/fm\.missevan\.com\/api\/v2\/recommended\/top\? url reject-dict
+^https:\/\/app\.missevan\.com\/discovery\/list$ url jsonjq-response-body '.info |= map(map(select(.title != "免流服务")))'
+^https:\/\/fm\.missevan\.com\/api\/v2\/chatroom\/sound\/recommend\? url reject-dict
+^https:\/\/app\.missevan\.com\/site\/get-top$ url jsonjq-response-body 'del(.["info"]["search_words"])'
+
+hostname = app.missevan.com, data.missevan.com, fm.missevan.com

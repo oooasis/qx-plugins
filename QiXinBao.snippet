@@ -1,0 +1,17 @@
+#!name = 启信宝
+#!desc = 移除开屏广告、应用内弹窗、首页轮播图、悬浮部件和个性化推荐信息流。（转自可莉 QiXinBao_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/QiXinBao.png
+
+^https:\/\/appc\.qixin\.com\/v4\/general\/getSearchPlaceholderRedirect$ url reject-dict
+^https:\/\/appc-v6\.qixin\.com\/v4\/general\/getAppFloatAd$ url reject-dict
+^https:\/\/appc-v6\.qixin\.com\/v4\/general\/getAppBanners$ url reject-dict
+^https:\/\/appc-v6\.qixin\.com\/v4\/user\/getUserActivitys$ url reject-dict
+^https:\/\/appc-v6\.qixin\.com\/v4\/enterprise\/homePageRecommend\/recommendCard\d+ url reject-dict
+^https:\/\/appc-v6\.qixin\.com\/v4\/user\/getRecommendPersons$ url reject-dict
+^https:\/\/appc-v6\.qixin\.com\/v4\/enterprise\/getRecommendEnts$ url reject-dict
+^https:\/\/appc-v6\.qixin\.com\/v4\/enterprise\/getRecommendation$ url reject-dict
+^https:\/\/appc-v6\.qixin\.com\/v4\/general\/getAppBottomBanners$ url reject-dict
+^https:\/\/qxb-minicode-pic-osscache\.qixin\.com\/web\/ url reject
+
+hostname = appc.qixin.com, appc-v6.qixin.com, qxb-minicode-pic-osscache.qixin.com

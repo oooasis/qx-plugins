@@ -1,0 +1,12 @@
+#!name = ReelShort
+#!desc = 移除开屏广告、为你推荐及各类弹窗，移除搜索栏填充词。（转自可莉 ReelShort_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/ReelShort.png
+
+^https:\/\/(v-api\.crazymaplestudios\.com|d1k8g7qaebqd28\.cloudfront\.net)\/api\/video\/app\/getSplashScreenConfig$ url reject-dict
+^https:\/\/(v-api\.crazymaplestudios\.com|d1k8g7qaebqd28\.cloudfront\.net)\/api\/video\/hall\/landingPage$ url reject-dict
+^https:\/\/(v-api\.crazymaplestudios\.com|d1k8g7qaebqd28\.cloudfront\.net)\/api\/video\/book\/getBookDetailV2$ url jsonjq-response-body 'del(.["data"]["ad_vip"])'
+^https:\/\/(v-api\.crazymaplestudios\.com|d1k8g7qaebqd28\.cloudfront\.net)\/api\/video\/book\/getPayModeV2$ url reject-dict
+^https:\/\/(v-api\.crazymaplestudios\.com|d1k8g7qaebqd28\.cloudfront\.net)\/api\/video\/hall\/infoV3$ url jsonjq-response-body 'del(.["data"]["search_keyword_list"])'
+
+hostname = v-api.crazymaplestudios.com, d1k8g7qaebqd28.cloudfront.net

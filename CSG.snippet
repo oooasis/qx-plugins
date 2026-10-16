@@ -1,0 +1,10 @@
+#!name = 南网在线
+#!desc = 移除首页推广，精简搜索页和我的页面。（转自可莉 CSG_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/CSG.png
+
+^https:\/\/95598\.csg\.cn\/mp\/mpaas\/mgw\.htm$ url jsonjq-response-body 'if .info | contains("RUBIK-TRACEID:") then .scene.page.areas |= map(select(.areaId | test("kingkong_|9grid_|message_|nearmap_|recommend_"))) else . end'
+^https:\/\/95598\.csg\.cn\/mp\/ucs\/ma\/zt\/content\/queryHotInformations$ url reject-dict
+^https:\/\/95598\.csg\.cn\/mp\/mpaas\/rubik\/openapi\/rubik\/mobile\/getRubikScene$ url reject-dict
+
+hostname = 95598.csg.cn

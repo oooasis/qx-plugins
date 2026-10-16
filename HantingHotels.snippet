@@ -1,0 +1,14 @@
+#!name = 华住会
+#!desc = 移除弹窗、横幅，精简首页。（转自可莉 HantingHotels_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/HantingHotels.png
+
+^https:\/\/hweb-manager\.huazhu\.com\/notice\/getAppPopupNotifyAlert$ url reject-dict
+^https:\/\/hweb-hotel\.huazhu\.com\/home\/getHomeLoinBanner$ url reject-dict
+^https:\/\/hweb-hotel\.huazhu\.com\/\/home\/querySelectHotel$ url reject-dict
+^https:\/\/hweb-hotel\.huazhu\.com\/home\/queryHotelBrand$ url reject-dict
+^https:\/\/hweb-manager\.huazhu\.com\/hotels\/ad\/getHotelListNoticeMerge$ url reject-dict
+^https:\/\/res-pub\.huazhu\.com\/frontconf\/homeconfig_45\/\w+\.json$ url jsonjq-response-body 'if has("content") and (.content | type) == "object" then .content |= with_entries(select(.key == "topBanner" or .key == "topBannerImages")) else . end'
+^https:\/\/res-pub\.huazhu\.com\/frontconf\/tabbarconfig_45\/\w+\.json$ url jsonjq-response-body '.content.tabbar |= map(select(.attributes.tabName == "首页" or .attributes.tabName == "服务" or .attributes.tabName == "我的"))'
+
+hostname = hweb-manager.huazhu.com, hweb-hotel.huazhu.com, res-pub.huazhu.com

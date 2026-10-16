@@ -1,0 +1,18 @@
+#!name = 华尔街见闻
+#!desc = 移除开屏广告、文末广告、信息流广告，精简底栏。（转自可莉 FinanceNews_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/FinanceNews.png
+
+^https:\/\/api-one-wscn\.awtmt\.com\/apiv1\/advertising\/ url reject-dict
+^https:\/\/api-one-wscn\.awtmt\.com\/apiv1\/kvconfig\/items\/tabbarconfig1$ url jsonjq-response-body '.data.items |= [.[] | select(.key == "news" or .key == "live")]'
+^https:\/\/api-one-wscn\.awtmt\.com\/apiv1\/kvconfig\/items\/search_keywords_wscnvip$ url reject-dict
+^https:\/\/api-one-wscn\.awtmt\.com\/apiv1\/search\/hotsearch\? url reject-dict
+^https:\/\/api-one-wscn\.awtmt\.com\/apiv1\/content\/articles\/hot\? url reject-dict
+^https:\/\/wallstreetcn\.com\/app-faas\/coupon\/user\/search\/popup$ url reject-dict
+^https:\/\/api-one-wscn\.awtmt\.com\/apiv1\/content\/lives\/relateddata\/ url reject-dict
+^https:\/\/api-one-wscn\.awtmt\.com\/apiv1\/content\/articles\/relateddata\/ url reject-dict
+^https:\/\/api-one-wscn\.awtmt\.com\/apiv1\/content\/carousel\/information-flow\? url reject-dict
+^https:\/\/api-one-wscn\.awtmt\.com\/apiv1\/content\/articles\/ url jsonjq-response-body 'del(.["data"]["recommend_vip_img_uri"])'
+^https:\/\/api-one-wscn\.awtmt\.com\/\/apiv1\/kvconfig\/items\/membersrights$ url jsonjq-response-body 'del(.["data"]["vip_article"])'
+
+hostname = api-one-wscn.awtmt.com

@@ -1,0 +1,10 @@
+#!name = 阅友
+#!desc = 移除开屏广告、弹窗广告和阅读页面广告，移除底栏福利按钮。（转自可莉 Yueyou_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Yueyou.png
+
+host, ads.reader.yueyouxs.com, reject
+^https:\/\/goway\.reader\.yueyouxs\.com\/assemble\/app\/basic\/getAppInfo\? url jsonjq-response-body 'del(.["data"]["isShowDLPopup"], .["data"]["isShowGame"], .["data"]["touTiaoShowDlPopup"], .["data"]["offLineDownload"]["WatchVideoBtnDesc"], .["data"]["readVipFirstCfg"], .["data"]["readVipNormalCfg"], .["data"]["notifyAd"], .["data"]["hotStartSplashTime"], .["data"]["hotStartReqSwitch"], .["data"]["isShowBFTab"], .["data"]["popReqDelayTime"], .["data"]["benefitCfg"], .["data"]["chestTask"], .["data"]["hotStartAd"], .["data"]["activeTagList"], .["data"]["secondOrderCfg"], .["data"]["secondOrderList"], .["data"]["blockedWordsCfg"], .["data"]["aaReportListCfg"], .["data"]["pddAdSwitch"], .["data"]["isShowShelfAuthPopup"], .["data"]["firstPopUpAmount"])'
+^https:\/\/goway\.reader\.yueyouxs\.com\/assemble\/app\/basic\/getAppInfo\? url jsonjq-response-body '.["data"]["isAdClosed"] = true'
+
+hostname = goway.reader.yueyouxs.com

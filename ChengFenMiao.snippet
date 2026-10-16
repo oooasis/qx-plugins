@@ -1,0 +1,12 @@
+#!name = 成分喵
+#!desc = 移除首页推广活动、广告组件请求、移除被查商品购买链接、搜索发现。（转自可莉 ChengFenMiao_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/ChengFenMiao.png
+
+^https:\/\/app\.chengfenmiao\.com\/Listing\/LiveHots\? url reject-dict
+^https:\/\/app\.chengfenmiao\.com\/helper\/VersionCheck\? url reject-dict
+^https:\/\/app\.chengfenmiao\.com\/item\/closet\? url reject-dict
+^https:\/\/app\.chengfenmiao\.com\/helper\/setting\? url jsonjq-response-body 'del(.["detail_buy_sites"], .["bottom_sites"])'
+^https:\/\/app\.chengfenmiao\.com\/Helper\/HotWords\? url reject-dict
+
+hostname = app.chengfenmiao.com

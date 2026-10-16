@@ -1,0 +1,12 @@
+#!name = 省钱快报
+#!desc = 移除开屏广告、横幅广告、商品推荐，精简我的页面。（转自可莉 YueDanBa_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/YueDanBa.png
+
+^https:\/\/api\.17gwx\.com\/v2\/base\/app\/ad\? url reject-dict
+^https:\/\/api\.17gwx\.com\/operate\/elements\? url jsonjq-response-body '.data |= with_entries(select(.key | test("home_mid_many|home_mid_banner_multi|user_center_slide_show_pic|newfeed_detail_oper_middle|main_rebate_banner|zhekou_coupon_detail_oper|zhekou_jdcoupon_detail_oper|zhekou_vipcoupon_detail_oper|zhekou_pddcoupon_detail_oper") | not))'
+^https:\/\/api\.17gwx\.com\/v2\/growth\/popup\/remind$ url reject-dict
+^https:\/\/api\.17gwx\.com\/v2\/recommend\/feed\/list\? url reject-dict
+^https:\/\/api\.17gwx\.com\/v2\/homepage\/feed\/similarList\? url reject-dict
+
+hostname = api.17gwx.com

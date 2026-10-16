@@ -1,0 +1,24 @@
+#!name = 小红书
+#!desc = 过滤信息流推广，移除图片及视频水印，如有异常，请先清除缓存再尝试。（转自可莉 RedPaper_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = RuCu6[https://github.com/RuCu6], fmz200[https://github.com/fmz200]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/RedPaper.png
+
+^https:\/\/ci\.xiaohongshu\.com\/system_config\/watermark url reject-img
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/surprisebox\/(?:get_style|open|submit_action) url reject-dict
+^https:\/\/www\.xiaohongshu\.com\/api\/marketing\/box\/trigger\? url reject-dict
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/(?:v2\/guide\/user_banner|v3\/note\/guide) url reject-dict
+^https:\/\/www\.xiaohongshu\.com\/api\/sns\/(?:v1\/ads\/resource|v2\/hey\/\w+\/hey_gallery) url reject-dict
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/search\/banner_list$ url jsonjq-response-body '.["data"] = "{}"'
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/search\/hot_list$ url jsonjq-response-body '.["data"]["items"] = "[]"'
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v4\/search\/hint url jsonjq-response-body '.["data"]["hint_words"] = "[]"'
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v4\/search\/trending\? url jsonjq-response-body '.["data"]["queries"] = "[]" | .["data"]["hint_word"] = "{}"'
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/system\/service\/ui\/config\? url script-response-body https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/system_service\/config\? url script-response-body https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/system_service\/splash_config url script-response-body https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/(?:note\/widgets|user\/followings\/followfeed) url script-response-body https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v4\/followfeed\? url script-response-body https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v5\/recommend\/user\/follow_recommend\? url script-response-body https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js
+^https:\/\/(?:edith|rec)\.xiaohongshu\.com\/api\/sns\/v6\/homefeed\? url script-response-body https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js
+^https:\/\/(?:edith|so)\.xiaohongshu\.com\/api\/sns\/v10\/search\/notes\? url script-response-body https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js
+
+hostname = ci.xiaohongshu.com, edith.xiaohongshu.com, www.xiaohongshu.com, rec.xiaohongshu.com, so.xiaohongshu.com

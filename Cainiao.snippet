@@ -1,0 +1,15 @@
+#!name = 菜鸟
+#!desc = 过滤菜鸟广告（转自可莉 Cainiao_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 小白脸
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Cainiao.png
+
+^https:\/\/nbcps-mtop\.cainiao\.com\/gw\/mtop\.cainiao\.nbcps\.presentation\.fetch\.cn url reject
+^https:\/\/netflow-mtop\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.index url reject
+^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.adkeyword\.get\.cn url reject
+^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.m?show url reject
+^https:\/\/(cn-acs\.m|e2e-mtop)\.cainiao\.com\/gw\/mtop\.cainiao\.app\.e2e\.engine\.page\.fetch url jsonjq-response-body 'del(.data.data.data.mainSearch.bizData.searchContents, .data.data.data.operationList)'
+^https:\/\/e2e-mtop\.cainiao\.com\/gw\/mtop\.cainiao\.app\.e2e\.engine\.page\.fetch\.cn url jsonjq-response-body 'del(.data.data.banner, .data.data.activity, .data.data.vip)'
+^https:\/\/longquan-mtop\.cainiao\.com\/gw\/mtop\.com\.cainiao\.longquan\.place\.getpageresourcecontent\.cn url jsonjq-response-body 'del(.data.result.placeContentMap["780001"].contentList)'
+^https:\/\/netflow-mtop\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads url jsonjq-response-body 'if .data.result[0].materialId == "39017" then . else .data = {} end'
+
+hostname = nbcps-mtop.cainiao.com, netflow-mtop.cainiao.com, cn-acs.m.cainiao.com, e2e-mtop.cainiao.com, longquan-mtop.cainiao.com

@@ -1,0 +1,10 @@
+#!name = 云鲸智能
+#!desc = 移除开屏广告、横幅推广，禁用商城。（转自可莉 NarwelRobots_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/NarwelRobots.png
+
+^https:\/\/cn-app\.narwaltech\.com\/operate\/appPosition\/listSplash\? url reject-dict
+^https:\/\/cn-app\.narwaltech\.com\/operate\/cactivity\/listByResourceIds\?resourceIds=(user_center_banner|index_banner) url reject-dict
+^https:\/\/store\.narwal\.com\/mall\/customPage\/getByPageKeyword\? url reject-dict
+
+hostname = cn-app.narwaltech.com, store.narwal.com

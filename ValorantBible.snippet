@@ -1,0 +1,10 @@
+#!name = 掌上无畏契约
+#!desc = 移除开屏广告、弹窗推广、搜索热搜、搜索热榜。（转自可莉 ValorantBible_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/ValorantBible.png
+
+^https:\/\/app\.mval\.qq\.com\/go\/recommend\/platflashbox\? url reject-dict
+^https:\/\/app\.mval\.qq\.com\/go\/mlol_news\/search\/varcache_hotV\d\? url reject-dict
+^https:\/\/app\.mval\.qq\.com\/go\/customize_search\/article_rank_tab\? url reject-dict
+
+hostname = app.mval.qq.com

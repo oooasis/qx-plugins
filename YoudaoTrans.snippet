@@ -1,0 +1,14 @@
+#!name = 有道翻译官
+#!desc = 移除开屏广告、横幅推广，精简首页。（转自可莉 YoudaoTrans_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/YoudaoTrans.png
+
+^https:\/\/gorgon\.youdao\.com\/gorgon\/v2\/request\.s url reject-dict
+^https:\/\/gorgon\.youdao\.com\/gorgon\/brand\/prefetch\.s url reject-dict
+^https:\/\/gorgon\.youdao\.com\/gorgon\/request\.s url reject-dict
+^https:\/\/fanyiguan-server\.youdao\.com\/server\/banner\? url reject-dict
+^https:\/\/dict\.youdao\.com\/vip\/activity\/fanyiguan\/sevendayfree\/imei\? url reject-dict
+^https:\/\/dict\.youdao\.com\/wordbook\/recommend\?all=false url reject-dict
+^https:\/\/api-overmind\.youdao\.com\/openapi\/get\/luna\/dict\/trans_abtest\/online\/iOS\? url reject-dict
+
+hostname = gorgon.youdao.com, fanyiguan-server.youdao.com, dict.youdao.com, api-overmind.youdao.com

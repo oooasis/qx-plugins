@@ -1,0 +1,11 @@
+#!name = 行者户外
+#!desc = 移除弹窗广告、发现页面横幅推广的推广金刚位，移除我的页面横幅推广。（转自可莉 OnTheWay_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/OnTheWay.png
+
+^https:\/\/www\.imxingzhe\.com\/api\/v1\/pop\/window\/\? url reject-dict
+^https:\/\/www\.imxingzhe\.com\/api\/v4\/account\/get_user_info\? url jsonjq-response-body 'del(.["banner"])'
+^https:\/\/www\.imxingzhe\.com\/api\/v4\/discovery\/ios\/\? url jsonjq-response-body 'del(.["banners"], .["ad"])'
+^https:\/\/www\.imxingzhe\.com\/api\/v4\/discovery\/ios\/\? url jsonjq-response-body '.display_areas |= map(select(.name == "赛事" or .name == "行者帮" or .name == "头条" or .name == "排行榜" or .name == "约伴"))'
+
+hostname = www.imxingzhe.com

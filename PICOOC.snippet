@@ -1,0 +1,12 @@
+#!name = PICOOC
+#!desc = 移除开屏广告、悬浮广告，拦截发现页，精简我的页面。（转自可莉 PICOOC_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/PICOOC.png
+
+^https:\/\/api2\.picooc\.com\/v\d\/api\/focus\/strategy\/execute\? url reject-dict
+^https:\/\/api2\.picooc\.com\/v\d\/api\/dietGuide\/query\? url reject-dict
+^https:\/\/api2\.picooc\.com\/program\/listMainProgram\? url reject-dict
+^https:\/\/a\.picooc\.com\/v\d\/api\/camp\/sys\/config\/coupon\/pattern\? url reject-dict
+^https:\/\/api2\.picooc\.com\/v\d\/api\/account\/getTabsInfo\? url reject-dict
+
+hostname = api2.picooc.com, a.picooc.com

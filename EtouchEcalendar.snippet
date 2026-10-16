@@ -1,0 +1,15 @@
+#!name = 中华万年历
+#!desc = 移除开屏广告、弹窗、信息流推广，精简我的页面。（转自可莉 EtouchEcalendar_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/EtouchEcalendar.png
+
+host, sdk.ad.sfys365.com, reject
+^https:\/\/client-lz\.rili\.cn\/lizhi\/api\/auth\/voice_room_entrance\/list\? url reject-dict
+^https:\/\/v0-client-lz\.rili\.cn\/lizhi\/api\/zhwnl\/cal_module\/(datas|config)\? url jsonjq-response-body '.data |= map(select(.module_name as $name | ["实用工具","会员下icon","天气页面_右上角图标","天气页面_24小时","天气页面_15日","每日插屏","下拉屏保","星座Tab（黄历页）"] | index($name) != null))'
+^http:\/\/pc\.suishenyun\.net\/peacock\/api\/adspool\? url jsonjq-response-body '.data |= map((.layout |= map(select(.key_name == "实用工具" or .key_name == "会员下icon" or .key_name == "天气页面_右上角图标" or .key_name == "天气页面_24小时" or .key_name == "天气页面_15日" or .key_name == "每日插屏" or .key_name == "下拉屏保" or .key_name == "星座Tab（黄历页）"))) | select(.layout | length > 0))'
+^https:\/\/client-lz\.rili\.cn\/lizhi\/api\/fortune\/question_spots\/panel\? url reject-dict
+^https:\/\/client-lz\.rili\.cn\/lizhi\/api\/jujia\/flow\? url reject-dict
+^https:\/\/client-lz\.rili\.cn\/lizhi\/api\/album\/hl_card\? url reject-dict
+^https:\/\/client-lz\.rili\.cn\/lizhi\/api\/fortune\/overview\? url reject-dict
+
+hostname = client-lz.rili.cn, v0-client-lz.rili.cn

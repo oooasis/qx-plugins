@@ -1,0 +1,13 @@
+#!name = 稿定设计
+#!desc = 移除稿定设计开屏广告、首页轮播图和弹窗，移除功能入口角标。（转自可莉 GaoDing_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/GaoDing.png
+
+^https:\/\/www\.gaoding\.com\/api\/v\d\/oc\/v\d\/delivery-pits\/ios-splash\/modules$ url reject-dict
+^https:\/\/www\.gaoding\.com\/api\/v\d\/oc\/delivery-pits\/(template|mine|home)-page-dialog\/modules$ url reject-dict
+^https:\/\/www\.gaoding\.com\/api\/v\d\/cp\/search-words\/v2\/placeholder url reject-dict
+^https:\/\/www\.gaoding\.com\/api\/v\d\/oc\/exhibitions\/template\/resources$ url jsonjq-response-body '.pits |= map(select(.module_type != "BANNER"))'
+^https:\/\/www\.gaoding\.com\/api\/v\d\/oc\/exhibitions\/app_mine\/resources$ url jsonjq-response-body '.pits |= map(select(.module_type != "BANNER"))'
+^https:\/\/www\.gaoding\.com\/api\/v\d\/oc\/exhibitions\/(templates|all_editor_tools)\/resources$ url jsonjq-response-body 'walk(if type == "object" and .badge_img_url? then .badge_img_url="" else . end)'
+
+hostname = www.gaoding.com

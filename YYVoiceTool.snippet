@@ -1,0 +1,12 @@
+#!name = YY语音
+#!desc = 移除开屏广告、应用内弹窗、任务推广、频道横幅推广，精简广场顶部标签。（转自可莉 YYVoiceTool_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/YYVoiceTool.png
+
+^https:\/\/yuyin-api\.baizhanlive\.com\/homepage\/flashscreen\/get\? url reject-dict
+^https:\/\/yuyin-api\.baizhanlive\.com\/homepage\/homepage\/banner\? url reject-dict
+^https:\/\/web\.yy\.com\/yyvoice_task_sys\/bar\.html\? url reject
+^https:\/\/yuyin-api\.baizhanlive\.com\/postsquare\/college\/page\/tabsV3\? url jsonjq-response-body '.data.tabList |= map(select(.code == "post" or .code == "teamup" or .code == "college" or .code == "aiSecretRoom"))'
+^https:\/\/yuyin-api\.baizhanlive\.com\/search\/search\/hotword\? url reject-dict
+
+hostname = yuyin-api.baizhanlive.com, web.yy.com

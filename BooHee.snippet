@@ -1,0 +1,17 @@
+#!name = 薄荷健康
+#!desc = 移除记录页大家都在看、移除各类弹窗，移除广场横幅推广，精简代谢中心页面。（转自可莉 BooHee_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/BooHee.png
+
+^https:\/\/api\.boohee\.com\/meta-interface\/v2\/index\? url jsonjq-response-body 'del(.["data"]["recom_cards"], .["data"]["recom_btns"])'
+^https:\/\/api\.boohee\.com\/meta-interface\/v1\/index\/page_float_bubbles\? url reject-dict
+^https:\/\/api\.boohee\.com\/meta-interface\/v1\/index\/tool_buttons\? url reject-dict
+^https:\/\/api\.boohee\.com\/app-interface\/v1\/search\/search\? url reject-dict
+^https:\/\/status\.boohee\.com\/api\/v1\/merged_messages$ url reject-dict
+^https:\/\/bohe\.sfo-tx-shanghai-01\.saas\.sensorsdata\.cn\/api\/v2\/sfo\/user_popup_configs\? url reject-dict
+^https:\/\/api\.boohee\.com\/meta-interface\/v1\/index\/plaza\? url jsonjq-response-body 'del(.["data"]["tabs"][1]["badge"], .["data"]["recommend_ads"])'
+^https:\/\/api\.boohee\.com\/open-interface\/v1\/string\/market_page\?title=metabolism_config$ url jsonjq-response-body 'del(.["top_banner"], .["diagnos_config"], .["partner_hospital"], .["question_answer"], .["product"], .["brand_story"])'
+^https:\/\/api\.boohee\.com\/meta-interface\/v1\/index\/sensor-banners\? url reject-dict
+^https:\/\/api\.boohee\.com\/meta-interface\/v1\/index\/plaza-flow\? url script-response-body https://kelee.one/Resource/JavaScript/BooHee/BooHee_remove_ads.js
+
+hostname = api.boohee.com, status.boohee.com, bohe.sfo-tx-shanghai-01.saas.sensorsdata.cn

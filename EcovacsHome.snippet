@@ -1,0 +1,10 @@
+#!name = ECOVACS HOME
+#!desc = 移除横幅推广，精简底栏。（转自可莉 EcovacsHome_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/EcovacsHome.png
+
+^https:\/\/gl-cn-api\.ecovacs\.cn\/v3\/private\/ url jsonjq-response-body '.data.navigateInfoResponseList |= map(select(.positionType == "Robot" or .positionType == "Mine"))'
+^https:\/\/api-app\.dc-cn\.cn\.ecouser\.net\/api\/ecms\/app\/ad\/ url reject-dict
+^https:\/\/gl-cn-api\.ecovacs\.cn\/v1\/private\/ url reject-dict
+
+hostname = gl-cn-api.ecovacs.cn, api-app.dc-cn.cn.ecouser.net

@@ -1,0 +1,8 @@
+#!name = 百度网页
+#!desc = 移除百度搜索移动端网页的首页广告信息流（转自可莉 BaiduSearchWebpage_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Baidu.png
+
+^https?:\/\/(www|m)\.baidu\.com\/?($|\?from=\w{8,9}) url script-response-body https://kelee.one/Resource/JavaScript/BaiduSearch/BaiduSearchHomePage_remove_ads.js
+
+hostname = www.baidu.com, m.baidu.com

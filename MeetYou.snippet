@@ -1,0 +1,11 @@
+#!name = 美柚
+#!desc = 移除开屏广告、弹窗推广和信息流推广，移除青少年模式弹窗和我的页面推广。（转自可莉 MeetYou_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/MeetYou.png
+
+host, ad.seeyouyima.com, reject
+host, axxd.xmseeyouyima.com, reject
+^https:\/\/circle\.(xm)?seeyouyima\.com\/v\d\/article_recommend\? url reject
+^https:\/\/common\.seeyouyima\.com\/v2\/conf_list$ url jsonjq-response-body 'del(.["data"]["confList"]["Minor_mode_card"])'
+
+hostname = circle.xmseeyouyima.com, circle.seeyouyima.com, common.seeyouyima.com

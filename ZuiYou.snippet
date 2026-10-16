@@ -1,14 +1,13 @@
-#!name = 最右去开屏
-#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 999 行，[Z] 段；追加 kelee:ZuiYou_remove_ads.lpx（2026-10-02 13:57:49）的 4 条规则
-#!author = ddgksf2013, 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!name = 最右
+#!desc = 移除开屏广告、信息流广告和广告轮播图。（转自可莉 ZuiYou_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/ZuiYou.png
 
-^https?:\/\/adapi\.izuiyou\.com\/ url reject-200
-^https?:\/\/api\.izuiyou\.com\/ad\/ url reject-200
-
-# ↓ 来自 kelee:ZuiYou_remove_ads.lpx「最右去广告」
 host, adapi.izuiyou.com, reject
 ^http:\/\/mercury-gateway\.ixiaochuan\.cn\/mercury\/v1\/ad\/ url reject-dict
+^http:\/\/file-share\.izuiyou\.com\/octopus\/media\/templates\/search_home_page_(nv|nv_v2)\/search_home_page_nv url reject
 ^https?:\/\/api\.izuiyou\.com\/config\/get_banner url reject-dict
 ^https?:\/\/api\.izuiyou\.com\/ad\/ url reject
+^https:\/\/zyfile\.izuiyou\.com\/zyfile\/c2\/a0\/[a-z0-9-]+\.json url reject-dict
 
-hostname = adapi.izuiyou.com, api.izuiyou.com
+hostname = api.izuiyou.com, zyfile.izuiyou.com

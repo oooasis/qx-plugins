@@ -1,0 +1,17 @@
+#!name = Uki
+#!desc = 移除开屏广告、应用内悬浮窗，各类横幅、信息流广告、搜索填充词、我的页面广告。（转自可莉 Uki_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Uki.png
+
+^https:\/\/api\.chenlongtech\.cn\/v\d\/friends\/startInfo$ url reject-dict
+^https:\/\/api\.chenlongtech\.cn\/v\d\/friends\/indexBanner$ url reject-dict
+^https:\/\/api\.chenlongtech\.cn\/v\d\/friends\/getPopup url reject-dict
+^https:\/\/api\.chenlongtech\.cn\/v\d\/friends\/allPopUpConfig$ url reject-dict
+^https:\/\/api\.chenlongtech\.cn\/v\d\/friends\/advConf$ url reject-dict
+^https:\/\/api\.chenlongtech\.cn\/v\d\/user\/checkQTSheInsurance$ url reject-dict
+^https:\/\/api\.chenlongtech\.cn\/v\d\/lover\/productList url script-response-body https://kelee.one/Resource/JavaScript/Uki/Uki_remove_ads.js
+^https:\/\/api\.chenlongtech\.cn\/v\d\/friends\/closeFriend\/home url script-response-body https://kelee.one/Resource/JavaScript/Uki/Uki_remove_ads.js
+^https:\/\/api\.chenlongtech\.cn\/v\d\/party\/config$ url script-response-body https://kelee.one/Resource/JavaScript/Uki/Uki_remove_ads.js
+^https:\/\/api\.chenlongtech\.cn\/v1\/post\/fetchSearchRecommend$ url script-response-body https://kelee.one/Resource/JavaScript/Uki/Uki_remove_ads.js
+
+hostname = api.chenlongtech.cn

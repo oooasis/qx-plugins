@@ -1,0 +1,8 @@
+#!name = Sofascore
+#!desc = 移除横幅及信息流广告（转自可莉 Sofascore_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Sofascore.png
+
+^https:\/\/api\.sofascore\.com\/api\/v\d\/dsp\/country\/[A-Z]{2}$ url reject-dict
+
+hostname = api.sofascore.com

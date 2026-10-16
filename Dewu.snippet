@@ -1,0 +1,17 @@
+#!name = 得物
+#!desc = 移除开屏广告、弹窗、搜索词填充、热搜榜、猜你想搜、推荐关注、推荐信息流，精简消息中心和我的页面。（转自可莉 Dewu_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Dewu.png
+
+^https:\/\/app\.dewu\.com\/api\/v1\/app\/advertisement\/ url reject-dict
+^https:\/\/app\.dewu\.com\/hacking-newbie\/v1\/app\/coupon\/module\? url reject-dict
+^https:\/\/app\.dewu\.com\/api\/v1\/app\/search\/lexicon\/v3\/background_words\? url reject-dict
+^https:\/\/app\.dewu\.com\/api\/v1\/app\/search\/lexicon\/v1\/rank_words\? url reject-dict
+^https:\/\/app\.dewu\.com\/api\/v1\/app\/biz-aggregate\/me\/user-index\? url jsonjq-response-body '.data.modules |= map(if .key == "wallet" then .data.menus |= map(select(.key == "coupon" or .key == "allowance" or .key == "gift" or .key == "balance")) else . end) | .data.modules |= map(select(.key != "merchant" and .key != "discountCoupon"))'
+^https:\/\/app\.dewu\.com\/api\/v1\/app\/account\/wallet\/page\/entrance\? url jsonjq-response-body '.data.groupInfoDTOS |= map(.moduleInfoDTO = {assetModule: .moduleInfoDTO.assetModule}) | .data.moduleNames = [.data.moduleNames[] | select(. == "assetModule")] | . as $full | $full | .data.groupNames |= (map(select(. == "MAIN" or . == "ASYNC_COMMON" or . == "ASYNC_GOODS_FEEDS")))'
+^https:\/\/app\.dewu\.com\/identify-discovery\/v1\/discovery\/index\? url jsonjq-response-body '.data.groups |= map(.items |= map(select(.title == "消息中心")))'
+^https:\/\/app\.dewu\.com\/sns-rec\/v1\/attention\/feed\? url reject-dict
+^https:\/\/app\.dewu\.com\/sns-rec\/v1\/search\/word-skip\/new-list\? url reject-dict
+^https:\/\/app\.dewu\.com\/sns-rec\/v1\/search\/hotword-list\? url reject-dict
+
+hostname = app.dewu.com

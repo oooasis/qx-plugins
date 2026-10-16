@@ -1,0 +1,13 @@
+#!name = 天气通
+#!desc = 移除开屏广告、横幅广告、弹窗广告，精简底栏及我的页面。（转自可莉 TianQiTong_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/TianQiTong.png
+
+^https:\/\/forecast\.sina\.cn\/app\/overall\/switch\.php\? url reject-dict
+^https:\/\/tqt\.weibo\.cn\/business\/advert\/ url reject-dict
+^https:\/\/tqt\.weibo\.cn\/user\/device\/ad_multi_star\? url reject-dict
+^https:\/\/tqt\.weibo\.cn\/operation\/activity\/ url reject-dict
+^https:\/\/tqt\.weibo\.cn\/master\/nav\/tab\? url jsonjq-response-body 'map(.tabs|=map(select(.type=="weather" or .type=="radar" or .type=="my")))'
+^https:\/\/tqt\.weibo\.cn\/api\/user\/user\/\d\.\d\/\?method=personal_center$ url reject-dict
+
+hostname = forecast.sina.cn, tqt.weibo.cn

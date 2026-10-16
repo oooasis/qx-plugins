@@ -1,0 +1,12 @@
+#!name = 网易有道词典
+#!desc = 移除开屏广告、弹窗广告、右上角推广。（转自可莉 YoudaoDict_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/YoudaoDict.png
+
+^https:\/\/dict\.youdao\.com\/homepage\/toolbar\/get\/ url jsonjq-response-body 'del(.["data"]["vipTag"])'
+^https:\/\/dict\.youdao\.com\/vip\/activity\/startup\/ url reject-dict
+^https:\/\/dict\.youdao\.com\/vip\/activity\/retention\/configs\? url reject-dict
+^https:\/\/dict\.youdao\.com\/vip\/activity\/retention\/match\? url reject-dict
+^https:\/\/dict\.youdao\.com\/vip\/user\/paid\/guide\? url reject-dict
+
+hostname = dict.youdao.com

@@ -1,0 +1,10 @@
+#!name = 挖财记账
+#!desc = 移除开屏广告、横幅广告，顶部推广、活动配置。（转自可莉 Wacai_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Wacai.png
+
+^https:\/\/jz\.wacaijizhang\.com\/api\/banners\/ url reject-dict
+^https:\/\/jz\.wacaijizhang\.com\/api\/resource\/universal\/fetch$ url reject-dict
+^https:\/\/jz\.wacaijizhang\.com\/activity\/ url reject
+
+hostname = jz.wacaijizhang.com

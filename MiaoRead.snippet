@@ -1,0 +1,8 @@
+#!name = 小喵看书
+#!desc = 移除小喵看书章末广告（转自可莉 MiaoRead_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/MiaoRead.png
+
+^https:\/\/api\.miaomiaoyd\.com\/book\/config\/getAdsSettings$ url reject
+
+hostname = api.miaomiaoyd.com

@@ -1,0 +1,13 @@
+#!name = 堆糖
+#!desc = 移除开屏广告、信息流广告、热搜排行榜广告、我的页面横幅广告，移除关注推荐，精简底部导航栏。（转自可莉 DuiTang_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/DuiTang.png
+
+^https:\/\/xapi\.duitang\.com\/napi\/ads\/\? url reject-dict
+^https:\/\/meta\.duitang\.com\/napi\/infra\/settings\/ url jsonjq-response-body 'del(.["data"]["AD_LINKS"])'
+^https:\/\/api-2\.duitang\.com\/napi\/vienna\/daren\/daren\/recommend\/ url reject-dict
+^https:\/\/www\.duitang\.com\/napi\/hot\/search\/list\/ url reject-dict
+^https:\/\/(www|api-2)\.duitang\.com\/napi\/home\/bottom_tab\/detail\/\? url jsonjq-response-body '.data.tabs |= map(select(.group == "home" or .group == "category" or .group == "me"))'
+^https:\/\/api-2\.duitang\.com\/napi\/settings\/ url jsonjq-response-body 'del(.["data"]["SPLASH_SWING_OPEN"], .["data"]["STICKER_SEARCH_HOT_KEYWORDS"], .["data"]["REWARD_AD_PAG_EDITOR"], .["data"]["REWARD_AD_PHOTO_EDITOR"], .["data"]["REWARD_AD_CUTOUT_NUM"], .["data"]["MAIN_EVENTS"], .["data"]["QA_TOOLTIP_BOTTOM"], .["data"]["OC_FOLLOW_OFFICIAL"], .["data"]["AD_MENU_SELECTIONS"], .["data"]["FEATURE_TEMPLATES"], .["data"]["FEEDBACK_URL"], .["data"]["AVATAR_MALL_UPDATE"], .["data"]["WATERMARK_MALL_UPDATE"], .["data"]["OC_MALL_UPDATE"], .["data"]["3D_AVATAR_UPDATE"], .["data"]["BENEFIT_LIST"], .["data"]["SHARE_BANNER"])'
+
+hostname = meta.duitang.com, api-2.duitang.com, www.duitang.com

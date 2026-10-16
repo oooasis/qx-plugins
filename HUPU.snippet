@@ -1,0 +1,19 @@
+#!name = 虎扑
+#!desc = 移除虎扑开屏广告、首页顶部推广、我的页面多余模块及各类横幅推广。（转自可莉 HUPU_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = ZenmoFeiShi[https://github.com/ZenmoFeiShi]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/HUPU.png
+
+^https:\/\/games\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/bplapi\/reddot\/v1\/app\/getReddot url reject-dict
+^https:\/\/bbs\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/(bbsallapi\/tag\/v1\/heatTag|bbsrankapi\/v1\/rating\/list) url reject-dict
+^https:\/\/games\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/search\/v2\/(hintkeylist|hotkeylist) url reject-dict
+^https:\/\/goblin\.hupu\.com\/\d\/\d\.\d\.\d+\/interfaceAd\/getOther\/v\d url reject-dict
+^https:\/\/goblin\.hupu\.com\/\d\/\d\.\d\.\d+\/interfaceAd\/getOther\/batch url reject-dict
+^https:\/\/fairy\.mobileapi\.hupu\.com\/gallery\/getmod2 url reject-200
+^https:\/\/games\.mobileapi\.hupu\.com\/3\/8\.0\.86\/bplcommentapi\/bpl\/score_tab\/groups url reject-dict
+^https:\/\/games\.mobileapi\.hupu\.com\/3\/8\.0\.86\/bplapi\/banner\/getLocationBanners url reject-dict
+^https:\/\/fairy\.mobileapi\.hupu\.com\/mang\/preview\/banners url script-response-body https://kelee.one/Resource/JavaScript/HUPU/HUPU_remove_ads.js
+^https:\/\/bbs\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/bbsallapi\/lego\/data url script-response-body https://kelee.one/Resource/JavaScript/HUPU/HUPU_remove_ads.js
+^https:\/\/games\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/buffer\/hotList url script-response-body https://kelee.one/Resource/JavaScript/HUPU/HUPU_remove_ads.js
+^https:\/\/games\.mobileapi\.hupu\.com\/\d\/\d\.\d\.\d+\/bplapi\/user\/v1\/more url script-response-body https://kelee.one/Resource/JavaScript/HUPU/HUPU_remove_ads.js
+
+hostname = games.mobileapi.hupu.com, bbs.mobileapi.hupu.com, goblin.hupu.com, fairy.mobileapi.hupu.com

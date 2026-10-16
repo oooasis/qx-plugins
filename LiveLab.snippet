@@ -1,0 +1,12 @@
+#!name = 纷玩岛
+#!desc = 移除开屏广告、弹窗广告、信息横幅推广、票夹页面横幅广告。（转自可莉 LiveLab_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/LiveLab.png
+
+^https:\/\/api\.livelab\.com\.cn\/pgc\/advert\/ url reject-dict
+^https:\/\/api\.livelab\.com\.cn\/search\/appHotWords\/app\/queryHotWords$ url reject-dict
+^https:\/\/api\.livelab\.com\.cn\/appShow\/hotSearch\/app\/rankList$ url reject-dict
+^https:\/\/api\.livelab\.com\.cn\/appShow\/app\/homepage\/banners\?bannerModuleId=(82|84|53) url reject-dict
+^https:\/\/api\.livelab\.com\.cn\/appShow\/app\/homepage\/modules\?tabId=5$ url jsonjq-response-body '.data |= map(select(.id | IN(51, 52, 81, 82, 83, 84)))'
+
+hostname = api.livelab.com.cn

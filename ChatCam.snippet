@@ -1,0 +1,9 @@
+#!name = 看家王
+#!desc = 移除开屏广告、横幅广告。（转自可莉 ChatCam_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/ChatCam.png
+
+^https:\/\/fast\.jfgou\.com:1443\/api\/web\/v\d\/no\/app\/advertisement\/ url reject-dict
+^https:\/\/jiafeigou-1251885898\.cos\.ap-guangzhou\.myqcloud\.com\/forever\/web_server\/app_config\/banner_\d+ url reject
+
+hostname = fast.jfgou.com, jiafeigou-1251885898.cos.ap-guangzhou.myqcloud.com

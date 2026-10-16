@@ -1,0 +1,11 @@
+#!name = 库街区
+#!desc = 移除开屏广告、弹窗广告、搜索页面的热搜及话题热榜。（转自可莉 KuroBBS_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/KuroBBS.png
+
+^https:\/\/api\.kurobbs\.com\/config\/getOpenScreen$ url reject-dict
+^https:\/\/api\.kurobbs\.com\/config\/index\/windows$ url reject-dict
+^https:\/\/api\.kurobbs\.com\/config\/search\/getSearchConfig\? url reject-dict
+^https:\/\/api\.kurobbs\.com\/forum\/app\/topic\/hotlist\? url reject-dict
+
+hostname = api.kurobbs.com

@@ -1,0 +1,13 @@
+#!name = 驾校一点通
+#!desc = 移除开屏广告、各页面广告横幅、弹窗广告，移除社区广告。（转自可莉 JiaXiaoDrive_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/JiaXiaoDrive.png
+
+^https:\/\/richmanrules\.ksedt\.com\/serverConfig\/3\/adConfig\.json url reject-dict
+^https:\/\/gouche\.ksedt\.com\/config\/popup\/info$ url reject-dict
+^https:\/\/richmanrules\.ksedt\.com\/intellectWaterfallBidding\/find$ url reject-dict
+^https:\/\/op\.ksedt\.com\/jxedtLive\/liveIntroduceResource url reject-dict
+^https:\/\/richmanrules\.ksedt\.com\/intellectWaterfall\/find$ url reject-dict
+http-response url jsonjq-response-body 'del(.["^https:\\/\\/api\\"]["ksedt\\"]["com\\/api\\/config\\/"])'
+
+hostname = richmanrules.ksedt.com, gouche.ksedt.com, op.ksedt.com

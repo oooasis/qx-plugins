@@ -1,0 +1,9 @@
+#!name = 网易大神
+#!desc = 移除开屏广告，精简大量冗余的配置文件，精简我的页面。（转自可莉 NetEaseGodlike_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/NetEaseGodlike.png
+
+^https:\/\/god\.gameyw\.netease\.com\/v\d\/ad url reject
+^https:\/\/app-conf\.ds\.163\.com\/v1\/app\/base\/conf\/static\/start-config\?os=ios url script-response-body https://kelee.one/Resource/JavaScript/NetEaseGodlike/NetEaseGodlike_remove_ads.js
+
+hostname = god.gameyw.netease.com, app-conf.ds.163.com

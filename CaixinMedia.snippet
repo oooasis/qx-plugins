@@ -1,0 +1,18 @@
+#!name = 财新
+#!desc = 过滤财新广告（转自可莉 CaixinMedia_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = RuCu6[https://github.com/RuCu6]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/CaixinMedia.png
+
+^https:\/\/entities\.caixin\.com\/api\/(dataplus\/promotionHints|public\/push\/appIndex|public\/recommendNews) url reject-dict
+^https:\/\/gateway\.caixin\.com\/api\/app-api\/cxAdInfo\/selectIndexAdInfo url reject-dict
+^https:\/\/mappsv5\.caixin\.com\/channelv5\/article_ad_ios_info\.json url reject-dict
+^https:\/\/gg\.caixin\.com\/s\?z=caixin&slot=\d+ url reject-dict
+^https:\/\/msgapi\.caixin\.com\/msg_api\/annmsg\/annlist url reject-dict
+^https:\/\/entities\.caixin\.com\/api\/dataplus\/columns url script-response-body https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
+^https:\/\/gateway\.caixin\.com\/api\/app-api\/(caixinapp\/appinfo|search\/getkeyword) url script-response-body https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
+^https:\/\/gateway\.caixin\.com\/api\/app-content\/fm\/index\/list\? url script-response-body https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
+^https:\/\/gg\.caixin\.com\/s\?z=caixin&op=\d url script-response-body https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
+^https:\/\/mappsv5\.caixin\.com\/articlev5\/\d+\/\d+\.json$ url script-response-body https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
+^https:\/\/mapps?v5\.caixin\.com\/(channelv5\/list|\/?index_page_v5\/)\w+ url script-response-body https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
+
+hostname = entities.caixin.com, gateway.caixin.com, mappsv5.caixin.com, gg.caixin.com, msgapi.caixin.com

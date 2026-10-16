@@ -1,0 +1,15 @@
+#!name = 快捷搜索
+#!desc = 为Safari提供快速切换搜索引擎的能力，在插件列表中点击此插件上的链接查看使用方法。（转自可莉 QuickSearch.lpx，2026-10-16 11:03:37）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Safari.png
+
+^https:\/\/duckduckgo\.com\/\?q=bd\+([^&]+).+ url 307 https://www.baidu.com/s?wd=$1
+^https:\/\/duckduckgo\.com\/\?q=bdimg\+([^&]+).+ url 307 https://image.baidu.com/search/index?tn=baiduimage&word=$1
+^https:\/\/duckduckgo\.com\/\?q=gimg\+([^&]+).+ url 307 https://www.google.com/search?&tbm=isch&q=$1
+^https:\/\/duckduckgo\.com\/\?q=b\+([^&]+).+ url 307 https://www.bing.com/search?q=$1
+^https:\/\/duckduckgo\.com\/\?q=wk\+([^&]+).+ url 307 https://zh.wikipedia.org/wiki/$1
+^https:\/\/duckduckgo\.com\/\?q=qm\+([^&]+).+ url 307 https://www.qimai.cn/search/index/country/cn/search/$1
+^https:\/\/duckduckgo\.com\/\?q=gh\+([^&]+).+ url 307 https://github.com/search?q=$1
+^https:\/\/duckduckgo\.com\/\?q=(?!(?:bd|bdimg|gimg|b|wk|qm|gh)\+)([^&]+).+ url 307 https://www.google.com/search?q=$1
+
+hostname = duckduckgo.com

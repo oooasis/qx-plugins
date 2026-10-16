@@ -1,0 +1,13 @@
+#!name = 米游社
+#!desc = 移除开屏广告、搜索栏热搜及资讯、青少年模式弹窗。（转自可莉 miHoYoBBS_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/miHoYoBBS.png
+
+^https:\/\/bbs-api(-ab)?\.miyoushe\.com\/apihub\/api\/getAppSplash$ url reject-dict
+^https:\/\/bbs-api(-ab)?\.miyoushe\.com\/apihub\/api\/getAppStartupData$ url jsonjq-response-body 'del(.["data"]["resp_map"]["/teenager/api/info"], .["data"]["resp_map"]["/apihub/api/getAppConfig"]["data"]["get_app_config_response"]["config"]["is_show_teenager_mode_btn"], .["data"]["resp_map"]["/apihub/api/getAppConfig"]["data"]["get_app_config_response"]["config"]["teenager_popup_freq_type"])'
+^https:\/\/bbs-api(-ab)?\.miyoushe\.com\/apihub\/api\/getAppConfig$ url jsonjq-response-body '.["data"]["config"]["teenager_popup_freq_type"] = 0 | .["data"]["config"]["is_show_teenager_mode_btn"] = 0'
+^https:\/\/bbs-api-ab\.miyoushe\.com\/teenager\/api\/info$ url jsonjq-response-body '.["data"]["is_enabled"] = false | .["data"]["is_teenager"] = false | .["data"]["is_force"] = false'
+^https:\/\/bbs-api(-ab)?\.miyoushe\.com\/apihub\/api\/getHotKeywordAndEvent$ url reject-dict
+^https:\/\/bbs-api-static\.miyoushe\.com\/search\/api\/search\/pre_keyword\? url reject-dict
+
+hostname = bbs-api-ab.miyoushe.com, bbs-api.miyoushe.com

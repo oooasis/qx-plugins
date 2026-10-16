@@ -1,0 +1,9 @@
+#!name = 纵横小说
+#!desc = 移除纵横小说开屏广告和弹窗（转自可莉 ZongHeng_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/ZongHeng.png
+
+^https:\/\/api1\.zongheng\.com\/iosapi\/system\/startup$ url reject
+^https:\/\/api2\.zongheng\.com\/api\/giftBag\/bindingBag$ url reject-dict
+
+hostname = api1.zongheng.com, api2.zongheng.com

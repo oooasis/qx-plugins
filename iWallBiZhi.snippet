@@ -1,0 +1,12 @@
+#!name = 最美壁纸
+#!desc = 移除悬浮广告、横幅广告、轮播图广告，精简我的页面。（转自可莉 iWallBiZhi_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/iWallBiZhi.png
+
+^https:\/\/api\.fzxhmy\.com\/seek\/trendingword\? url reject-dict
+^https:\/\/api\.fzxhmy\.com\/tone\/trending\? url reject-dict
+^https:\/\/api\.fzxhmy\.com\/core\/initialize\? url script-response-body https://kelee.one/Resource/JavaScript/iWallBiZhi/core_initialize.js
+^https:\/\/api\.fzxhmy\.com\/landing\/initialize\? url script-response-body https://kelee.one/Resource/JavaScript/iWallBiZhi/landing_initialize.js
+^https:\/\/api\.fzxhmy\.com\/avatar\/landing\? url script-response-body https://kelee.one/Resource/JavaScript/iWallBiZhi/landing.js
+
+hostname = api.fzxhmy.com

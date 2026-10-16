@@ -1,0 +1,13 @@
+#!name = 美颜相机
+#!desc = 移除开屏广告、应用内弹窗，精简首页和我的页面。（转自可莉 MeituMYXJ_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/MeituMYXJ.png
+
+host, adui.tg.meitu.com, reject
+^https:\/\/api\.meiyan\.com\/operation\/home_banner\.json\? url reject-dict
+^https:\/\/api\.meiyan\.com\/vip\/permission_update_popup\.json\? url reject-dict
+^https:\/\/api\.meiyan\.com\/operation\/get_config\.json\? url jsonjq-response-body 'del(.["response"]["time_limit"], .["response"]["bubble"], .["response"]["person_center"])'
+^https:\/\/api\.meiyan\.com\/operation\/get_config\.json\? url jsonjq-response-body '.["response"]["function_pop"]["meiyan_style"]["is_pop"] = false | .["response"]["onoff"]["vip_half_window_exit_remain_popup"]["open"] = 0 | .["response"]["onoff"]["vip_home_exit_remain_popup"] = 0'
+^https:\/\/api\.meiyan\.com\/operation\/home\.json\? url script-response-body https://kelee.one/Resource/JavaScript/MeituMYXJ/MeituMYXJ_remove_ads.js
+
+hostname = api.meiyan.com

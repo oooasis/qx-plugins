@@ -1,0 +1,13 @@
+#!name = 快影
+#!desc = 移除开屏广告、信息流推广、横幅推广，移除悬浮部件。（转自可莉 KwaiVideoeditor_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/KwaiVideoeditor.png
+
+^https:\/\/api\.kmovie\.gifshow\.com\/rest\/n\/kmovie\/app\/resource\/get\? url reject-dict
+^https:\/\/api\.kmovie\.gifshow\.com\/rest\/n\/kmovie\/app\/banner\/common\/getBannerByTypeV2\? url jsonjq-response-body 'del(.list[] | select(.bannerChannelName == "活动"))'
+^https:\/\/api\.kmovie\.gifshow\.com\/rest\/n\/kmovie\/app\/banner\/common\/getAllBannerPage\? url jsonjq-response-body 'del(.data[] | select(.bannerChannelName == "活动"))'
+^https:\/\/api\.kmovie\.gifshow\.com\/rest\/n\/kmovie\/app\/banner\/common\/getBannerByType\? url reject-dict
+^https:\/\/api\.kmovie\.gifshow\.com\/rest\/n\/kmovie\/app\/merchant\/ad\/ url reject-dict
+^https:\/\/api\.kmovie\.gifshow\.com\/rest\/n\/kmovie\/app\/resource\/activity\/pendant\? url reject-dict
+
+hostname = api.kmovie.gifshow.com

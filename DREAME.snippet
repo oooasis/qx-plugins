@@ -1,0 +1,11 @@
+#!name = DREAME
+#!desc = 移除开屏广告、首页大图推广、横幅推广，精简底栏，阻止桌面图标替换。仅支持2.5.1版。（转自可莉 DREAME_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/DREAME.png
+
+^https:\/\/cn\.iot\.dreame\.tech:\d+\/dreame-product\/public\/advertisement\/ url reject-dict
+^https:\/\/cn-mall\.dreame\.tech\/dreame-mall\/api\/v1\/tag\/list$ url reject-dict
+^https:\/\/cn-wxmall\.dreame\.tech\/main\/goods\/get-topgoods$ url reject-dict
+^https:\/\/cn\.iot\.dreame\.tech:13267\/dreame-system\/dreame-app\/setting\/query$ url jsonjq-response-body 'del(.["data"]["appIconConfig"])'
+
+hostname = cn.iot.dreame.tech, cn-mall.dreame.tech, cn-wxmall.dreame.tech

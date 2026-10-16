@@ -1,0 +1,10 @@
+#!name = 排班日历
+#!desc = 移除开屏广告、横幅广告。（转自可莉 AxWorkSchedule_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/AxWorkSchedule.png
+
+^https:\/\/schedule-api\.julanling\.com\/api\d\/get_splash$ url reject-dict
+^https:\/\/schedule-api\.julanling\.com\/api\d\/index_advert$ url reject-dict
+^https:\/\/schedule-api\.julanling\.com\/api\d\/queryAdvertConfig$ url reject-dict
+
+hostname = schedule-api.julanling.com

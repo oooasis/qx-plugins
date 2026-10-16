@@ -1,0 +1,10 @@
+#!name = 萝卜快跑
+#!desc = 移除开屏广告、弹窗广告、横幅广告、新用户活动皮肤，保留优惠活动。（转自可莉 RoboTaxi_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/RoboTaxi.png
+
+^https:\/\/idgdata\.baidu\.com\/mc\/app\/api\/listterminal\? url reject-dict
+^https:\/\/idgdata\.baidu\.com\/operation\/api\/announce\/screen\/image_manage\? url reject-dict
+^https:\/\/idgdata\.baidu\.com\/idgactivity\/api\/newuser\/info\? url reject-dict
+
+hostname = idgdata.baidu.com

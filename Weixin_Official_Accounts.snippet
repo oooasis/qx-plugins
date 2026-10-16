@@ -1,0 +1,10 @@
+#!name = 微信公众号
+#!desc = 过滤微信公众号广告（转自可莉 Weixin_Official_Accounts_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = RuCu6[https://github.com/RuCu6]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Weixin.png
+
+host-suffix, wxs.qq.com, reject
+^https:\/\/mp\.weixin\.qq\.com\/mp\/(cps_product_info|getappmsgad|jsmonitor|masonryfeed|relatedarticle)\? url reject-dict
+^https:\/\/mp\.weixin\.qq\.com\/mp\/relatedsearchword url reject-dict
+
+hostname = mp.weixin.qq.com

@@ -1,0 +1,32 @@
+#!name = 快看漫画
+#!desc = 移除开屏广告、悬浮窗、漫画广告、社区广告、各类弹窗，精简顶部标签、我的页面。（转自可莉 KuaiKanComic_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/KuaiKanComic.png
+
+host, ad.v3mh.com, reject
+host, ipv6.kkmh.com, reject
+host, ipv4.kkmh.com, reject
+^https:\/\/(cdn-)?api\.kkmh\.com\/v\d\/ad\/ url reject-dict
+^https:\/\/(cdn-)?h5\.kuaikanmanhua\.com\/user\/scene\/api\/new_user\/sign_in\/list url reject-dict
+^https:\/\/(cdn-)?api\.kkmh\.com\/v\d\/business\/activities\/get url reject-dict
+^https:\/\/(cdn-)?api\.kkmh\.com\/v\d\/business\/mine\/business_config url reject-dict
+^https:\/\/(cdn-)?topic\.kkmh\.com\/gamecard\/v\d\/activityModule\/userSignInInfo\?activitySignInConfigId url reject-dict
+^https:\/\/(cdn-)?topic\.kkmh\.com\/gamecard\/v\d\/activityModule\/fetchButtonInfo\?buttonConfigId url reject-dict
+^https:\/\/(cdn-)?topic\.kkmh\.com\/gamecard\/v\d\/activityText\/getUserActivityTextInfo\?activityTextConfigId url reject-dict
+^https:\/\/(cdn-)?pay\.kkmh\.com\/v\d\/kb\/comic_page_banner\/detail url reject-dict
+^https:\/\/(cdn-)?api\.kkmh\.com\/v\d\/business\/fake_push\/info url reject-dict
+^https:\/\/(cdn-)?shop\.kkmh\.com\/mbff\/popup_administration\/page_management_popup_administration$ url reject-dict
+^https:\/\/(cdn-)?pay\.kkmh\.com\/v\d\/vip\/banner_tip_list url reject-dict
+^https:\/\/(cdn-)?pay\.kkmh\.com\/v\d\/vip\/charge_tip_list url reject-dict
+^https:\/\/h5\.kuaikanmanhua\.com\/v\d\/kb\/recharge_good\/list_h5 url reject-dict
+^https:\/\/(cdn-)?pay\.kkmh\.com\/v\d\/kb\/wallet url reject-dict
+^https:\/\/(cdn-)?api\.kkmh\.com\/v\d\/checkin\/api\/new_user\/tab_info$ url reject-dict
+^https:\/\/h5\.kuaikanmanhua\.com\/game-h5\/new-user-welfare\/index\.html url reject-200
+^https:\/\/(cdn-)?pay\.kkmh\.com\/v\d\/vip\/platform_base\/popups_display$ url reject-dict
+^https:\/\/(cdn-)?api\.kkmh\.com\/v\d\/checkin\/task_center\/get_by_task_type url reject-dict
+^https:\/\/(cdn-)?api\.kkmh\.com\/v\d\/ironman\/comic\/recommend url script-response-body https://kelee.one/Resource/JavaScript/KuaiKanComic/KuaiKanComic_remove_ads.js
+^https:\/\/(cdn-)?api\.kkmh\.com\/v\d\/ironman\/discovery_v\d\/tab_list_v\d url script-response-body https://kelee.one/Resource/JavaScript/KuaiKanComic/KuaiKanComic_remove_ads.js
+^https:\/\/(cdn-)?social\.kkmh\.com\/v\d\/graph\/homepage\/comicVideo\/v\d\/configs url script-response-body https://kelee.one/Resource/JavaScript/KuaiKanComic/KuaiKanComic_remove_ads.js
+^https:\/\/(cdn-)?social\.kkmh\.com\/v\d\/graph\/unified_feed$ url script-response-body https://kelee.one/Resource/JavaScript/KuaiKanComic/KuaiKanComic_remove_ads.js
+
+hostname = cdn-api.kkmh.com, api.kkmh.com, cdn-h5.kuaikanmanhua.com, h5.kuaikanmanhua.com, cdn-topic.kkmh.com, topic.kkmh.com, cdn-pay.kkmh.com, pay.kkmh.com, cdn-shop.kkmh.com, shop.kkmh.com, cdn-social.kkmh.com, social.kkmh.com

@@ -1,0 +1,15 @@
+#!name = 得间小说
+#!desc = 移除开屏广告、章末广告，移除扉页广告提示、听书界面广告提示、搜索栏填充词。（转自可莉 iReaderDejian_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/iReaderDejian.png
+
+host, smad.ms.zhangyue.net, reject
+host, saad.ms.zhangyue.net, reject
+^https:\/\/dj\.palmestore\.com\/zybk\/api\/powerup\/userGroup\? url jsonjq-response-body 'del(.["body"]["sevenDaysAd"], .["body"]["shortPlayShow"], .["body"]["sdkShortPlayAB"])'
+^https:\/\/dj\.palmestore\.com\/djad\/ url reject-dict
+^https:\/\/dj\.palmestore\.com\/zybk\/api\/ad\/ url reject-dict
+^https:\/\/dj\.palmestore\.com\/zyapi\/bookstore\/ad\/ url reject-dict
+^https:\/\/dj\.palmestore\.com\/zybk\/api\/search\/index\? url jsonjq-response-body 'del(.["body"]["keywords"])'
+^https:\/\/dj\.palmestore\.com\/zybk\/api\/bookshelf\/index\? url reject-dict
+
+hostname = dj.palmestore.com

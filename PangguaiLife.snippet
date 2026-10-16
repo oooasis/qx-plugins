@@ -1,0 +1,15 @@
+#!name = 胖乖生活
+#!desc = 移除开屏广告、横幅轮播图、网格广告、信息流广告、浮窗广告，精简我的页面。（转自可莉 PangguaiLife_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/PangguaiLife.png
+
+^https:\/\/userapi\.qiekj\.com\/slot\/get$ url reject-dict
+^https:\/\/userapi\.qiekj\.com\/appTitle\/get$ url reject-dict
+^https:\/\/userapi\.qiekj\.com\/local-life\/tab-order$ url jsonjq-response-body '.["data"] = "[]"'
+^https:\/\/userapi\.qiekj\.com\/integralGoods\/queryIntegralGoodsCategoryList$ url jsonjq-response-body '.["data"] = "[]"'
+^https:\/\/userapi\.qiekj\.com\/integralRecord\/integralDailStatistics$ url reject-dict
+^https:\/\/userapi\.qiekj\.com\/local-life\/category$ url reject-dict
+^https:\/\/userapi\.qiekj\.com\/integralGoods\/queryIntegralGoodsPage$ url reject-dict
+^https:\/\/userapi\.qiekj\.com\/task\/list$ url reject-dict
+
+hostname = userapi.qiekj.com

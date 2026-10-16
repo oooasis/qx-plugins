@@ -1,0 +1,21 @@
+#!name = 36氪
+#!desc = 移除开屏广告、首页右上角运营位、信息流广告、文末广告，移除相关文章推荐、大家都在看及皮肤配置，精简搜索页面、我的页面及底栏。（转自可莉 36Kr_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/36Kr.png
+
+host, adx.36kr.com, reject
+host, ad.jiemian.com, reject
+^https:\/\/gateway\.36kr\.com\/api\/mis\/sys\/config\? url jsonjq-response-body 'del(.["data"]["contentConfig"], .["data"]["positionConfigList"], .["data"]["switchConfig"]["ios"]["sunrise_sign"], .["data"]["switchConfig"]["ios"]["sunrise_sunit_task"], .["data"]["switchConfig"]["ios"]["sunrise_sunit_mall"], .["data"]["switchConfig"]["ios"]["sunrise_distribution_icon"], .["data"]["secondFloorConfig"])'
+^https:\/\/36kr\.com\/global\/sensors\/config\/iOS\.conf\? url jsonjq-response-body '.["configs"]["disableSDK"] = true'
+^https:\/\/gateway\.36kr\.com\/api\/mis\/nav\? url jsonjq-response-body '.data.navList |= [ .[] | select(.navNick == "home" or .navNick == "newsflash" or .navNick == "me") ]'
+^https:\/\/gateway\.36kr\.com\/api\/mis\/nav\/me\/recom\? url reject-dict
+^https:\/\/gateway\.36kr\.com\/api\/mis\/nav\/search\/hotword\? url reject-dict
+^https:\/\/gateway\.36kr\.com\/api\/mis\/nav\/search\/topicListV2\? url reject-dict
+^https:\/\/gateway\.36kr\.com\/api\/mis\/nav\/home\/subnav\/recom\? url jsonjq-response-body '.data.bannerList |= map(select(.itemType != 0))'
+^https:\/\/gateway\.36kr\.com\/api\/mis\/nav\/home\/subnav\/flow\/ url jsonjq-response-body 'del(.["data"]["adItemList"])'
+^https:\/\/gateway\.36kr\.com\/api\/adx\/ url reject-dict
+^https:\/\/gateway\.36kr\.com\/api\/mis\/page\/article\/recom\? url reject-dict
+^https:\/\/gateway\.36kr\.com\/api\/mis\/page\/newsflash\/recom\? url reject-dict
+^https:\/\/gateway\.36kr\.com\/api\/mis\/sys\/skin\/ url reject-dict
+
+hostname = gateway.36kr.com, 36kr.com

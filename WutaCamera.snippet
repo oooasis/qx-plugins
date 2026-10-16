@@ -1,0 +1,9 @@
+#!name = 无他相机
+#!desc = 移除开屏广告、拍摄页面广告、右小角广告，精简底栏。（转自可莉 WutaCamera_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/WutaCamera.png
+
+^https:\/\/api-release\.wuta-cam\.com\/ad_tree$ url jsonjq-response-body 'del(.["regular"]["splash"], .["big_day"], .["big_day_overrides"], .["regular"]["home_bottom_right_entry_v2"], .["regular"]["pic_upload_alert"], .["regular"]["retouching_before_icon"])'
+^https:\/\/api-release\.wuta-cam\.com\/ad_tree$ url jsonjq-response-body '.regular.homepage_25_bottom_nav_bar|=map(.button_list|=map(select(.name|IN("home","me"))))'
+
+hostname = api-release.wuta-cam.com

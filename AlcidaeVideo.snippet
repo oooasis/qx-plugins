@@ -1,0 +1,12 @@
+#!name = 海雀
+#!desc = 移除开屏广告、横幅广告、弹窗广告，拦截商城和资讯页面。（转自可莉 AlcidaeVideo_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/AlcidaeVideo.png
+
+^https:\/\/app-api-32\.ihaique\.net\/api\/app\/v\d\/appad\/cmd\/AppadGetSplashAds\? url reject-dict
+^https:\/\/app-api-32\.ihaique\.net\/api\/app\/v\d\/appad\/cmd\/AppGetAttentionInfos\? url reject-dict
+^https:\/\/app-api-32\.ihaique\.net\/api\/app\/v\d\/appad\/cmd\/AppadGetBannerAds\? url reject-dict
+^https:\/\/g\.ihaique\.net\/alcidae\/info\/index\.html$ url reject
+^https:\/\/shop151522958\.youzan\.com\/v\d\/showcase\/homepage\? url reject
+
+hostname = app-api-32.ihaique.net, g.ihaique.net, shop151522958.youzan.com

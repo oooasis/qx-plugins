@@ -1,0 +1,11 @@
+#!name = Roborock
+#!desc = 移除横幅、活动推广、机器人图标，精简服务中心。（转自可莉 Roborock_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Roborock.png
+
+^https:\/\/cniot\.roborock\.com\/api\/v1\/activity\/banner\/list$ url reject-dict
+^https:\/\/cniot\.roborock\.com\/api\/v1\/activity\/latest$ url reject-dict
+^https:\/\/cniot\.roborock\.com\/api\/v1\/app\/theme\/device\/icon\? url reject
+^https:\/\/api\.roborock\.com\/v2\/h5\.page\.item\.info\?id=4115$ url jsonjq-response-body '.data |= map(select(.title == "常用功能"))'
+
+hostname = cniot.roborock.com, api.roborock.com

@@ -1,0 +1,10 @@
+#!name = 小米音箱
+#!desc = 移除开屏广告、应用内横幅广告及弹窗广告。（转自可莉 XiaomiSpeaker_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/XiaomiSpeaker.png
+
+^https:\/\/marketing-aibox\.v\.mitvos\.com\/advertise\/ url reject-dict
+^https:\/\/marketing-aibox\.v\.mitvos\.com\/payGuide\/halfScreenMulti\/(home|cache)\? url reject-dict
+^https:\/\/marketing-aibox\.v\.mitvos\.com\/payGuide\/tabPage\? url reject-dict
+
+hostname = marketing-aibox.v.mitvos.com

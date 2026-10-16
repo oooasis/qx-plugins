@@ -1,8 +1,10 @@
-#!name = 铁路12306去开屏
-#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 59 行，[0~9] 段
-#!author = ddgksf2013
+#!name = 12306
+#!desc = 过滤12306应用内广告及开屏广告（转自可莉 12306_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = RuCu6[https://github.com/RuCu6], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/12306.png
 
 host, ad.12306.cn, direct
-^https?:\/\/ad\.12306\.cn\/ad\/ser\/getAdList url script-analyze-echo-response https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/12306.js
+^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$ url jsonjq-response-body 'del(.["materialsList"], .["advertParam"])'
+^https:\/\/mobile\.12306\.cn\/otsmobile\/app\/mgs\/mgw\.htm$ url script-request-header https://kelee.one/Resource/JavaScript/12306/12306_remove_ads.js
 
-hostname = ad.12306.cn
+hostname = ad.12306.cn, mobile.12306.cn

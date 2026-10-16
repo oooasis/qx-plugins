@@ -1,0 +1,9 @@
+#!name = 360智慧生活
+#!desc = 移除开屏广告、首页推广横幅、商城入口及我的页面推广。（转自可莉 SafetyHome_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/SafetyHome.png
+
+host, ad.iot.360.cn, reject
+^https:\/\/app\.home\.360\.cn\/v1\/config\/custom_config url reject-dict
+
+hostname = app.home.360.cn

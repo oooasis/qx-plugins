@@ -1,0 +1,12 @@
+#!name = TeraBox
+#!desc = 移除开屏广告、应用内悬浮窗、弹窗广告及横幅广告。（转自可莉 TeraBox_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/TeraBox.png
+
+host, ymg-api.terabox.com, reject
+^https:\/\/www\.terabox\.com\/adx\/ url reject-dict
+^https:\/\/www\.terabox\.com\/api\/ad\/ url reject-dict
+^https:\/\/www\.terabox\.com\/api\/page\/tips\? url reject-dict
+^https:\/\/www\.terabox\.com\/rest\/1\.0\/task\/common\/inttips\? url reject-dict
+
+hostname = www.terabox.com

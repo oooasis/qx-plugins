@@ -1,0 +1,9 @@
+#!name = 微脉圈
+#!desc = 移除开屏广告、聊天页横幅提示及发现页面的横幅广告。（转自可莉 Weimai_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Weimai.png
+
+^https:\/\/confssl\d?\.iweimai\.cn\/wm_ios_update\.json\? url jsonjq-response-body '.["isShowCJAd"] = 0'
+^https:\/\/confssl\d?\.iweimai\.cn\/wm_ios_update\.json\? url jsonjq-response-body 'del(.["launchAd"], .["adBanners"], .["ad"])'
+
+hostname = confssl*.iweimai.cn

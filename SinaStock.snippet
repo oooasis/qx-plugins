@@ -1,0 +1,17 @@
+#!name = 新浪财经
+#!desc = 移除开屏广告、弹窗广告、横幅广告、信息流广告，精简我的页面。（转自可莉 SinaStock_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/SinaStock.png
+
+^https:\/\/news\.cj\.sina\.cn\/app\/v1\/news724\/list\? url jsonjq-response-body 'del(.["result"]["data"]["ad"])'
+^https:\/\/app\.cj\.sina\.com\.cn\/apps\/api\/user\/center\? url jsonjq-response-body '.result.data |= with_entries(select(.key == "button" or .key == "account" or .key == "balance"))'
+^https:\/\/news\.cj\.sina\.cn\/search\/tips\? url reject-dict
+^https:\/\/news\.cj\.sina\.cn\/toutiao\/content\? url jsonjq-response-body 'del(.result.data[]?.ad, .result.data[]?.report)'
+^https:\/\/app\.cj\.sina\.com\.cn\/api\/deal\/index\? url jsonjq-response-body 'del(.["data"]["banner"])'
+^https:\/\/search\.cj\.sina\.cn\/stock\/get_index_new\? url reject-dict
+^https:\/\/recommend\.cj\.sina\.cn\/app\/v2\/search\/discovery$ url reject-dict
+^https:\/\/quotes\.sina\.com\.cn\/cn\/api\/openapi\.php\/PriceChangeService\.getSearchList\? url reject-dict
+^https:\/\/app\.cj\.sina\.com\.cn\/clientSetting\/api\/start\/init\? url jsonjq-response-body 'del(.["result"]["data"]["search_ad"], .["result"]["data"]["center_ads"], .["result"]["data"]["banner_new_tagid"], .["result"]["data"]["ad_hasAddScreenParam"], .["result"]["data"]["us_trade"], .["result"]["data"]["open_account"], .["result"]["data"]["us_hq_trade"])'
+^https:\/\/(newscj\.xincai\.com|news\.cj\.sina\.cn)\/app\/v1\/feed\? url jsonjq-response-body '.data.feed.data |= map(select((.author // "") != ""))'
+
+hostname = news.cj.sina.cn, app.cj.sina.com.cn, search.cj.sina.cn, recommend.cj.sina.cn, quotes.sina.com.cn, newscj.xincai.com

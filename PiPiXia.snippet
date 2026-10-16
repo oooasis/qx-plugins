@@ -1,0 +1,12 @@
+#!name = 皮皮虾
+#!desc = 移除开屏广告、评论区广告、视频流广告，精简我的页面。（转自可莉 PiPiXia_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/PiPiXia.png
+
+^https:\/\/api(5-lq)?\.pipix\.com\/api\/ad\/ url reject-dict
+^https:\/\/api(5-lq)?\.pipix\.com\/bds\/banner\/ url reject-dict
+^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/follow_feed\/ url reject-dict
+^https:\/\/api(5-lq)?\.pipix\.com\/bds\/feed\/stream\/v2\/ url jsonjq-response-body '.data.data |= map(select(has("ad_info") | not))'
+^https:\/\/api(5-lq)?\.pipix\.com\/bds\/user\/check_in\/ url jsonjq-response-body '.data.profile_entrances |= map(select(.title != "放心借" and .title != "洋钱罐借款")) | del(.data.pet_interface_message)'
+
+hostname = api5-lq.pipix.com, api.pipix.com

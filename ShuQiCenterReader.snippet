@@ -1,0 +1,13 @@
+#!name = 书旗小说
+#!desc = 移除书城横幅广告、听书广告、阅读广告、章末推荐、福利入口、悬浮窗、推荐搜索词，精简我的页面。（转自可莉 ShuQiCenterReader_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/ShuQiCenterReader.png
+
+host, render-web.11222.cn, reject
+^https:\/\/huichuan\.sm\.cn\/nativead url reject-dict
+^https:\/\/ocean\.shuqireader\.com\/api\/route\/iosReadPage\/adV2 url reject-dict
+^https:\/\/ocean\.shuqireader\.com\/api\/route\/ios\/readPage$ url reject-dict
+^https:\/\/ocean\.shuqireader\.com\/api\/render\/load\/resource url reject
+^https:\/\/ocean\.shuqireader\.com\/sqios\/render\/render\/page\/bookstore$ url script-response-body https://kelee.one/Resource/JavaScript/ShuQiCenterReader/ShuQiCenterReader_remove_ads.js
+
+hostname = huichuan.sm.cn, ocean.shuqireader.com

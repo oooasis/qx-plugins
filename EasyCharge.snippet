@@ -1,0 +1,14 @@
+#!name = e充电
+#!desc = 移除开屏广告、活动及发现页面，精简我的页面。（转自可莉 EasyCharge_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/EasyCharge.png
+
+host, adash-evone.echargenet.com, reject
+^https:\/\/aserver-evone\.echargenet\.com\/orange\/datacenter\/snapshot-meta\? url reject-dict
+^https:\/\/api-evone\.echargenet\.com\/gw\/evone\.echargeapi\.open\.ad\.getadmaterials\/ url reject-dict
+^https:\/\/api-evone\.echargenet\.com\/gw\/evone\.appsns\.open\.efriend\.topic\.listrecommenttopic\/ url reject-dict
+^https:\/\/api-evone\.echargenet\.com\/gw\/evone\.appsns\.open\.efriend\.post\.listapppost\/ url reject-dict
+^https:\/\/api-evone\.echargenet\.com\/gw\/evone\.appsns\.open\.merchant\.merchant\.list\/ url reject-dict
+^https:\/\/api-evone\.echargenet\.com\/gw\/evone\.appsns\.open\.merchant\.news\.pagelistapp\/ url reject-dict
+
+hostname = aserver-evone.echargenet.com, api-evone.echargenet.com

@@ -1,0 +1,11 @@
+#!name = 慧生活798
+#!desc = 移除开屏广告、横幅广告，精简底栏。（转自可莉 SmartLife_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/SmartLife.png
+
+^https:\/\/i\.ilife798\.com\/api\/v\d\/acc\/login$ url jsonjq-response-body 'del(.["data"]["ar"], .["data"]["showAd"])'
+^https:\/\/i\.ilife798\.com\/api\/v\d\/acc\/score\/mission-lst$ url reject-dict
+^https:\/\/i\.ilife798\.com\/api\/v\d\/ep\/lst-simple\? url reject-dict
+^https:\/\/i\.ilife798\.com\/api\/v\d\/ui\/app\/master$ url reject-dict
+
+hostname = i.ilife798.com

@@ -1,0 +1,25 @@
+#!name = 帆书
+#!desc = 移除弹窗和会员任务，精简首页、听书页面、课程菜单和我的页面。（转自可莉 KebidaDushu_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = Yuheng0101[https://github.com/Yuheng0101]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/KebidaDushu.png
+
+^https?:\/\/popup\.dushu365\.com\/api\/v2\/sfo\/(user_)?popup_(config|display)s url reject
+^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/chief-orch\/config\/config\/v\d+\/(shortCut|appUpdateUnite|loadingAd) url reject
+^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/fs-retain\/trialVip\/v\d+\/requestTrialVipPopDoNotSendReward url reject
+^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/resource-orchestration-system\/vipLandingPage\/v\d+\/getVipLandingPageApp url reject
+^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/fandeng-orch\/dual2211\/config url reject
+^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/fdtalk-orch\/newcomerzone\/v\d+\/guide url reject
+^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/fandeng-orch\/bookboy\/v\d+\/vipPagePop url reject
+^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/chief-orch\/config\/config\/v\d+\/appConfig url reject
+^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/order-orchestration\/orderWeb\/exchange\/v100\/showExchangeButton url reject
+^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/chief-orch\/home\/bookPortal\/v105\/category url script-response-body https://kelee.one/Resource/JavaScript/KebidaDushu/KebidaDushu_remove_ads.js
+^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/abtest-front\/banner-modular\/get url script-response-body https://kelee.one/Resource/JavaScript/KebidaDushu/KebidaDushu_remove_ads.js
+^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/resource-orchestration-system\/book\/channel\/v100\/info url script-response-body https://kelee.one/Resource/JavaScript/KebidaDushu/KebidaDushu_remove_ads.js
+^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/fs-member\/user\/profile\/v100\/detail url script-response-body https://kelee.one/Resource/JavaScript/KebidaDushu/KebidaDushu_remove_ads.js
+^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/chief-orch\/home\/bookPortal\/v111\/forApp url script-response-body https://kelee.one/Resource/JavaScript/KebidaDushu/KebidaDushu_remove_ads.js
+^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/sns-orchestration-system\/homePage\/api\/v100\/myPage url script-response-body https://kelee.one/Resource/JavaScript/KebidaDushu/KebidaDushu_remove_ads.js
+^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/task-orchestration\/taskCenter\/api\/v101\/taskList url script-response-body https://kelee.one/Resource/JavaScript/KebidaDushu/KebidaDushu_remove_ads.js
+^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/resource-orchestration-system\/book\/v101\/content url script-response-body https://kelee.one/Resource/JavaScript/KebidaDushu/KebidaDushu_remove_ads.js
+^https?:\/\/g[a-z0-9-]+\.dushu365\.com\/user-orchestration\/user\/api\/v101\/ceiltip url script-response-body https://kelee.one/Resource/JavaScript/KebidaDushu/KebidaDushu_remove_ads.js
+
+hostname = g*.dushu365.com

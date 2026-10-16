@@ -1,0 +1,9 @@
+#!name = 美图秀秀
+#!desc = 移除开屏广告、横幅推广，精简我的页面。（转自可莉 MeiTu_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/MeiTu.png
+
+host, adui.tg.meitu.com, reject
+^https:\/\/api\.posters\.meitu\.com\/common\/init\.json url jsonjq-response-body 'del(.["data"]["vip"])'
+
+hostname = api.posters.meitu.com

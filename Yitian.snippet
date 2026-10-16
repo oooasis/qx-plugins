@@ -1,0 +1,10 @@
+#!name = 一甜相机
+#!desc = 移除开屏广告、悬浮广告及图片选择器横幅广告。（转自可莉 Yitian_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Yitian.png
+
+^https:\/\/(m2u-api\.getkwai|api-m2u\.kuaishou)\.com\/api-server\/api\/v1\/ad\/ url reject-dict
+^https:\/\/(m2u-api\.getkwai|api-m2u\.kuaishou)\.com\/api-server\/api\/v1\/system\/configs\? url jsonjq-response-body 'del(.["data"]["shouldUseLMAdFirst"], .["data"]["incentiveCfgList"])'
+^https:\/\/(m2u-api\.getkwai|api-m2u\.kuaishou)\.com\/api-server\/api\/v4\/op\/actPositions\? url reject-dict
+
+hostname = m2u-api.getkwai.com, api-m2u.kuaishou.com

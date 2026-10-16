@@ -1,0 +1,9 @@
+#!name = 威锋
+#!desc = 移除开屏广告、信息流广告、文末广告、首页轮播图推广。（转自可莉 WPForum_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/WPForum.png
+
+^https:\/\/api\.wfdata\.club\/v2\/yesfeng\/yesList\? url reject-dict
+^https:\/\/api\.wfdata\.club\/v2\/yesfeng\/slideshow\? url jsonjq-response-body '.data |= map(select(.protocolId == 1))'
+
+hostname = api.wfdata.club

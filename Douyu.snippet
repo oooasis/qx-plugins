@@ -1,0 +1,14 @@
+#!name = 斗鱼
+#!desc = 移除开屏、首页视频流、首页轮播图广告，移除直播间悬浮窗。（转自可莉 Douyu_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Douyu.png
+
+^http:\/\/linkmicschedule\.douyucdn\.cn\/im_schedule\/im_gate_list url reject
+host, stun1.douyucdn.cn, reject
+host, stun1.qvb.qcloud.com, reject
+^https:\/\/rtbapi\.douyucdn\.cn\/japi\/sign\/app\/getinfo url reject-dict
+^https:\/\/apiv2\.douyucdn\.cn\/japi\/entrance\/roomRes\/nc\/m\/list url jsonjq-response-body 'del(.["data"]["pendant_a"], .["data"]["entrance_d"])'
+^https:\/\/venus\.douyucdn\.cn\/venus\/config\/static\/update.+keyCodeSet=flow_config url jsonjq-response-body '.["greatGodGameSitterSwitch"] = 0 | .["followMoreAnchorEntrance"] = 0 | .["sdklivebanner"] = 0 | .["homeActFloatSwitch"] = 0 | .["bringGoodsSwitch"] = 0 | .["qqGameSwitch"] = 0'
+^https:\/\/apiv2\.douyucdn\.cn\/mgapi\/livenc\/home\/getRecV3 url script-response-body https://kelee.one/Resource/JavaScript/Douyu/Douyu_remove_ads.js
+
+hostname = rtbapi.douyucdn.cn, apiv2.douyucdn.cn, venus.douyucdn.cn

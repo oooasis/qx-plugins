@@ -1,0 +1,8 @@
+#!name = 555电影
+#!desc = 移除开屏广告和各类横幅广告，支持iPadOS。（转自可莉 555DY_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/555DY.png
+
+^https:\/\/(app-v1\.ecoliving168\.com|852b95d36\.xwlpk\.cn)\/api\/v1\/movie\/index_recommend\? url jsonjq-response-body '.data[].list |= map(select(.type != 3)) | .data |= map(select(.layout != "advert_self"))'
+
+hostname = app-v1.ecoliving168.com, 852b95d36.xwlpk.cn

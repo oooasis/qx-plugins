@@ -1,0 +1,18 @@
+#!name = 前程无忧
+#!desc = 移除开屏广告、弹窗、信息流推广、职位页面推广和各类横幅推广。（转自可莉 51Job_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/51Job.png
+
+^https:\/\/appapi\.51jobapp\.com\/api\/market\/get_launch\.php\? url reject-dict
+^https:\/\/cupid\.51jobapp\.com\/open\/operation\/get\/latest\/banner-list\? url reject-dict
+^https:\/\/cupid\.51jobapp\.com\/open\/noauth\/recommend\/job-tab-dynamic\? url jsonjq-response-body 'del(.["resultbody"]["adsTabFeeds"])'
+^https:\/\/cupid\.51jobapp\.com\/open\/51job-activities\/secJob\/queryHomeSecondConfigV2\? url reject-dict
+^https:\/\/cupid\.51jobapp\.com\/open\/noauth\/jobs\/detail\/sesame-competitive\/ url reject-dict
+^https:\/\/cupid\.51jobapp\.com\/open\/noauth\/jobs\/job-detail\/user-rights\? url reject-dict
+^https:\/\/cupid\.51jobapp\.com\/open\/user-task\/user\/task\/ url jsonjq-response-body 'del(.["resultbody"]["availableTaskList"])'
+^https:\/\/cupid\.51jobapp\.com\/open\/resume\/strategy\/resume-build\? url reject-dict
+^https:\/\/cupid\.51jobapp\.com\/launch-hub\/open\/noauth\/popUp\/ url reject-dict
+^https:\/\/cupid\.51jobapp\.com\/launch-hub\/open\/noauth\/popUp\/getHomePagePopUp\? url reject-dict
+^https:\/\/cupid\.51jobapp\.com\/open\/tab\/good-job\/modules\? url jsonjq-response-body 'del(.["resultbody"]["bannerList"])'
+
+hostname = appapi.51jobapp.com, cupid.51jobapp.com

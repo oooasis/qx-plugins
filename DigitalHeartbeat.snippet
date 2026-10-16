@@ -1,0 +1,14 @@
+#!name = 数字心动
+#!desc = 移除开屏广告、首页顶部标签、轮播图、悬浮挂件、热门搜索、信息流广告。（转自可莉 DigitalHeartbeat_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/DigitalHeartbeat.png
+
+^https:\/\/api-changzheng\.chinaath\.com\/changzheng-common-proxy-api\/api\/advertising\/proxy\/getOpenScreenAdvertising$ url jsonjq-response-body '.["data"]["advertisingList"] = "[]"'
+^https:\/\/api-changzheng\.chinaath\.com\/changzheng-race-proxy-api\/api\/home\/page\/getBrand$ url jsonjq-response-body '.data |= map(select(.advertisementName == "路跑赛事" or .advertisementName == "线上赛" or .advertisementName == "越野赛事"))'
+^https:\/\/api-changzheng\.chinaath\.com\/changzheng-race-proxy-api\/api\/home\/page\/get$ url jsonjq-response-body 'del(.["data"]["topHotSearchList"], .["data"]["bannerListTwo"], .["data"]["textAdvertisementList"])'
+^https:\/\/api-changzheng\.chinaath\.com\/changzheng-race-proxy-api\/api\/home\/page\/get$ url jsonjq-response-body '.data.recommendList |= map(select(.raceAdList | not or length == 0))'
+^https:\/\/api-changzheng\.chinaath\.com\/changzheng-basic-center-api\/api\/appConfigBanner\/listBannerRelease\? url reject-dict
+^https:\/\/api-changzheng\.chinaath\.com\/changzheng-content-center-api\/api\/global\/search\/hotSearch\/list$ url reject-dict
+^https:\/\/api-changzheng\.chinaath\.com\/changzheng-basic-center-api\/api\/advertisement\/ url reject-dict
+
+hostname = api-changzheng.chinaath.com

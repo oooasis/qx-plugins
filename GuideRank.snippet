@@ -1,0 +1,17 @@
+#!name = 盖得排行
+#!desc = 精简首页、移除分类横幅推广、单单返猜你喜欢和编辑精选，移除我的页面推广。（转自可莉 GuideRank_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/GuideRank.png
+
+^https:\/\/zone\.guiderank-app\.com\/guiderank-web\/app\/common\/getWeworkPromotionInfoBySceneType url reject-dict
+^https:\/\/zone\.guiderank-app\.com\/guiderank-web\/app\/popUpAdCollection\/getActiveCollection\.do url reject-dict
+^https:\/\/zone\.guiderank-app\.com\/guiderank-web\/app\/common\/getWeworkCategoryPromotionInfo url reject-dict
+^https:\/\/zone\.guiderank-app\.com\/guiderank-web\/app\/home\/getHomePageV url jsonjq-response-body 'del(.["data"]["countdownBanner"], .["data"]["newEvaluations"], .["data"]["freeToPayBannerPhotoUrl"], .["data"]["groupBuyingList"], .["data"]["multiCountdownBanner"], .["data"]["banners"], .["data"]["multiPlatformBanner"], .["data"]["specialSaleBannerPhotoUrl"], .["data"]["guide90Evaluation"], .["data"]["insurancePromotions"])'
+^https:\/\/zone\.guiderank-app\.com\/guiderank-web\/app\/stockTaking\/pageStockTakingForHomePage url reject-dict
+^https:\/\/zone\.guiderank-app\.com\/guiderank-web\/app\/common\/getInitData\.do url jsonjq-response-body 'del(.["data"]["SpecialSalePageMidTabConfig"])'
+^https:\/\/zone\.guiderank-app\.com\/guiderank-web\/app\/specialSale\/pageRecommendedItems url reject-dict
+^https:\/\/zone\.guiderank-app\.com\/guiderank-web\/app\/manualOperationGoods\/pageManualOperationGoods url reject-dict
+^https:\/\/zone\.guiderank-app\.com\/guiderank-web\/app\/specialSale\/listSpecialSalePageBanner url reject-dict
+^https:\/\/zone\.guiderank-app\.com\/guiderank-web\/app\/personal\/getPersonPageInfo\.do url reject-dict
+
+hostname = zone.guiderank-app.com

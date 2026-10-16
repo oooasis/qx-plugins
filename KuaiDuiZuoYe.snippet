@@ -1,0 +1,14 @@
+#!name = 快对
+#!desc = 移除开屏广告、横幅推广，精简我的页面。（转自可莉 KuaiDuiZuoYe_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/KuaiDuiZuoYe.png
+
+host, adx.zuoyebang.com, reject
+^https:\/\/www\.kuaiduizuoye\.com\/init\/ad\/ url reject-dict
+^https:\/\/www\.kuaiduizuoye\.com\/activity\/init\/checkappconfig$ url reject-dict
+^https:\/\/www\.kuaiduizuoye\.com\/kdapi\/conf\/appbannersv3$ url reject-dict
+^https:\/\/www\.kuaiduizuoye\.com\/kdapi\/conf\/initbanner$ url reject-dict
+^https:\/\/www\.kuaiduizuoye\.com\/codesearch\/aid\/home$ url jsonjq-response-body 'del(.["data"]["homeBannerList"])'
+^https:\/\/apivip\.kuaiduizuoye\.com\/viponline\/scancode\/mycard$ url reject-dict
+
+hostname = www.kuaiduizuoye.com, apivip.kuaiduizuoye.com

@@ -1,0 +1,11 @@
+#!name = 沃尔玛
+#!desc = 移除操作引导、商品详情页用户调研、搜索填充词和搜索发现，精简我的页面。（转自可莉 Walmart_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Walmart.png
+
+^https:\/\/api-hyper\.walmartmobile\.cn\/search\/ad\/ url reject-dict
+^https:\/\/api-hyper\.walmartmobile\.cn\/cms-web\/frontapi\/shadedWords\/list\? url reject-dict
+^https:\/\/api-hyper\.walmartmobile\.cn\/search\/frontapi\/discovery-words\/list$ url reject-dict
+^https:\/\/api-hyper\.walmartmobile\.cn\/cms-web\/frontapi\/common\/page\/get\?.*&type=26$ url jsonjq-response-body '.data |= (.moduleList | map(select(.templateCode == "nav-bar-title" or .templateCode == "member-info" or .templateCode == "distribution-center" or .templateCode == "wallet" or .templateCode == "swiper" or .templateCode == "my-order")))'
+
+hostname = api-hyper.walmartmobile.cn

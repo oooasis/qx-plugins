@@ -1,0 +1,12 @@
+#!name = 中国人保
+#!desc = 移除中国人保开屏广告和应用内广告（转自可莉 PICC_Insurance_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = Sliverkiss[https://github.com/Sliverkiss]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/PICC_Insurance.png
+
+^https:\/\/zgrb\.epicc\.com\.cn\/G-HAPP\/h\/headlines\/queryHeadlines url reject
+^https:\/\/zgrb\.epicc\.com\.cn\/G-HAPP\/a\/update\/startupPage\/v1 url reject-dict
+^https:\/\/zgrb\.epicc\.com\.cn\/G-HAPP\/a\/config\/guessYouLike\/v3 url reject-dict
+^https:\/\/zgrb\.epicc\.com\.cn\/G-HAPP\/a\/config\/homeInit\/v3 url script-response-body https://kelee.one/Resource/JavaScript/PICC_Insurance/PICC_Insurance_remove_ads.js
+^https:\/\/zgrb\.epicc\.com\.cn\/G-HAPP\/mpageconfig\/myPageConfigList\/v3 url script-response-body https://kelee.one/Resource/JavaScript/PICC_Insurance/PICC_Insurance_remove_ads.js
+
+hostname = zgrb.epicc.com.cn

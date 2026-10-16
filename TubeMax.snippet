@@ -1,0 +1,17 @@
+#!name = TubeMax
+#!desc = 过滤TubeMax广告（转自可莉 TubeMax_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/TubeMax.png
+
+host, app.tubemaxapp.com, proxy
+host-suffix, adjust.com, reject
+host-suffix, applvn.com, reject
+host-suffix, app-measurement.com, reject
+host-suffix, pangle.io, reject
+host-suffix, applovin.com, reject
+host-suffix, appier.net, reject
+host-suffix, adsmoloco.com, reject
+host-suffix, adcanvas.com, reject
+^https:\/\/.*\.i18n-pglstatp\.com\/obj\/ad-pattern-sg url reject
+
+hostname = *.i18n-pglstatp.com

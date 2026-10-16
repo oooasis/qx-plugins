@@ -1,0 +1,19 @@
+#!name = 粉笔
+#!desc = 移除开屏广告、弹窗广告、悬浮广告、热门搜索，移除底栏皮肤，精简我的页面。（转自可莉 FenBi_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/FenBi.png
+
+^https:\/\/keapi\.fenbi\.com\/app\/(iphone|ipad)\/position_resource\/get_banners\? url reject-dict
+^https:\/\/market-api\.fenbi\.com\/(iphone|ipad)\/v1\/assistant\/info\? url reject-dict
+^https:\/\/keapi\.fenbi\.com\/app\/(iphone|ipad)\/position_resource\/get_home_banners\?.*position_resource_type=2 url reject-dict
+^https:\/\/keapi\.fenbi\.com\/app\/iphone\/\w+\/reddot\? url reject-dict
+^https:\/\/ke\.fenbi\.com\/(iphone|ipad)\/v3\/timetable\/today_with_public_episodes\? url reject-dict
+^https:\/\/hera-webapp\.fenbi\.com\/(iphone|ipad)\/topic\/hotquery\/list\? url reject-dict
+^https:\/\/hera-webapp\.fenbi\.com\/(iphone|ipad)\/explore\/consts\? url reject-dict
+^https:\/\/hera-webapp\.fenbi\.com\/(iphone|ipad)\/recommend\/info\? url jsonjq-response-body 'del(.["data"]["rollingBanner"])'
+^https:\/\/hera-webapp\.fenbi\.com\/(iphone|ipad)\/announcement\/hotquery\/list\? url reject-dict
+^https:\/\/ke\.fenbi\.com\/(iphone|ipad)\/v3\/apps\/config\? url jsonjq-response-body 'del(.["data"]["bottomIconInfos"]["position"]["iconDefaultUrl"], .["data"]["bottomIconInfos"]["position"]["iconSelectedUrl"], .["data"]["bottomIconInfos"]["position"]["nightModeIconDefaultUrl"], .["data"]["bottomIconInfos"]["position"]["nightModeIconSelectedUrl"])'
+^https:\/\/ke\.fenbi\.com\/(iphone|ipad)\/v3\/user_member\/entry\? url reject-dict
+^https:\/\/market-api\.fenbi\.com\/(iphone|ipad)\/v1\/assistant\/my\? url reject-dict
+
+hostname = keapi.fenbi.com, market-api.fenbi.com, ke.fenbi.com, hera-webapp.fenbi.com

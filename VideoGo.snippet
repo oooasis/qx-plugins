@@ -1,0 +1,13 @@
+#!name = 萤石云视频
+#!desc = 移除开屏广告、首页推广、我的页面推广。（转自可莉 VideoGo_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/VideoGo.png
+
+^https:\/\/api\.ys7\.com\/api\/ads url reject
+^https:\/\/i\.ys7\.com\/api\/user\/tabList url reject-dict
+^https:\/\/api\.ys7\.com\/v3\/config\/service\/entrance\/bannerInfo url reject-dict
+^https:\/\/api\.ys7\.com\/v3\/intelligent-app\/apps\/linkage url reject-dict
+^https:\/\/api\.ys7\.com\/v3\/configurations\/gray\/info\?grayTypes=185 url reject-dict
+^https:\/\/api\.ys7\.com\/v3\/videoclips\/square\/video\/query url reject-dict
+
+hostname = api.ys7.com, i.ys7.com

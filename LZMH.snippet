@@ -1,0 +1,18 @@
+#!name = 联掌门户
+#!desc = 移除开屏广告、弹窗，移除首页、服务和发现页面无用内容。（转自可莉 LZMH_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/LZMH.png
+
+^https:\/\/lzmh\.lz-qs\.com:6025\/lzmh_app_api\/api\/v1\/app3rd\/getApp3rdGenreList\? url reject-dict
+^https:\/\/lzmh\.lz-qs\.com:6025\/lzmh_app_api\/api\/v1\/ad\/ url reject-dict
+^https:\/\/yuudnn\.lz-qs\.com:9220\/mssp-api\/api\/v1\/mrtb\/getAdSlotList$ url reject-dict
+^https:\/\/yuudnn\.lz-qs\.com:9220\/mssp-api\/api\/v1\/mrtb\/requestAd$ url reject-dict
+^https:\/\/yuudnn\.lz-qs\.com:9220\/mssp-api\/api\/v1\/mrtb\/getSdkStartConfigList$ url reject-dict
+^https:\/\/lzmh\.lz-qs\.com:6025\/lzmh_app_api\/api\/v1\/index\/getRecommendList\? url reject-dict
+^https:\/\/yuudnn\.lz-qs\.com\/lzmh_app_api\/o2o\/api\/v2\/o2o\/homeInfo$ url reject-dict
+^https:\/\/yuudnn\.lz-qs\.com\/lzmh_app_api\/o2o\/api\/v2\/o2o\/homeShopList$ url reject-dict
+^https:\/\/yuudnn\.lz-qs\.com:9220\/mssp-api\/api\/v1\/mrtb\/getSdkAdSlotList$ url reject-dict
+^http:\/\/lzmh\.lz-qs\.com:5090\/resource\/download\/ url reject
+^https:\/\/lzmh\.lz-qs\.com:6025\/lzmh_app_api\/api\/v2\/user\/getUserBaseInfoAndConfig\? url jsonjq-response-body 'del(.["value"]["config"])'
+
+hostname = lzmh.lz-qs.com, yuudnn.lz-qs.com

@@ -1,0 +1,19 @@
+#!name = 百度文库
+#!desc = 移除开屏广告、横幅广告、弹窗广告、信息流推广、搜索发现、热门搜索、资料库搜索推荐，精简我的页面。（转自可莉 BaiduWenku_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/BaiduWenku.png
+
+^https:\/\/appwk\.baidu\.com\/xpage\/interface\/wknaad\? url reject-dict
+^https:\/\/appwk\.baidu\.com\/appapi\/index\/home\? url jsonjq-response-body 'del(.["data"]["bannerInfo"], .["data"]["bannerList"], .["data"]["bannerListV2"])'
+^https:\/\/(appwk|tanbi)\.baidu\.com\/gsula\/sula\/syncmrecall$ url jsonjq-response-body 'del(.["data"]["items"])'
+^https:\/\/appwk\.baidu\.com\/appapi\/index\/tab\? url jsonjq-response-body 'del(.["data"])'
+^https:\/\/appwk\.baidu\.com\/appapi\/search\/hot\? url reject-dict
+^https:\/\/appwk\.baidu\.com\/naapi\/search\/wkhotwords\? url reject-dict
+^https:\/\/appwk\.baidu\.com\/appapi\/forum\/feed\?reqMode=wenkuapp_main_feed url jsonjq-response-body 'del(.["data"])'
+^https:\/\/appwk\.baidu\.com\/appapi\/task\/viptasklist\? url reject-dict
+^https:\/\/appwk\.baidu\.com\/activity\/interface\/wkapppopup\? url reject-dict
+^https:\/\/appwk\.baidu\.com\/appapi\/abg\/index\? url reject-dict
+^https:\/\/appwk\.baidu\.com\/naapi\/recommend\/recommenddoc\? url reject-dict
+^https:\/\/appwk\.baidu\.com\/naapi\/recommend\/vipdoccard\? url reject-dict
+
+hostname = appwk.baidu.com, tanbi.baidu.com

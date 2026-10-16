@@ -1,0 +1,10 @@
+#!name = 360摄像机
+#!desc = 移除开屏广告、首页推广、底栏商城入口及我的页面推广。（转自可莉 360SmartCamera_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/360SmartCamera.png
+
+host, ad.jia.360.cn, reject
+host, ad.iot.360.cn, reject
+^https:\/\/jia\.360\.cn\/conf\/v1\.json url jsonjq-response-body 'del(.["tab_conf"], .["ad_conf"], .["activity"])'
+
+hostname = jia.360.cn

@@ -1,0 +1,13 @@
+#!name = 多屏互动
+#!desc = 移除开屏广告、横幅推广、搜索填充词，移除广告下发。（转自可莉 TCLnScreen_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/TCLnScreen.png
+
+^https:\/\/tcast-o\.api\.leiniao\.com\/tcast\/ads\/ url reject-dict
+^https:\/\/tcast-o\.api\.leiniao\.com\/tcast\/v\d\/selection\/banner$ url reject-dict
+^https:\/\/tcast-o\.api\.leiniao\.com\/tcast\/v\d\/config\/function\? url jsonjq-response-body '.data |= map(select(.module == "tools"))'
+^https:\/\/tcast-o\.api\.leiniao\.com\/tcast\/v\d\/searchrank$ url reject-dict
+^https:\/\/tcast-o\.api\.leiniao\.com\/tcast\/v\d\/selection\? url reject-dict
+^https:\/\/tcast-o\.api\.leiniao\.com\/tcast\/message\/v\d\/activity\? url reject-dict
+
+hostname = tcast-o.api.leiniao.com

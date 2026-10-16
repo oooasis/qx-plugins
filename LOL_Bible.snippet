@@ -1,0 +1,13 @@
+#!name = 掌上英雄联盟
+#!desc = 移除开屏广告、弹窗推广、搜索热搜、搜索热榜、底栏推广图标。（转自可莉 LOL_Bible_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/LOL_Bible.png
+
+^https:\/\/mlol\.qt\.qq\.com\/go\/recommend\/platstrongshell\? url reject-dict
+^https:\/\/mlol\.qt\.qq\.com\/go\/club\/match\/get_ai_search_words$ url reject-dict
+^https:\/\/mlol\.qt\.qq\.com\/go\/mlol_news\/search\/varcache_hotV\d\? url reject-dict
+^https:\/\/mlol\.qt\.qq\.com\/go\/customize_search\/article_rank_tab\? url reject-dict
+^https:\/\/mlol\.qt\.qq\.com\/go\/customize_search\/article_rank\? url reject-dict
+^https:\/\/mlol\.qt\.qq\.com\/go\/zone\/bottomtab_tip\? url reject-dict
+
+hostname = mlol.qt.qq.com

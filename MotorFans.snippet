@@ -1,0 +1,13 @@
+#!name = 摩托范
+#!desc = 移除开屏广告、弹窗广告、横幅广告、文末广告及相关文章推荐、广告下发，移除我的页面商品推荐，精简搜索页面。（转自可莉 MotorFans_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/MotorFans.png
+
+^https:\/\/api\.58moto\.com\/advert\/ url reject-dict
+^https:\/\/api\.58moto\.com\/mall\/goods\/self\/list\? url reject-dict
+^https:\/\/api\.58moto\.com\/mall\/goods\/self\/homeList\? url reject-dict
+^https:\/\/api\.58moto\.com\/forum\/public\/businessEssayController\.do$ url reject-dict
+^https:\/\/api\.58moto\.com\/forum\/public\/businessEssayController\.do\?action=22004 url jsonjq-response-body 'del(.["data"]["link"])'
+^https:\/\/api\.58moto\.com\/expands\/config\/appWholeConfig\?key=app_whole_config$ url script-response-body https://kelee.one/Resource/JavaScript/MotorFans/MotorFans_remove_ads.js
+
+hostname = api.58moto.com

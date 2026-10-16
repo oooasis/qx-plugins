@@ -1,0 +1,46 @@
+#!name = 全民K歌
+#!desc = 移除开屏广告、歌房页面弹窗广告、消息页广告和我的页面广告。（转自可莉 QQKSong_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/QQKSong.png
+
+host, adsmind.gdtimg.com, reject
+host, adsmind.ugdtimg.com, reject
+host, c2.gdt.qq.com, reject
+host, huatuocode.huatuo.qq.com, reject
+host, info4.video.qq.com, reject
+host, info6.video.qq.com, reject
+host, ios.bugly.qq.com, reject
+host, ios.video.mpush.qq.com, reject
+host, mi.gdt.qq.com, reject
+host, otheve.beacon.qq.com, reject
+host, pgdt.gtimg.cn, reject
+host, pgdt.ugdtimg.com, reject
+host, qzs.gdtimg.com, reject
+host, qzs.qq.com, reject
+host, rmonitor.qq.com, reject
+host, sdk.e.qq.com, reject
+host, sdkconfig.video.qq.com, reject
+host, t.gdt.qq.com, reject
+host, tmead.y.qq.com, reject
+host, tmeadbak.y.qq.com, reject
+host, tmeadcomm.y.qq.com, reject
+host, tpns.qq.com, reject
+host, v.gdt.qq.com, reject
+host, v2.gdt.qq.com, reject
+host, win.gdt.qq.com, reject
+host, wup.imtt.qq.com, reject
+host, tpstelemetry.tencent.com, reject
+host-keyword, trace.qq.com, reject
+host-keyword, trace.video.qq.com, reject
+host-suffix, gdt.qq.com, reject
+host-suffix, l.qq.com, reject
+host-suffix, ugdtimg.com, reject
+ip-cidr, 47.110.187.87/32, reject
+^http:\/\/y\.gtimg\.cn\/music\/common\/upload\/t_k_main_page_banner\/ url reject
+^https:\/\/wallpaper-\d+\.file\.myqcloud\.com\/dsl\/ url reject-dict
+^https?:\/\/wallpaper-\d+\.file\.myqcloud\.com\/hikari\/ url reject-dict
+^https:\/\/amsweb-cdn-\S+-\d+\.file\.myqcloud\.com\/video\/ad_profile\/ url reject-dict
+^https:\/\/tmeadkg\.y\.qq\.com\/maproxy\/getAd$ url reject
+^https:\/\/wnsaviator\.kg\.qq\.com\/wnsaviator\/api\/v1\/transMerge\?_webcgikey=get_activity_entry$ url reject-dict
+
+hostname = wallpaper-1258344696.file.myqcloud.com, amsweb-cdn-*-1258344696.file.myqcloud.com, tmeadkg.y.qq.com, wnsaviator.kg.qq.com

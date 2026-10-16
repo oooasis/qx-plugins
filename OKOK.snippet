@@ -1,0 +1,11 @@
+#!name = OKOK
+#!desc = 移除开屏广告、横幅广告，精简首页，拦截优惠购页面。（转自可莉 OKOK_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/OKOK.png
+
+^https:\/\/api\.chips-cloud\.com\/v\d\/home\/collection\/smartv\d\? url reject-dict
+^https:\/\/api\.chips-cloud\.com\/v\d\/communityManage\/list\? url reject-dict
+^https:\/\/api\.chips-cloud\.com\/v\d\/good\/list\? url reject-dict
+^https:\/\/shop171777386\.m\.youzan\.com\/v2\/showcase\/homepage\? url reject
+
+hostname = api.chips-cloud.com, shop171777386.m.youzan.com

@@ -1,0 +1,9 @@
+#!name = Dlabel云标签
+#!desc = 移除开屏广告及首页横幅。（转自可莉 Dlabel_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Dlabel.png
+
+^https:\/\/dlabel\.ctaiot\.com\/api\/spreadstart\/list\.json\? url reject-dict
+^https:\/\/dlabel\.ctaiot\.com\/api\/spread\/journey\/select\.json\? url reject-dict
+
+hostname = dlabel.ctaiot.com

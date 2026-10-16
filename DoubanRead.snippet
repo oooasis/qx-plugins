@@ -1,0 +1,12 @@
+#!name = 豆瓣阅读
+#!desc = 移除开屏广告、弹窗广告、热门搜索、热搜榜。（转自可莉 DoubanRead_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/DoubanRead.png
+
+^https:\/\/read\.douban\.com\/api\/v2\/ads\/ url reject-dict
+^https:\/\/read\.douban\.com\/api\/v2\/popup$ url reject-dict
+^https:\/\/read\.douban\.com\/api\/v2\/search\/hot_words$ url reject-dict
+^https:\/\/read\.douban\.com\/api\/v2\/search\/hot_charts$ url reject-dict
+^https:\/\/read\.douban\.com\/api\/v2\/search\/rec_urls$ url reject-dict
+
+hostname = read.douban.com

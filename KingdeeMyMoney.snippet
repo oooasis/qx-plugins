@@ -1,0 +1,13 @@
+#!name = 随手记
+#!desc = 移除开屏广告、神象云账本内部广告、我的页面广告，移除社区入口。（转自可莉 KingdeeMyMoney_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/KingdeeMyMoney.png
+
+^https:\/\/tg\.feidee\.com\/online_ad\/api\/search\.do$ url reject-dict
+^https:\/\/yunmk\.feidee\.net\/cab-market-ws\/market\/v2\/contents$ url reject-dict
+^https:\/\/tg\.feidee\.com\/vis-ad-engine-ws\/api\/v2\/ads\/.+esultNum url reject-dict
+^https:\/\/api\.feidee\.net\/v1\/configs\/client\/configs url reject
+^https:\/\/tg\.feidee\.com\/vis-ad-engine-ws\/api\/show url reject-dict
+^https:\/\/yun\.feidee\.net\/cab-periodic-activity-ws\/terminal\/v1\/members\/status url reject-dict
+
+hostname = tg.feidee.com, yunmk.feidee.net, api.feidee.net, yun.feidee.net

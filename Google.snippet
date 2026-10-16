@@ -1,0 +1,9 @@
+#!name = Google搜索重定向
+#!desc = 将Google搜索重定向至.com域名，如遇频繁跳转请禁用本插件。（转自可莉 Google.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Google.png
+
+^https?:\/\/(www.)?(g|google)\.cn url 307 https://www.google.com
+^https?:\/\/(ditu|maps).google\.cn url 307 https://maps.google.com
+
+hostname = www.google.cn

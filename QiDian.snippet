@@ -1,0 +1,24 @@
+#!name = 起点读书
+#!desc = 移除起点读书开屏广告、每日导读、各类弹窗、文末广告、搜索填充词，精简我的页面。（转自可莉 QiDian_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/QiDian.png
+
+^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/client\/getconf$ url jsonjq-response-body '.["Data"]["WolfEye"] = 0 | .["Data"]["CloudSetting"]["TeenShowFreq"] = 0'
+^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/client\/getconf$ url jsonjq-response-body 'del(.["Data"]["ActivityPageBackPushNoticeFrequency"], .["Data"]["ActivityIcon"], .["Data"]["ActivityPopup"], .["Data"]["LuckBag"])'
+^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/v4\/client\/getsplashscreen\? url reject-dict
+^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/adv\/ url reject-dict
+^https:\/\/ywab\.reader\.qq\.com\/user\/experiments\/v2\? url reject-dict
+^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/checkin\/simpleinfo\? url reject-dict
+^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/push\/getdialog\? url reject-dict
+^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/v2\/dailyrecommend\/getdailyrecommend\? url jsonjq-response-body '.["Data"]["Items"] = "[]"'
+^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/message\/getpushedmessagelist$ url reject-dict
+^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/maintain\/playstrip$ url reject-dict
+^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/dailyrecommend\/recommendBook\? url reject-dict
+^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/freshman\/bookshelfbtn$ url reject-dict
+^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/bookshelf\/getTopOperation$ url reject-dict
+^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/v3\/user\/getaccountpage\? url jsonjq-response-body 'del(.["Data"]["BenefitButtonList"])'
+^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/booksearch\/hotWords\? url reject-dict
+^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/followsubscribe\/showChapterEndModule\? url reject-dict
+^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/young\/getconf$ url reject-dict
+
+hostname = magev6.if.qidian.com, ywab.reader.qq.com

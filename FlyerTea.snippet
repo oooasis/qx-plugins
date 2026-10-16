@@ -1,0 +1,13 @@
+#!name = 飞客
+#!desc = 移除开屏广告、首页广告、板块广告、帖内广告和我的页面广告。（转自可莉 FlyerTea_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/FlyerTea.png
+
+^https:\/\/www\.flyert\.com\.cn\/api\/mobile\/index\.php\?module=advis url reject
+^https:\/\/www\.flyert\.com\.cn\/api\/mobile\/index\.php\?module=vip_coupon url reject-dict
+^https:\/\/ptf\.flyertrip\.com\/static\/img\/common\/ic_plate_mine_button\.png url reject-img
+^https:\/\/www\.flyert\.com\.cn\/api\/mobile\/index\.php\?module=getdata url reject-dict
+^https:\/\/www\.flyert\.com\.cn\/api\/mobile\/index\.php\?version=5 url script-response-body https://kelee.one/Resource/JavaScript/FlyerTea/FlyerTea_remove_ads.js
+^https:\/\/www\.flyert\.com\.cn\/api\/mobile\/index\.php\?module=plugin&id=k_misign:sign url script-response-body https://kelee.one/Resource/JavaScript/FlyerTea/FlyerTea_remove_ads.js
+
+hostname = www.flyert.com.cn, ptf.flyertrip.com

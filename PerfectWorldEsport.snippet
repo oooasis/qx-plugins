@@ -1,0 +1,9 @@
+#!name = 完美世界电竞
+#!desc = 移除开屏广告，精简搜索页。（转自可莉 PerfectWorldEsport_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/PerfectWorldEsport.png
+
+^https:\/\/api\.wmpvp\.com\/api\/v1\/config\/promote$ url jsonjq-response-body 'del(.["data"]["ad"])'
+^https:\/\/appactivity\.wmpvp\.com\/hotsearch\/all\? url reject-dict
+
+hostname = api.wmpvp.com, appactivity.wmpvp.com

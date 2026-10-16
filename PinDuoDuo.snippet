@@ -1,0 +1,49 @@
+#!name = 拼多多
+#!desc = 移除开屏广告、底栏多多视频、会场入口、聊天页面精选推荐及推广，精简首页和个人中心。（转自可莉 PinDuoDuo_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = ZenmoFeiShi[https://github.com/ZenmoFeiShi], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/PinDuoDuo.png
+
+host, titan.pinduoduo.com, reject
+host, xg.pinduoduo.com, reject
+host, cdl-1.pddpic.com, reject
+host, cdl-p2.pddpic.com, reject
+host, cd-1.pddpic.com, reject
+host, apm.pinduoduo.com, reject
+host, th-b.pinduoduo.com, reject
+host, ta.pinduoduo.com, reject
+host, th.pinduoduo.com, reject
+host, th-a.pinduoduo.com, reject
+host, ta-a.pinduoduo.com, reject
+host, meta.pinduoduo.com, reject
+host, apm-a.pinduoduo.com, reject
+^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/unrated_order_for_unreceived_tab\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/query_order_list_tabs_element\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/aquarius\/hungary\/global\/homepage\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/order_express_group\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/search_hotquery\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/zaire_biz\/chat\/resource\/get_list_data\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/new_chat_group\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/alexa\/goods\/back_up\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/personal\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/brand-olay\/goods_detail\/bybt_guide\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/engels\/reviews\/require\/append\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/my_order_group\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/likes\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/phantom\/gbdbpdv\/extra\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/manufacturer\/cross\/shortcut\/list\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/dunkirk\/liveactivity\/push\/create\/url\/report\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/growth\/nagato\/app\/index\/gather\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/engels\/wait\/receive\/review\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/buffon\/nasus\/recommend\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v2\/query\/goods_detail_with_tags\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/alexa\/homepage\/hub\? url jsonjq-response-body 'del(.["result"]["dy_module"]["irregular_banner_dy"], .["result"]["icon_set"], .["result"]["search_bar_hot_query"], .["result"]["dy_module"]["irregular_banner_dy"])'
+^https:\/\/api\.pinduoduo\.com\/api\/alexa\/homepage\/hub\? url jsonjq-response-body '.result.bottom_tabs? |= map(select(.link | IN("index.html", "chat_list.html", "personal.html"))) | .result.buffer_bottom_tabs? |= map(select(.link | IN("index.html", "chat_list.html", "personal.html"))) | .result.all_top_opts |= map(del(.selected_image, .image, .height, .width))'
+^https:\/\/api\.pinduoduo\.com\/search\? url jsonjq-response-body 'del(.["expansion"])'
+^https:\/\/api\.pinduoduo\.com\/api\/philo\/personal\/hub\? url jsonjq-response-body 'del(.["monthly_card_entrance"], .["personal_center_style_v2_vo"], .["icon_set"]["icons"], .["icon_set"]["top_personal_icons"], .["personal_banner"])'
+^https:\/\/api\.pinduoduo\.com\/api\/oak\/integration\/render\? url jsonjq-response-body 'del(.["bottom_section_list"], .["ui"]["bottom_section"], .["ui"]["live_section"]["float_info"])'
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/order_detail_group\? url jsonjq-response-body 'del(.["data"]["goods_list"])'
+^https:\/\/api\.pinduoduo\.com\/order\/ url jsonjq-response-body 'del(.["marketing_banner_vo"], .["shipping"]["banner_above_recommend"])'
+^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/order_list_v4\? url jsonjq-response-body '.orders |= map(.order_buttons |= map(del(.order_growth_tip)))'
+^https:\/\/m\.pinduoduo\.net\/mdkd\/package\?from_app_scan url script-response-body https://kelee.one/Resource/JavaScript/PinDuoDuo/PinDuoDuo_remove_ads.js
+
+hostname = api.pinduoduo.com, m.pinduoduo.net

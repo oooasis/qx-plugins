@@ -1,0 +1,11 @@
+#!name = 两步路户外助手
+#!desc = 移除开屏广告、弹窗广告，精简我的页面。（转自可莉 2bulu_remove_ads.lpx，2026-10-02 13:57:49）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/2bulu.png
+
+^https:\/\/helper\.2bulu\.com\/getAppEntranceConfig\? url jsonjq-response-body '.configData=(.configData|fromjson|del(.adPlatform,.adIntertitialShowType,.adsConfig,.adIntertitialDisplayedLimit,.adSplashShowTypeWhenHotStart,.adIntertitialDayDisplayedMaxCount,.od_adsType,.showMeBaiHeAdView)|tojson)'
+^https:\/\/helper\.2bulu\.com\/search\/searchHotKeyList\? url reject-dict
+^https:\/\/helper\.2bulu\.com\/promote\/getAppUserModule\? url reject-dict
+^https:\/\/helper\.2bulu\.com\/proSpecial\/allData\? url reject-dict
+
+hostname = helper.2bulu.com

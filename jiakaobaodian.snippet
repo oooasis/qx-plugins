@@ -1,0 +1,13 @@
+#!name = 驾考宝典去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 378 行，[J] 段；追加 kelee:JiaKaoBaoDian_remove_ads.lpx（2026-10-02 13:57:49）的 4 条规则
+#!author = ddgksf2013, 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+
+^https?:\/\/\w+\.kakamobi\.cn\/api\/open\/v\d\/advert-sdk\/ url reject-200
+
+# ↓ 来自 kelee:JiaKaoBaoDian_remove_ads.lpx「驾考宝典去广告」
+^https:\/\/jiaxiao-awd\.kakamobi\.cn\/api\/h5\/v4\/home-lead-advertise\/abtest\.htm url reject-dict
+^https:\/\/mcbd\.maiche\.com\/api\/open\/v3\/user\/get-popup-window\.htm url reject-dict
+^https:\/\/squirrel\.kakamobi\.cn\/api\/open\/recommend-goods\/get-my-page-banner\.htm url reject-dict
+^https:\/\/mcbd\.maiche\.com\/api\/open\/v2\/jiakao-business\/get-naben-advert\.htm url reject-dict
+
+hostname = *.kakamobi.cn, jiaxiao-awd.kakamobi.cn, mcbd.maiche.com, squirrel.kakamobi.cn

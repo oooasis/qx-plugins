@@ -1,0 +1,11 @@
+#!name = 华尔街见闻去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 318 行，[H] 段；追加 kelee:FinanceNews_remove_ads.lpx（2026-10-02 13:57:49）的 2 条规则
+#!author = ddgksf2013, 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+
+^https?:\/\/api-one-wscn\.awtmt\.com\/apiv\d\/advertising\/ads url reject-200
+
+# ↓ 来自 kelee:FinanceNews_remove_ads.lpx「华尔街见闻去广告」
+^https:\/\/api-one-wscn\.awtmt\.com\/apiv1\/advertising\/ url reject-dict
+^https:\/\/api-one-wscn\.awtmt\.com\/apiv1\/content\/carousel\/information-flow\? url reject-dict
+
+hostname = api-one-wscn.awtmt.com

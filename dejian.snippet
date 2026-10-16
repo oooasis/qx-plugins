@@ -1,0 +1,15 @@
+#!name = 得间小说去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 209 行，[D] 段；追加 kelee:iReaderDejian_remove_ads.lpx（2026-10-02 13:57:49）的 5 条规则
+#!author = ddgksf2013, 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+
+^https?:\/\/dj\.palmestore\.com\/zybk\/api\/ad url reject-200
+^https?:\/\/saad\.ms\.zhangyue\.net\/ad\/ url reject-200
+
+# ↓ 来自 kelee:iReaderDejian_remove_ads.lpx「得间小说去广告」
+host, smad.ms.zhangyue.net, reject
+host, saad.ms.zhangyue.net, reject
+^https:\/\/dj\.palmestore\.com\/zybk\/api\/powerup\/userGroup\? url jsonjq-response-body 'del(.["body"]["sevenDaysAd"], .["body"]["shortPlayShow"], .["body"]["sdkShortPlayAB"])'
+^https:\/\/dj\.palmestore\.com\/djad\/ url reject-dict
+^https:\/\/dj\.palmestore\.com\/zyapi\/bookstore\/ad\/ url reject-dict
+
+hostname = saad.ms.zhangyue.net, dj.palmestore.com

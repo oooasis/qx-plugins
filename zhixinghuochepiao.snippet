@@ -1,0 +1,8 @@
+#!name = 智行火车票去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 1029 行，[Z] 段
+#!author = ddgksf2013
+
+^https?:\/\/m\.ctrip\.com\/restapi\/soa2\/\d+\/scjson\/tripAds url reject-200
+
+# 注：以下规则的主机不在上游 hostname 里（HTTPS 下不生效，上游原样如此）：
+#   ^https?:\/\/m\.ctrip\.com\/restapi\/soa2\/\d+\/scjson\/tripAds url reject-200

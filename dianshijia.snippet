@@ -1,0 +1,11 @@
+#!name = 电视家去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 189 行，[D] 段
+#!author = ddgksf2013
+
+^https?:\/\/api\.gaoqingdianshi\.com\/api\/v\d\/ad\/ url reject-200
+^https?:\/\/cdn\.dianshihome\.com\/static\/ad\/ url reject-200
+
+# 注：以下规则的主机不在上游 hostname 里（HTTPS 下不生效，上游原样如此）：
+#   ^https?:\/\/cdn\.dianshihome\.com\/static\/ad\/ url reject-200
+
+hostname = *gaoqingdianshi.com

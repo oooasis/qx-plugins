@@ -1,0 +1,16 @@
+#!name = 财新去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 148 行，[C] 段；追加 kelee:CaixinMedia_remove_ads.lpx（2026-10-02 13:57:49）的 6 条规则
+#!author = ddgksf2013, RuCu6[https://github.com/RuCu6]
+
+^https?:\/\/gg\.caixin\.com\/s\?z=caixin&op=1&c=3362 url script-response-body https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/caixinads.js
+^https?:\/\/pinggai.*caixin\.com\/s\?z=caixin url reject-200
+
+# ↓ 来自 kelee:CaixinMedia_remove_ads.lpx「财新去广告」
+^https:\/\/gateway\.caixin\.com\/api\/app-api\/cxAdInfo\/selectIndexAdInfo url reject-dict
+^https:\/\/mappsv5\.caixin\.com\/channelv5\/article_ad_ios_info\.json url reject-dict
+^https:\/\/gg\.caixin\.com\/s\?z=caixin&slot=\d+ url reject-dict
+^https:\/\/gg\.caixin\.com\/s\?z=caixin&op=\d url script-response-body https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
+^https:\/\/mappsv5\.caixin\.com\/articlev5\/\d+\/\d+\.json$ url script-response-body https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
+^https:\/\/mapps?v5\.caixin\.com\/(channelv5\/list|\/?index_page_v5\/)\w+ url script-response-body https://kelee.one/Resource/JavaScript/CaixinMedia/CaixinMedia_remove_ads.js
+
+hostname = pinggai*.caixin.com, gg.caixin.com, g*.caixin.com, m*.caixin.com

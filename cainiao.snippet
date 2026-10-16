@@ -1,0 +1,14 @@
+#!name = 菜鸟去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 139 行，[C] 段；追加 kelee:Cainiao_remove_ads.lpx（2026-10-02 13:57:49）的 4 条规则
+#!author = ddgksf2013, 小白脸
+
+^https?:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.(show|mshow)\.cn\/ url reject-200
+^https?:\/\/iyes\.youku\.com\/uts/v\d\/start url reject-200
+
+# ↓ 来自 kelee:Cainiao_remove_ads.lpx「菜鸟去广告」
+^https:\/\/nbcps-mtop\.cainiao\.com\/gw\/mtop\.cainiao\.nbcps\.presentation\.fetch\.cn url reject
+^https:\/\/netflow-mtop\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads\.index url reject
+^https:\/\/cn-acs\.m\.cainiao\.com\/gw\/mtop\.cainiao\.adkeyword\.get\.cn url reject
+^https:\/\/netflow-mtop\.cainiao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads url jsonjq-response-body 'if .data.result[0].materialId == "39017" then . else .data = {} end'
+
+hostname = iyes.youku.com, cn-acs.m.cainiao.com, netflow-mtop.cainiao.com, nbcps-mtop.cainiao.com

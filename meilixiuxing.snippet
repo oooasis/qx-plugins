@@ -1,0 +1,11 @@
+#!name = 美丽修行去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 555 行，[M] 段；追加 kelee:Meizhixiuxing_remove_ads.lpx（2026-10-02 13:57:49）的 2 条规则
+#!author = ddgksf2013, 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+
+^https?:\/\/api\.bevol\.com\/appmain\/app\/home\/launch url reject-200
+
+# ↓ 来自 kelee:Meizhixiuxing_remove_ads.lpx「美丽修行去广告」
+^https:\/\/api\.bevol\.com\/appmain\/app\/home\/popup$ url reject-dict
+^https:\/\/api\.bevol\.com\/appmain\/app\/home\/page$ url jsonjq-response-body 'del(.["result"]["versionPopUp"], .["result"]["isShowSearchLabel"], .["result"]["isShowSearchFeedBack"], .["result"]["centerBannerAdvert"], .["result"]["programmaticAdvertising"], .["result"]["mattsData"], .["result"]["questionnaireMap"], .["result"]["appPullDownAdvert"])'
+
+hostname = api.bevol.com

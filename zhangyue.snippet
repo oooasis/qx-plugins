@@ -1,0 +1,17 @@
+#!name = 掌阅去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 1008 行，[Z] 段；追加 kelee:iReader_remove_ads.lpx（2026-10-02 13:57:49）的 6 条规则
+#!author = ddgksf2013, 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+
+^https?:\/\/ih2\.ireader\.com\/zyapi\/bookstore\/ad url reject-200
+^https?:\/\/ih2\.ireader\.com\/zyapi\/self\/screen\/ad url reject-200
+^https?:\/\/ih2\.ireader\.com\/zycl\/api\/ad url reject-200
+
+# ↓ 来自 kelee:iReader_remove_ads.lpx「掌阅去广告」
+host, saad.ms.zhangyue.net, reject
+^https:\/\/(webboot\.zhangyue\.com|ih2\.ireader\.com)\/zyapi\/bookstore\/ad\/ url reject-dict
+^https:\/\/(webboot\.zhangyue\.com|ih2\.ireader\.com)\/bookstore\/ad\/ url reject-dict
+^https:\/\/(webboot\.zhangyue\.com|ih2\.ireader\.com)\/zybook4\/iphone\/u\/p\/api\.php\? url jsonjq-response-body 'del(.["Splash"])'
+^https:\/\/(webboot\.zhangyue\.com|ih2\.ireader\.com)\/zybk\/api\/pop\/index\? url reject-dict
+^https:\/\/(webboot\.zhangyue\.com|ih2\.ireader\.com)\/bookstore\/read\/visual\/channel\/list\? url jsonjq-response-body '.body.list |= map(select(.id | contains("ad_") | not))'
+
+hostname = ih2.ireader.com, webboot.zhangyue.com

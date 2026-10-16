@@ -1,0 +1,14 @@
+#!name = Soul去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 684 行，[S] 段；追加 kelee:Soul_remove_ads.lpx（2026-10-02 13:57:49）的 5 条规则
+#!author = ddgksf2013, ZenmoFeiShi[https://github.com/ZenmoFeiShi], RuCu6[https://github.com/RuCu6], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+
+^https:\/\/data-collector\.soulapp\.cn\/api\/data\/report$ url reject-200
+
+# ↓ 来自 kelee:Soul_remove_ads.lpx「Soul去广告」
+host, ad-h5-cdn.soulapp.cn, reject
+host, ad-h5-station-cdn.soulapp.cn, reject
+host, ad-r.soulapp.cn, reject
+host, soul-ad.soulapp.cn, reject
+^https:\/\/ssp\.soulapp\.cn\/api\/q url reject-dict
+
+hostname = data-collector.soulapp.cn, ssp.soulapp.cn

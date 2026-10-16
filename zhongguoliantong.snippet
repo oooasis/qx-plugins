@@ -1,0 +1,12 @@
+#!name = 中国联通去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 985 行，[Z] 段；追加 lab:ChinaUnicom.lpx（2026-10-02 12:00）的 2 条规则
+#!author = ddgksf2013, mist-whisper[https://github.com/mist-whisper]
+
+^https?:\/\/m\.client\.10010\.com\/mobileService\/(activity|customer)\/(accountListData|get_client_adv|get_startadv) url reject-200
+^https?:\/\/m\.client\.10010\.com\/uniAdmsInterface\/(getHomePageAd|getWelcomeAd) url reject-200
+
+# ↓ 来自 lab:ChinaUnicom.lpx「中国联通」
+host, m1.ad.10010.com, reject
+^https?:\/\/m\.client\.10010\.com\/clientIndex\/api\/v1\/index\/queryIndexExclusiveOffers url reject
+
+hostname = m.client.10010.com

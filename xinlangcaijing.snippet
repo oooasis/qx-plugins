@@ -1,0 +1,13 @@
+#!name = 新浪财经去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 874 行，[X] 段；追加 kelee:SinaStock_remove_ads.lpx（2026-10-02 13:57:49）的 4 条规则
+#!author = ddgksf2013, 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+
+^https?:\/\/ad\.cj\.sina\.cn\/(osa\/adpreload|fax\/impress) url reject-200
+
+# ↓ 来自 kelee:SinaStock_remove_ads.lpx「新浪财经去广告」
+^https:\/\/news\.cj\.sina\.cn\/app\/v1\/news724\/list\? url jsonjq-response-body 'del(.["result"]["data"]["ad"])'
+^https:\/\/news\.cj\.sina\.cn\/toutiao\/content\? url jsonjq-response-body 'del(.result.data[]?.ad, .result.data[]?.report)'
+^https:\/\/app\.cj\.sina\.com\.cn\/api\/deal\/index\? url jsonjq-response-body 'del(.["data"]["banner"])'
+^https:\/\/(newscj\.xincai\.com|news\.cj\.sina\.cn)\/app\/v1\/feed\? url jsonjq-response-body '.data.feed.data |= map(select((.author // "") != ""))'
+
+hostname = ad.cj.sina.cn, app.cj.sina.com.cn, news.cj.sina.cn, newscj.xincai.com

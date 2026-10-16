@@ -1,0 +1,11 @@
+#!name = 中国移动去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 977 行，[Z] 段；追加 lab:ChinaMobile.lpx（2026-10-02 12:00）的 2 条规则
+#!author = ddgksf2013, sooyaaabo[https://github.com/sooyaaabo], ccyykk666[https://github.com/ccyykk666]
+
+^https?:\/\/client\.app\.coc\.10086\.cn\/biz-orange\/DN\/init\/startInit url reject-200
+
+# ↓ 来自 lab:ChinaMobile.lpx「中国移动」
+^https?:\/\/(client\.app\.coc|app)\.10086\.cn\/biz-orange\/DN\/(explorePage\/getAdverList|init\/startInit|emotionMarket) url reject-200
+^https?:\/\/client\.app\.coc\.10086\.cn\/biz-orange\/(?:DN\/(?:dropsAdverService\/getDropsAdverNew|homepagePopup\/getSortInfo|toast\/getToastRule)|DH\/toast\/august\/getToast|DA\/liveSuspension\/getPageCode)(?:\?.*)?$ url reject-dict
+
+hostname = client.app.coc.10086.cn, app.10086.cn

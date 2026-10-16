@@ -1,0 +1,8 @@
+#!name = 小蚁摄像机（XiaoYi）去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 843 行，[X] 段
+#!author = ddgksf2013
+
+^https://api.xiaoyi.com\/v5\/app\/mobile\/ads url reject-200
+^https://api.xiaoyi.com\/v5\/app\/config\?userid=.* url reject-200
+
+hostname = api.xiaoyi.com

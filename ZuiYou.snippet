@@ -1,0 +1,14 @@
+#!name = 最右去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 999 行，[Z] 段；追加 kelee:ZuiYou_remove_ads.lpx（2026-10-02 13:57:49）的 4 条规则
+#!author = ddgksf2013, 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+
+^https?:\/\/adapi\.izuiyou\.com\/ url reject-200
+^https?:\/\/api\.izuiyou\.com\/ad\/ url reject-200
+
+# ↓ 来自 kelee:ZuiYou_remove_ads.lpx「最右去广告」
+host, adapi.izuiyou.com, reject
+^http:\/\/mercury-gateway\.ixiaochuan\.cn\/mercury\/v1\/ad\/ url reject-dict
+^https?:\/\/api\.izuiyou\.com\/config\/get_banner url reject-dict
+^https?:\/\/api\.izuiyou\.com\/ad\/ url reject
+
+hostname = adapi.izuiyou.com, api.izuiyou.com

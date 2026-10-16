@@ -1,0 +1,8 @@
+#!name = 黄油相机去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 299 行，[H] 段
+#!author = ddgksf2013
+
+^https?:\/\/api4\.bybutter\.com\/v\d\/app\/placements\/\d\/advertisements url reject-200
+
+# 注：以下规则的主机不在上游 hostname 里（HTTPS 下不生效，上游原样如此）：
+#   ^https?:\/\/api4\.bybutter\.com\/v\d\/app\/placements\/\d\/advertisements url reject-200

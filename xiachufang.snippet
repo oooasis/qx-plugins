@@ -1,0 +1,11 @@
+#!name = 下厨房去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 846 行，[X] 段；追加 kelee:XiaChuFang_remove_ads.lpx（2026-10-02 13:57:49）的 2 条规则
+#!author = ddgksf2013, 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+
+^https:\/\/api\.xiachufang\.com\/v\d\/ad/ url reject-200
+
+# ↓ 来自 kelee:XiaChuFang_remove_ads.lpx「下厨房去广告」
+^https:\/\/api\.xiachufang\.com\/v2\/homepage\/paged_waterfall_recommendations\.json$ url jsonjq-response-body 'del(.multiplex_cells[] | select(.recommendation_cell.impression_sensor_events[]?.properties.target_type? == "ad"))'
+^https:\/\/api\.xiachufang\.com\/v2\/config\/get\.json$ url jsonjq-response-body 'del(.["content"]["recipe_ad"], .["content"]["splash_ad_req_time"], .["content"]["splash_sdk_ad_req_time"], .["content"]["splash_ad_lifecycle_interval"], .["content"]["waterfall_ad_feedback"], .["content"]["homepage_waterfall_test_ad_pos"], .["content"]["ad_app_look_around"], .["content"]["ad_sdk_text_removal_keywords"])'
+
+hostname = api.xiachufang.com

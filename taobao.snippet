@@ -1,0 +1,13 @@
+#!name = 淘宝去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 750 行，[T] 段；追加 kelee:Taobao_remove_ads.lpx（2026-10-02 13:57:49）的 4 条规则
+#!author = ddgksf2013, RuCu6[https://github.com/RuCu6]
+
+^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.wireless\.home\.splash\.awesome\.get url reject-200
+
+# ↓ 来自 kelee:Taobao_remove_ads.lpx「淘宝去广告」
+host, adashx.m.taobao.com, reject
+host, h-adashx.ut.taobao.com, reject
+host, ut.taobao.com, reject
+^https:\/\/poplayer\.template\.alibaba\.com\/\w+\.json url script-response-body https://kelee.one/Resource/JavaScript/Taobao/Taobao_remove_ads.js
+
+hostname = guide-acs.m.taobao.com, poplayer.template.alibaba.com

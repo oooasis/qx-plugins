@@ -1,0 +1,11 @@
+#!name = 123云盘去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 50 行，[0~9] 段；追加 kelee:123NetWorkDisk_remove_ads.lpx（2026-10-02 13:57:49）的 1 条规则
+#!author = ddgksf2013, 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+
+^https?:\/\/sdk\.1rtb\.net\/sdk\/req_ad url reject-200
+^https?:\/\/www\.123pan\.com\/s\/[0-9a-zA-Z=_/-]+\.html url script-response-body https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/123pan.js
+
+# ↓ 来自 kelee:123NetWorkDisk_remove_ads.lpx「123云盘去广告」
+^https:\/\/www\.123pan\.com\/api\/config\/get url reject-dict
+
+hostname = www.123pan.com, *.1rtb.net

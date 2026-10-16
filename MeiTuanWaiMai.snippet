@@ -1,0 +1,9 @@
+#!name = 美团外卖去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 495 行，[M] 段
+#!author = ddgksf2013
+
+^https?:\/\/img\.meituan\.net\/(bizad|brandCpt)\/\w+\.(png|jpg) url reject-200
+^https?:\/\/.*\.meituan\.com\/api\/v\d\/(openscreen\?ad|appstatus\?ad|loadInfo\?|startpicture) url reject-200
+^http:\/\/s3plus\.meituan\.net\/.*\/brandcpt-vedio\/.*\?time url reject-200
+
+hostname = peisongapi.meituan.com, img.meituan.net, www.meituan.com, s3plus.meituan.net, p*.meituan.net, wmapi.meituan.com

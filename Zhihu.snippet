@@ -1,0 +1,15 @@
+#!name = 知乎去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 1002 行，[Z] 段；追加 kelee:Zhihu_remove_ads.lpx（2026-10-02 13:57:49）的 6 条规则
+#!author = ddgksf2013, 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+
+^https?:\/\/api\.zhihu\.com\/commercial_api.*launch_v2 url script-response-body https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/zhihu_openads.js
+
+# ↓ 来自 kelee:Zhihu_remove_ads.lpx「知乎去广告」
+^https:\/\/api\.zhihu\.com\/ad-style-service\/request$ url reject-dict
+^https:\/\/api\.zhihu\.com\/commercial_api\/ url reject-dict
+^https:\/\/api\.zhihu\.com\/topstory\/recommend\? url jsonjq-response-body '.data |= map(select(.type == "ComponentCard"))'
+^https:\/\/api\.zhihu\.com\/commercial_api\/banners_v\d\/app_float_corner\? url reject-dict
+^https:\/\/api\.zhihu\.com\/questions\/\d+\/feeds\? url jsonjq-response-body 'del(.["ad_info"])'
+^https:\/\/api\.zhihu\.com\/commercial_api\/answer\/\d+\/bottom-v\d$ url reject-dict
+
+hostname = api.zhihu.com

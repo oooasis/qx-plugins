@@ -1,0 +1,14 @@
+#!name = 滴滴出行去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 168 行，[D] 段；追加 kelee:DiDi_remove_ads.lpx（2026-10-02 13:57:49）的 4 条规则
+#!author = ddgksf2013, 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+
+https?://res\.xiaojukeji\.com\/resapi\/activity\/mget url reject-200
+https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNotices) url reject-200
+
+# ↓ 来自 kelee:DiDi_remove_ads.lpx「滴滴去广告」
+host, gwp.xiaojukeji.com, reject
+host, gwpgz.diditaxi.com.cn, reject
+host, adtrack.xiaojukeji.com, reject
+^https:\/\/conf\.diditaxi\.com\.cn\/homepage\/v\d\/other\/slow\? url jsonjq-response-body 'del(.["data"]["order_cards"]["new_loss_banner_card"], .["data"]["order_cards"]["call_car_card_80"])'
+
+hostname = res.xiaojukeji.com, conf.diditaxi.com.cn

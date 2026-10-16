@@ -1,0 +1,10 @@
+#!name = 当当云阅读去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 184 行，[D] 段
+#!author = ddgksf2013
+
+^https?:\/\/e.dangdang.com\/media\/api.+\?action=getDeviceStartPage url reject-200
+^https?:\/\/api\.dangdang\.com\/mapi\d\/mobile\/init url reject-200
+^https?:\/\/mapi\.dangdang\.com\/index\.php\?action=init url reject-200
+^https?:\/\/e\.dangdang\.com\/.+?getDeviceStartPage url reject-200
+
+hostname = api.dangdang.com, mapi.dangdang.com, api.dangdang.com, e.dangdang.com

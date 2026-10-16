@@ -1,0 +1,11 @@
+#!name = 屈臣氏去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 640 行，[Q] 段
+#!author = ddgksf2013
+
+^https?:\/\/mystore-gw\.watsonsvip\.com\.cn\/gfu\/popup\/advert\/launch url reject-200
+^http:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/\w+\/resolv url reject-200
+
+# 注：以下规则的主机是通配正则，无法确定 hostname，需自行补：
+#   ^http:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/\w+\/resolv url reject-200
+
+hostname = mystore-gw.watsonsvip.com.cn

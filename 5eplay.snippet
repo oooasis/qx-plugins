@@ -1,0 +1,10 @@
+#!name = 5EPlay去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 46 行，[0~9] 段；追加 kelee:5EPlay_remove_ads.lpx（2026-10-02 13:57:49）的 1 条规则
+#!author = ddgksf2013, 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+
+^https?:\/\/.*5eplay\.com\/.*adv_slot url reject-200
+
+# ↓ 来自 kelee:5EPlay_remove_ads.lpx「5EPlay去广告」
+^https:\/\/app\.5eplay\.com\/api\/index\/tab_v\d\?category_id=tab_1&page=\d$ url jsonjq-response-body 'del(.["data"]["float_advertise"])'
+
+hostname = *.5eplay.com, app.5eplay.com

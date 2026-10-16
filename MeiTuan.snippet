@@ -1,0 +1,11 @@
+#!name = 美团去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 489 行，[M] 段
+#!author = ddgksf2013
+
+^https?:\/\/peisongapi\.meituan\.com\/client\/getInitiateImage url reject-200
+^https?:\/\/img\.meituan\.net\/(adunion|display|midas)\/\w+\.(gif|jpg|jpg\.webp)$ url reject-200
+^https?:\/\/(s3plus|flowplus)\.meituan\.net\/v\d\/\w+\/linglong\/\w+\.(gif|jpg|mp4) url reject-200
+^https?:\/\/p\d\.meituan\.net\/(bizad|wmbanner)\/\w+\.jpg url reject-200
+^https?:\/\/p\d\.meituan\.net\/movie\/\w+\.jpg\?may_covertWebp url reject-200
+
+hostname = peisongapi.meituan.com, img.meituan.net, s3plus.meituan.net, flowplus.meituan.net, p*.meituan.net

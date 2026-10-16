@@ -1,0 +1,8 @@
+#!name = 医脉通去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 947 行，[Y] 段
+#!author = ddgksf2013
+
+^https?:\/\/api\.medlive\.cn\/promotion-api/adlist url reject-200
+^https?:\/\/promotion\.medlive\.cn\/getcover-v2\?app_name url reject-200
+
+hostname = api.medlive.cn, promotion.medlive.cn

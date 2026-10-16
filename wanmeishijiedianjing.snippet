@@ -1,0 +1,9 @@
+#!name = 完美世界电竞去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 810 行，[W] 段；替换为 kelee:PerfectWorldEsport_remove_ads.lpx（2026-10-02 13:57:49）的 1 条规则
+#!author = ddgksf2013, 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+
+
+# ↓ 来自 kelee:PerfectWorldEsport_remove_ads.lpx「完美世界电竞去广告」
+^https:\/\/api\.wmpvp\.com\/api\/v1\/config\/promote$ url jsonjq-response-body 'del(.["data"]["ad"])'
+
+hostname = api.wmpvp.com

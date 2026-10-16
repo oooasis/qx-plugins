@@ -1,0 +1,8 @@
+#!name = 百视TV去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 120 行，[B] 段
+#!author = ddgksf2013
+
+^https?:\/\/bp-api\.bestv\.com\.cn\/cms\/api\/free\/open\/advertisingV2 url reject-200
+^https?:\/\/bp-api\.bestv\.com\.cn\/cms\/api\/audit\/home\/getCommonMixData url script-response-body https://raw.githubusercontent.com/ddgksf2013/Scripts/master/baishitv.js
+
+hostname = bp-api.bestv.com.cn

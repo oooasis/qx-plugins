@@ -1,0 +1,13 @@
+#!name = 闲鱼去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 896 行，[X] 段；追加 kelee:FleaMarket_remove_ads.lpx（2026-10-02 13:57:49）的 3 条规则
+#!author = ddgksf2013, 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+
+^https?:\/\/acs\.m\.goofish\.com\/gw\/mtop.*splash\.ads url reject-200
+host-suffix,iyes.youku.com,reject
+
+# ↓ 来自 kelee:FleaMarket_remove_ads.lpx「闲鱼去广告」
+^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idle\.user\.strategy\.list\/ url reject-dict
+^https:\/\/acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlehome\.home\.newitem\.page\/ url jsonjq-response-body '.data.sections |= map(select(.data.clickParam.args.cardType as $ct | $ct != "banner" and $ct != "mamaAD"))'
+^https:\/\/g-acs\.m\.goofish\.com\/gw\/mtop\.taobao\.idlemtopsearch\.search\/ url jsonjq-response-body '.data.resultList |= map(if .data.item.main.exContent.dislikeFeedback.clickParam.args.bizType == "ad" then empty else . end)'
+
+hostname = acs.m.goofish.com, g-acs.m.goofish.com

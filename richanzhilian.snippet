@@ -1,0 +1,8 @@
+#!name = 日产智联去开屏
+#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 654 行，[R] 段
+#!author = ddgksf2013
+
+^https?:\/\/.*dongfeng-nissan\.com\.cn\/mb-gw\/vmsp-discover\/rest\/business-service\/v\d\/adver url reject-200
+
+# 注：以下规则的主机不在上游 hostname 里（HTTPS 下不生效，上游原样如此）：
+#   ^https?:\/\/.*dongfeng-nissan\.com\.cn\/mb-gw\/vmsp-discover\/rest\/business-service\/v\d\/adver url reject-200

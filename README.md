@@ -21,6 +21,21 @@
 - YouTube（依赖 Loon 二进制 protobuf 脚本）、DJ多多、哈啰等少数插件在 QX 下无可用规则，未收录。
 - 少数规则的主机上游插件本身就没写进 MITM，这些规则在 Loon 里同样不生效，保持原样。
 
+## 更新步骤
+
+生成工具在维护者本地 `配置/StartUpAds拆解/`（不在本仓库）。依赖：python3（含 pypinyin）、node、curl；jq 1.7 已放在工具目录 `bin/jq`。每一步都可重复执行，在工具目录下依次运行：
+
+1. `python3 fetch.py`：重新抓取墨鱼 StartUpAds.conf 和可莉 / Loon Lab 的全部插件（用 Loon UA）。任何一个下载失败就整体放弃，不覆盖旧数据。
+2. `python3 build.py && python3 verify.py`：把墨鱼按 App 拆到 `apps/`，并校验拆分无损，应输出 5 项 PASS。如果新增了 App，第 7 步会提示补中文名。
+3. `python3 match.py plugins-raw`：按域名给 App 和插件配对，生成 `match.json`。
+4. `python3 assemble.py plugins-raw && python3 verify_best.py plugins-raw`：墨鱼规则与选中的插件行合并到 `best/`，应输出 8 项 PASS。选中的行按 `decisions/frozen_lines.json` 里的文本匹配，不依赖行号。输出「插件已无 N 条所选规则」说明上游改了写法，需要复看。
+5. `python3 kelee_build.py`：可莉去广告插件转换到 `kelee/`，墨鱼独有的 App 补齐。输出里如果有「待确认」（新出现的域名重叠）：是同一 App 就加进脚本里的 `SAME`，不是就加进 `decisions/overlap_reviewed.json`，然后重跑这一步。
+6. `python3 audit_scripts.py`：用 QX 的 UA 拉取所有引用的脚本，检查能否在 QX 运行，只列出新增或内容有变的问题脚本。`[bad]` 的加进 `kelee_build.py` 的 `QX_BAD_SCRIPTS`，回到第 5 步；`[warn]` 的需要人工看用到 Loon 专有 API 的分支。
+7. `python3 publish_kelee.py <本仓库克隆目录>`：生成各 App 文件夹和本 README。如果提示「缺中文名」，补进 `names.json` 再跑一次。
+8. 在仓库目录 `git add -A && git commit -m "更新" && git push`。
+
+**自托管脚本**：把脚本放进对应 App 的文件夹（如 `Amap/Amap.js`），在工具目录的 `script_map.json` 里加一条 `{"原脚本 URL": "Amap/Amap.js"}`，然后执行第 7、8 步，snippet 里的引用就会换成本仓库的 raw 地址。重新生成只覆盖 `.snippet`，文件夹里的其他文件会保留。
+
 ## 版权
 
 规则版权归原作者，见下表「作者」列与各文件 `#!author`。可莉插件规则遵循 [CC BY-NC-SA 4.0](https://github.com/luestr/ProxyResource)，禁止商用。

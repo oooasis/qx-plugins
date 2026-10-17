@@ -1,0 +1,30 @@
+#!name = 雪球
+#!desc = 过滤雪球广告（转自 Loon Lab XueQiu.lpx，2026-10-02 12:00）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md], ddgksf2013[https://github.com/ddgksf2013]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/XueQiu.png
+
+^https:\/\/api\.xueqiu\.com\/snowpard\/launch_strategy\/query\.json\? url reject-dict
+^https:\/\/open\.xueqiu\.com\/mpaas\/config\/content\?.+home_visitor_relation_config url reject-dict
+^https:\/\/api\.xueqiu\.com\/ucprofile\/api\/user\/batchGetUserBasicInfo\.json url reject-dict
+^https:\/\/api\.xueqiu\.com\/lightsnow\/launch\/plan\/bee\/query\.json\? url reject-dict
+^https:\/\/api\.xueqiu\.com\/lightsnow\/optional\/banner\/query\.json url reject-dict
+^https:\/\/api\.xueqiu\.com\/snowflake-theme\/query\/v\d\/hot_event\/rich_tag_new\.json\? url reject-dict
+^https:\/\/api\.xueqiu\.com\/query\/search\/ai\/v2\/recommend_search\.json\? url reject-dict
+^https:\/\/api\.xueqiu\.com\/query\/v\d\/hot_event\/tag\.json\? url reject-dict
+^https:\/\/open\.xueqiu\.com\/mpaas\/config\/content\?.+cube_detail_bottom_operation_trade_button url reject-dict
+^https:\/\/api\.xueqiu\.com\/recommend-proxy\/card\/zj_card\.json\? url reject-dict
+^https:\/\/api\.xueqiu\.com\/recommend-proxy\/card\/portfolio_tab_symbol\.json url reject-dict
+^https:\/\/stock\.xueqiu\.com\/v5\/stock\/group\/recommend\/default\/list\.json url reject-dict
+^https:\/\/api\.xueqiu\.com\/livestream\/structure\/live\/hotCard\.json url reject-dict
+^https:\/\/open\.xueqiu\.com\/mpaas\/config\/content\?.*timeline_tab_name url jsonjq-response-body 'del(.["data"]["im_notice_show"], .["data"]["request_notice_show"], .["data"]["timeline_tab_name"], .["data"]["profileMenuConfig_anonymous_V12"], .["data"]["trade_open_account_promotion_url"], .["data"]["trade_unify_open_account_list"], .["data"]["community_ad_download_msg"], .["data"]["home_tab_dynamic"], .["data"]["home_tab_dynamic_before"], .["data"]["home_tab_dynamic_after"], .["data"]["isitor_page_login_config"], .["data"]["open_wechat_mini_app_config"], .["data"]["user_guide_contact_config"], .["data"]["brokers_router_config"], .["data"]["my_page_right_items"])'
+^https:\/\/fund\.xueqiu\.com\/fundx\/activity\/x\/web\/c\/index\/dataByCode\? url reject-dict
+^https:\/\/qmas\.xueqiu\.com\/domains\.json url reject-200
+^https?:\/\/api\.xueqiu\.com\/query\/search\/ai\/v\d\/recommend_search\.json url jsonjq-response-body '.data.list=[]'
+^https:\/\/api\.xueqiu\.com\/promotion\/display_ad_batch\.json url reject
+^https:\/\/api\.xueqiu\.com\/analysis\/status\/v\d\/underlying_product.json url reject-dict
+^https:\/\/fund\.xueqiu\.com\/fundx\/activity\/x\/web\/djUser\/getBeeMaterial url reject-200
+^https:\/\/api\.xueqiu\.com\/snowpard\/bomb_box\/show\.json url reject-200
+^https:\/\/api\.xueqiu\.com\/analysis\/status\/v4\/underlying_product\.json\? url reject-dict
+^https:\/\/api\.xueqiu\.com\/rainbow\/ai\/question\/generate\/status_question\.json\? url reject-dict
+
+hostname = api.xueqiu.com, open.xueqiu.com, stock.xueqiu.com, fund.xueqiu.com, qmas.xueqiu.com

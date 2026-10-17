@@ -1,0 +1,48 @@
+#!name = 小红书
+#!desc = 过滤小红书广告，去除水印（转自 Loon Lab RedNote.lpx，2026-10-02 12:00）
+#!author = RuCu6[https://github.com/RuCu6], fmz200[https://github.com/fmz200], meichiny[https://github.com/meichiny], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/RedNote.png
+
+host, ads-img-al.xhscdn.com, reject
+host, ads-img-qc.xhscdn.com, reject
+host, ads-video-al.xhscdn.com, reject
+host, ads-video-qc.xhscdn.com, reject
+host, t-ads.xiaohongshu.com, reject
+^https?:\/\/ci\.(?:xiaohongshu|rnote)\.com\/system_config\/watermark url reject-img
+^https:\/\/edith\.(?:xiaohongshu|rnote)\.com\/api\/sns\/v1\/surprisebox\/(?:get_style|open|submit_action) url reject-dict
+^https:\/\/www\.(?:xiaohongshu|rnote)\.com\/api\/marketing\/box\/trigger\? url reject-dict
+^https:\/\/edith\.(?:xiaohongshu|rnote)\.com\/api\/sns\/v\d+\/(?:guide\/user_banner|note\/guide) url reject-dict
+^https:\/\/www\.(?:xiaohongshu|rnote)\.com\/api\/sns\/v\d+\/(?:ads\/resource|hey\/\w+\/hey_gallery) url reject-dict
+^https:\/\/edith\.(?:xiaohongshu|rnote)\.com\/api\/sns\/v1\/search\/banner_list$ url jsonjq-response-body '.["data"] = "{}"'
+^https:\/\/edith\.(?:xiaohongshu|rnote)\.com\/api\/sns\/v1\/search\/hot_list$ url jsonjq-response-body '.["data"]["items"] = "[]"'
+^https:\/\/edith\.(?:xiaohongshu|rnote)\.com\/api\/sns\/v4\/search\/hint url jsonjq-response-body '.["data"]["hint_words"] = "[]"'
+^https:\/\/edith\.(?:xiaohongshu|rnote)\.com\/api\/sns\/v4\/search\/trending\? url jsonjq-response-body '.["data"]["queries"] = "[" | .["data"]["hint_word"] = "`"'
+^https:\/\/edith\.(?:xiaohongshu|rnote)\.com\/api\/sns\/v1\/system\/service\/ui\/config\? url script-response-body https://rucu6.pages.dev/Scripts/xiaohongshu.js
+^https:\/\/edith\.(?:xiaohongshu|rnote)\.com\/api\/sns\/v1\/system_service\/config\? url script-response-body https://rucu6.pages.dev/Scripts/xiaohongshu.js
+^https:\/\/edith\.(?:xiaohongshu|rnote)\.com\/api\/sns\/v2\/system_service\/splash_config url script-response-body https://rucu6.pages.dev/Scripts/xiaohongshu.js
+^https:\/\/edith\.(?:xiaohongshu|rnote)\.com\/api\/sns\/v2\/(?:note\/widgets|user\/followings\/followfeed) url script-response-body https://rucu6.pages.dev/Scripts/xiaohongshu.js
+^https:\/\/edith\.(?:xiaohongshu|rnote)\.com\/api\/sns\/v5\/recommend\/user\/follow_recommend\? url script-response-body https://rucu6.pages.dev/Scripts/xiaohongshu.js
+^https:\/\/(?:edith|rec|www)\.(?:xiaohongshu|rnote)\.com\/api\/sns\/v4\/followfeed\? url script-response-body https://rucu6.pages.dev/Scripts/xiaohongshu.js
+^https:\/\/(?:edith|rec|www)\.(?:xiaohongshu|rnote)\.com\/api\/sns\/v6\/homefeed\? url script-response-body https://rucu6.pages.dev/Scripts/xiaohongshu.js
+^https:\/\/(?:edith|so)\.(?:xiaohongshu|rnote)\.com\/api\/sns\/v10\/search\/notes\? url script-response-body https://rucu6.pages.dev/Scripts/xiaohongshu.js
+
+# ↓ 兜底：来自可莉（RedPaper_remove_ads.lpx）
+^https:\/\/ci\.xiaohongshu\.com\/system_config\/watermark url reject-img
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/surprisebox\/(?:get_style|open|submit_action) url reject-dict
+^https:\/\/www\.xiaohongshu\.com\/api\/marketing\/box\/trigger\? url reject-dict
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/(?:v2\/guide\/user_banner|v3\/note\/guide) url reject-dict
+^https:\/\/www\.xiaohongshu\.com\/api\/sns\/(?:v1\/ads\/resource|v2\/hey\/\w+\/hey_gallery) url reject-dict
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/search\/banner_list$ url jsonjq-response-body '.["data"] = "{}"'
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/search\/hot_list$ url jsonjq-response-body '.["data"]["items"] = "[]"'
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v4\/search\/hint url jsonjq-response-body '.["data"]["hint_words"] = "[]"'
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v4\/search\/trending\? url jsonjq-response-body '.["data"]["queries"] = "[]" | .["data"]["hint_word"] = "{}"'
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/system\/service\/ui\/config\? url script-response-body https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v1\/system_service\/config\? url script-response-body https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/system_service\/splash_config url script-response-body https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/(?:note\/widgets|user\/followings\/followfeed) url script-response-body https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v4\/followfeed\? url script-response-body https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js
+^https:\/\/edith\.xiaohongshu\.com\/api\/sns\/v5\/recommend\/user\/follow_recommend\? url script-response-body https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js
+^https:\/\/(?:edith|rec)\.xiaohongshu\.com\/api\/sns\/v6\/homefeed\? url script-response-body https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js
+^https:\/\/(?:edith|so)\.xiaohongshu\.com\/api\/sns\/v10\/search\/notes\? url script-response-body https://kelee.one/Resource/JavaScript/RedPaper/RedPaper_remove_ads.js
+
+hostname = ci.xiaohongshu.com, ci.rnote.com, edith.xiaohongshu.com, edith.rnote.com, www.xiaohongshu.com, www.rnote.com, rec.xiaohongshu.com, rec.rnote.com, so.xiaohongshu.com, so.rnote.com

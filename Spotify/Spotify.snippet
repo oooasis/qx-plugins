@@ -1,15 +1,15 @@
 #!name = Spotify
-#!desc = 移除播放广告，恢复歌手和专辑列表的正常展示。修改插件自定义配置项需要重新登陆方可生效。（转自可莉 Spotify_remove_ads.lpx，2026-10-02 13:57:49）
-#!author = 001ProMax[https://github.com/001ProMax], ddgksf2013[https://github.com/ddgksf2013]
-#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Spotify.png
+#!desc = 过滤Spotify广告，修改插件自定义配置项需要重新登陆方可生效。适用于9.1.14及以下版本。（转自 Loon Lab Spotify.lpx，2026-10-02 12:00）
+#!author = 001ProMax[https://github.com/001ProMax], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md], ddgksf2013[https://github.com/ddgksf2013]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/Spotify.png
 
 ^https:\/\/(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?\/pendragon\/ url reject-dict
 
-# ↓ 来自墨鱼 StartUpAds（spotify pro）
+# ↓ 兜底：来自墨鱼 StartUpAds（spotify pro）
 ;^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ url script-response-body https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js
 ;^https:\/\/spclient\.wg\.spotify\.com\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/ url script-request-header https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js
 
-# ↓ 来自墨鱼 StartUpAds（spotify）
+# ↓ 兜底：来自墨鱼 StartUpAds（spotify）
 ^https?://spclient.wg.spotify.com/(ad-logic|ads|.+ad_slot|.+banners|.+canvases|.+cards|.+crashlytics|.+doubleclick.net|.+enabled-tracks|.+promoted_offer) url reject-img
 ^https?:\/\/api\d?\.musical\.ly\/api\/ad\/ url reject-img
 

@@ -1,0 +1,15 @@
+#!name = 小象超市
+#!desc = 过滤小象超市广告（转自 Loon Lab XiaoxiangSupermarket.lpx，2026-10-02 12:00）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/XiaoxiangSupermarket.png
+
+^https:\/\/mall\.meituan\.com\/api\/c\/homepage\/splash url reject-dict
+^https:\/\/mall\.meituan\.com\/api\/c\/homepage\/bubble\/operate\/info url reject-dict
+^https:\/\/mall\.meituan\.com\/api\/c\/jigsaw\/code\/category-banner-\d+\/ url reject-dict
+^https:\/\/mall\.meituan\.com\/api\/c\/poi\/\d+\/order\/recommend\/v\d url reject-dict
+^https:\/\/mall\.meituan\.com\/api\/c\/banner\/ url reject-dict
+^https:\/\/mall\.meituan\.com\/api\/c\/poi\/\d+\/personal\/recommend url reject-dict
+^https:\/\/businessapi\.ksedt\.com\/signupindex\/jxlist url reject-dict
+^https:\/\/portal-portm\.meituan\.com\/horn_ios\/mergeRequest url script-response-body https://kelee.one/Resource/JavaScript/iMaiCai/iMaiCai_remove_ads.js
+
+hostname = mall.meituan.com, businessapi.ksedt.com, portal-portm.meituan.com

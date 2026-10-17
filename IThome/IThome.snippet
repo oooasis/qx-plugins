@@ -1,11 +1,11 @@
 #!name = IT之家
-#!desc = 过滤IT之家信息流广告和文末广告，自定义移除置顶和轮播图，自定义移除项需在插件配置。（转自可莉 IThome_remove_ads.lpx，2026-10-02 13:57:49）
-#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md], ddgksf2013[https://github.com/ddgksf2013]
-#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/IThome.png
+#!desc = 过滤IT之家广告，自定义移除置顶和轮播图，自定义移除项需在插件配置。（转自 Loon Lab IThome.lpx，2026-10-02 12:00）
+#!author = Keywos[https://github.com/Keywos], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md], ddgksf2013[https://github.com/ddgksf2013]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/IThome.png
 
 ^https?:\/\/dat\.ruanmei\.com\/ithome\/money\/acd\.json$ url reject
 
-# ↓ 来自墨鱼 StartUpAds（ithome）
+# ↓ 兜底：来自墨鱼 StartUpAds（ithome）
 ^https?:\/\/napi\.ithome\.com\/api\/news\/indexv\d\/iphone url script-response-body https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/ithome.js
 
 hostname = dat.ruanmei.com, napi.ithome.com

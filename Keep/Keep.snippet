@@ -1,21 +1,26 @@
 #!name = Keep
-#!desc = 移除开屏广告、搜索推荐和弹窗广告，精简底栏和首页标签。移除关注推荐、文章相关推荐和信息流中的课程推广。（转自可莉 Keep_remove_ads.lpx，2026-10-02 13:57:49）
-#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
-#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Keep.png
+#!desc = 过滤Keep广告（转自 Loon Lab Keep.lpx，2026-10-02 12:00）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md], ZenmoFeiShi[https://github.com/ZenmoFeiShi], ishowshu[https://github.com/ishowshu]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/Keep.png
 
 host, kad.gotokeep.com, reject
-^https:\/\/api\.gotokeep\.com\/op-engine-webapp\/v1\/configs$ url jsonjq-response-body 'del(.["data"]["adTimeoutReport"], .["data"]["spotShowReport"], .["data"]["adSupplementIntervalMinutes"], .["data"]["adSupplementSwitch"], .["data"]["hotFeedSpotAdRequestMoment"], .["data"]["activityBrandFeedSpotAdRequestMoment"], .["data"]["searchFeedSpotAdRequestMoment"], .["data"]["feedDetailSpotAdRequestMoment"], .["data"]["homePageFeedSpotAdRequestMoment"], .["data"]["followFeedSpotAdRequestMoment"], .["data"]["hotFeedRecommendSpotAdRequestMoment"], .["data"]["activityFeedSpotAdRequestMoment"], .["data"]["hotFeedFindSpotAdRequestMoment"], .["data"]["hotFeedSpotFixedPositionSecond"], .["data"]["searchFeedSpotFixedPositionSecond"], .["data"]["followFeedSpotFixedPositionSecond"], .["data"]["activityFeedSpotFixedPositionSecond"], .["data"]["searchFeedSpotFixedPositionThird"], .["data"]["hotFeedFindSpotFixedPositionSecond"], .["data"]["hotFeedFindSpotFixedPositionThird"], .["data"]["activityFeedSpotFixedPositionInitial"], .["data"]["activityFeedSpotFixedPositionThird"], .["data"]["hotFeedDynamicSpotPosition"], .["data"]["feedDetailDynamicSpotPosition"], .["data"]["hotFeedRecommendDynamicSpotPosition"], .["data"]["hotFeedFindDynamicSpotPosition"], .["data"]["homePageFeedDynamicSpotPosition"], .["data"]["followFeedDynamicSpotPosition"], .["data"]["searchFeedSpotPositionDynamic"], .["data"]["activityFeedSpotPositionDynamic"], .["data"]["activityBrandFeedSpotPositionDynamic"], .["data"]["splashAdLoadTimeLimit"], .["data"]["courseAdLoadTimeLimit"], .["data"]["feedAdLoadTimeLimit"], .["data"]["aliHCSpotConfig"], .["data"]["gdtSpotConfig"], .["data"]["pugcThresholdPercent"], .["data"]["pugcStepMinSeconds"], .["data"]["pugcStepMaxSeconds"], .["data"]["pugcPreLoadEarlySeconds"], .["data"]["pugcLoadPostPreRolls"], .["data"]["closeConfirmButtonText"])'
-^https:\/\/api\.gotokeep\.com\/op-engine-webapp\/v1\/ad\/ url reject-dict
-^https:\/\/api\.gotokeep\.com\/search\/v6\/default\/keyword\/list\? url reject-dict
-^https:\/\/api\.gotokeep\.com\/twins\/v4\/feed\/followPage\? url reject-dict
+host, hc-ssp.sm.cn, reject
+host, httpdns.calorietech.com, reject
+^https:\/\/api\.gotokeep\.com\/op-engine-webapp\/v\d\/configs$ url jsonjq-response-body 'del(.["data"]["adTimeoutReport"], .["data"]["spotShowReport"], .["data"]["adSupplementIntervalMinutes"], .["data"]["adSupplementSwitch"], .["data"]["hotFeedSpotAdRequestMoment"], .["data"]["activityBrandFeedSpotAdRequestMoment"], .["data"]["searchFeedSpotAdRequestMoment"], .["data"]["feedDetailSpotAdRequestMoment"], .["data"]["homePageFeedSpotAdRequestMoment"], .["data"]["followFeedSpotAdRequestMoment"], .["data"]["hotFeedRecommendSpotAdRequestMoment"], .["data"]["activityFeedSpotAdRequestMoment"], .["data"]["hotFeedFindSpotAdRequestMoment"], .["data"]["hotFeedSpotFixedPositionSecond"], .["data"]["searchFeedSpotFixedPositionSecond"], .["data"]["followFeedSpotFixedPositionSecond"], .["data"]["activityFeedSpotFixedPositionSecond"], .["data"]["searchFeedSpotFixedPositionThird"], .["data"]["hotFeedFindSpotFixedPositionSecond"], .["data"]["hotFeedFindSpotFixedPositionThird"], .["data"]["activityFeedSpotFixedPositionInitial"], .["data"]["activityFeedSpotFixedPositionThird"], .["data"]["hotFeedDynamicSpotPosition"], .["data"]["feedDetailDynamicSpotPosition"], .["data"]["hotFeedRecommendDynamicSpotPosition"], .["data"]["hotFeedFindDynamicSpotPosition"], .["data"]["homePageFeedDynamicSpotPosition"], .["data"]["followFeedDynamicSpotPosition"], .["data"]["searchFeedSpotPositionDynamic"], .["data"]["activityFeedSpotPositionDynamic"], .["data"]["activityBrandFeedSpotPositionDynamic"], .["data"]["splashAdLoadTimeLimit"], .["data"]["courseAdLoadTimeLimit"], .["data"]["feedAdLoadTimeLimit"], .["data"]["aliHCSpotConfig"], .["data"]["gdtSpotConfig"], .["data"]["pugcThresholdPercent"], .["data"]["pugcStepMinSeconds"], .["data"]["pugcStepMaxSeconds"], .["data"]["pugcPreLoadEarlySeconds"], .["data"]["pugcLoadPostPreRolls"], .["data"]["closeConfirmButtonText"])'
+^https:\/\/(api|kad)\.gotokeep\.com\/op-engine-webapp\/v\d\/ad\/ url reject-dict
+^https:\/\/api\.gotokeep\.com\/search\/v\d\/default\/keyword\/list\? url reject-dict
+^https:\/\/api\.gotokeep\.com\/twins\/v\d\/feed\/followPage\? url reject-dict
 ^https:\/\/api\.gotokeep\.com\/twins\/union\/feed\/union_feed_all$ url jsonjq-response-body '.data.modules |= map(select(.code == "unionFeedEntry"))'
 ^https:\/\/api\.gotokeep\.com\/twins\/union\/feed\/function\? url reject-dict
-^https:\/\/api\.gotokeep\.com\/twins\/v4\/feed\/entryDetail\? url jsonjq-response-body '.["data"] = "{}"'
-^https:\/\/api\.gotokeep\.com\/guide-webapp\/v1\/popup\/getPopUp\? url reject-dict
-^https:\/\/api\.gotokeep\.com\/config\/v3\/basic\? url jsonjq-response-body '.data.bottomBarControl.tabs |= map(select(.tabType | . == "home" or . == "schedule" or . == "dynamic_sports" or . == "personal")) | .data.homeTabs |= map(select(.type | . == "socialTab" or . == "union_feed_all" or . == "homeRecommend" or . == "suitTab" or . == "union_feed_route"))'
-^https:\/\/api\.gotokeep\.com\/search\/v5\/hotCourse\/list$ url reject-dict
-^https:\/\/api\.gotokeep\.com\/search\/v4\/hotHashtag\/list$ url reject-dict
-^https:\/\/api\.gotokeep\.com\/search\/v4\/hotword\/list\? url reject-dict
-^https:\/\/api\.gotokeep\.com\/pencil-webapp\/play\/v1\/games\? url jsonjq-response-body '.data.games[].microGames[] |= if .leftIcon? and .leftIcon.type == "aiMode" then del(.leftIcon) else . end'
+^https:\/\/api\.gotokeep\.com\/twins\/v\d\/feed\/entryDetail\? url jsonjq-response-body '.["data"] = "{}"'
+^https:\/\/api\.gotokeep\.com\/guide-webapp\/v\d\/popup\/getPopUp\? url reject-dict
+^https:\/\/api\.gotokeep\.com\/anno\/v1\/upgrade\/check$ url reject-dict
+^https:\/\/api\.gotokeep\.com\/config\/v\d\/basic\? url jsonjq-response-body '.data.bottomBarControl.defaultTab = "dynamic_sports" | .data.discoverPageConfigs.toolsBar = [] | .data.bottomBarControl.tabs |= map(select(.tabType == "schedule" or .tabType == "dynamic_sports" or .tabType == "discover" or .tabType == "personal")) | .data.discoverPageConfigs.discoverTabs |= map(select(.type == "socialTab" or .type == "union_feed_all" or .type == "union_feed_feed_activity" or .type == "union_feed_marathon_icon" or .type == "product") | .default = (.type == "union_feed_all") | if has("showAd") then .showAd = false else . end)'
+^https:\/\/api\.gotokeep\.com\/search\/v\d\/hotCourse\/list$ url reject-dict
+^https:\/\/api\.gotokeep\.com\/search\/v\d\/hotHashtag\/list$ url reject-dict
+^https:\/\/api\.gotokeep\.com\/search\/v\d\/hotword\/list\? url reject-dict
+^https:\/\/api\.gotokeep\.com\/pencil-webapp\/play\/v\d\/games\? url jsonjq-response-body '.data.games[].microGames[] |= if .leftIcon? and .leftIcon.type == "aiMode" then del(.leftIcon) else . end'
+^https:\/\/api\.gotokeep\.com\/messenger\/v\d\/conversations\/unread url reject-dict
+^https:\/\/api\.gotokeep\.com\/twins\/v\d\/social\/tab\/friends url jsonjq-response-body '.data.modules |= map(select(.positions | type == "object" and (has("recommendReason") | not) and (has("recommendUsers") | not)))'
 
-hostname = api.gotokeep.com
+hostname = api.gotokeep.com, kad.gotokeep.com

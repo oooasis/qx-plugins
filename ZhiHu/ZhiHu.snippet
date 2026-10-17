@@ -1,0 +1,82 @@
+#!name = 知乎
+#!desc = 过滤知乎广告（转自 Loon Lab ZhiHu.lpx，2026-10-02 12:00）
+#!author = RuCu6[https://github.com/RuCu6], blackmatrix7[https://github.com/blackmatrix7], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/ZhiHu.png
+
+host, appcloud.zhihu.com, reject
+host, appcloud2.in.zhihu.com, reject
+host, crash2.zhihu.com, reject
+host, lens.zhihu.com, reject
+host, mqtt.zhihu.com, reject
+host, sugar.zhihu.com, reject
+host, zxid-m.mobileservice.cn, reject
+ip-cidr, 103.41.167.237/32, reject
+ip-cidr, 118.89.204.198/32, reject
+ip-cidr, 182.61.194.7/32, reject
+ip6-cidr, 2402:4e00:1200:ed00:0:9089:6dac:96b6/128, reject
+^https:\/\/m-cloud\.zhihu\.com\/api\/cloud\/zhihu\/config\/all\? url jsonjq-response-body 'def drop_keys: {"km_httpdns_new_config_tars":true,"preFetchHttpDns":true,"httpdns_detector_use_concurrent":true,"httpdns_use_memory_cache":true,"httpdns_new_config_tars":true,"coreNetworkConf_useTars":true,"km_coreNetworkConf_useTars":true,"sugarQuicConfig":true,"quic_dns_detect_enable":true,"quicMixAB":true,"quic_downgrade_enable":true,"quic_priority_strategy":true,"quic_check_health_enable":true,"tquic_configuration":true,"networkExprimentList":true,"tars_ab_list":true,"zaSetExtraRequestHeader":true}; .data.configs |= map(select((drop_keys[.configKey] // false) | not) | if (.configValue | type) == "object" then del(.configValue.delayHttpdns, .configValue.dnsParser, .configValue.HTTPDNS) else . end)'
+^https:\/\/api\.zhihu\.com\/ad-style-service\/request$ url reject-dict
+^https:\/\/api\.zhihu\.com\/root\/tab\/v\d(?:\?.+)?$ url jsonjq-response-body '.tab_list |= map(select(.tab_type == "follow" or .tab_type == "recommend" or .tab_type == "hot" or .tab_type == "ring_tab"))'
+^https:\/\/api\.zhihu\.com\/topstory\/recommend\? url jsonjq-response-body '.data |= map(select(.type == "ComponentCard"))'
+^https:\/\/api\.zhihu\.com\/commercial_api\/banners_v\d\/app_float_corner\? url reject-dict
+^https:\/\/api\.zhihu\.com\/questions\/\d+\/feeds\? url jsonjq-response-body 'del(.["ad_info"])'
+^https:\/\/api\.zhihu\.com\/next-render\?id=\d+&type=answer url reject-dict
+^https:\/\/(api|page-info)(?:\.zhihu)?\.com\/answers\/v\d\/\d+(?:\?.*)?$ url jsonjq-response-body 'del(.["third_business"], .["float_search_word"])'
+^https:\/\/(api|page-info)(?:\.zhihu)?\.com\/answers\/v\d\/\d+(?:\?.*)?$ url jsonjq-response-body '.structured_content.segments |= map(select(.type != "card"))'
+^https:\/\/api\.zhihu\.com\/topstory\/recommend\? url jsonjq-response-body '.data[]?.children |= (if type == "array" then map(select(.id != "ring")) else . end)'
+^https:\/\/api\.zhihu\.com\/(articles|answers|pins)\/v\d\/\d+\? url jsonjq-response-body 'del(.["third_business"], .["ring_info"], .["interaction_bar_plugins"])'
+^https:\/\/api\.zhihu\.com\/commercial_api\/answer\/\d+\/bottom-v\d$ url reject-dict
+^https:\/\/api\.zhihu\.com\/podcasts\/hub\/v\d$ url jsonjq-response-body 'del(.["banners"])'
+^https:\/\/api\.zhihu\.com\/search\/related_queries\/question\/\d+$ url reject-dict
+^https:\/\/api\.zhihu\.com\/search_v\d\? url jsonjq-response-body 'del(.["pendant"])'
+^https:\/\/api\.zhihu\.com\/search\/tabs\? url jsonjq-response-body '.data |= map(select(.t | IN("general", "ai_zhida", "recent", "people", "zvideo", "ring", "topic", "podcast", "column", "pin", "favlist")))'
+^https:\/\/zhida\.zhihu\.com\/ai_ingress\/knowledge\/square\/categories\/feeds\?categoryId=1%7D$ url reject-dict
+^https:\/\/zhida\.zhihu\.com\/ai_ingress\/ai_chat\/guidance$ url reject-dict
+^https:\/\/api\.zhihu\.com\/content-distribution-core\/bubble\/common\/show$ url reject-dict
+^https:\/\/www\.zhihu\.com\/api\/v\d\/members\/homepage_card$ url reject-dict
+^https:\/\/api\.zhihu\.com\/people\/homepage_entry_v\d$ url reject-dict
+^https:\/\/api\.zhihu\.com\/kvip\/right\/my_card\? url reject-dict
+^https:\/\/api\.zhihu\.com\/people\/self$ url jsonjq-response-body 'del(.["vip_info"]["entrance_new"]["right_button"], .["vip_info"]["entrance_v2"])'
+^https:\/\/api\.zhihu\.com\/unlimited\/go\/my_card\/v\d\? url reject-dict
+^https:\/\/api\.zhihu\.com\/commercial_api\/ url reject-dict
+^https:\/\/api\.zhihu\.com\/content-distribution-core\/bubble\/common\/settings url reject-dict
+^https:\/\/api\.zhihu\.com\/(?:moments\/lastread|drama\/hot-drama-list) url reject-dict
+^https:\/\/api\.zhihu\.com\/root\/window url reject-dict
+^https:\/\/api\.zhihu\.com\/(?:bazaar\/float_window|market\/popovers_v2) url reject-dict
+^https:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/header\? url jsonjq-response-body 'del(.["activity_banner"], .["activity_window"], .["vip_tip"])'
+^https:\/\/api\.zhihu\.com\/me\/guides url reject-dict
+^https:\/\/api\.zhihu\.com\/people\/homepage_entry_v2 url reject-dict
+^https:\/\/api\.zhihu\.com\/unlimited\/go\/my_card url reject
+^https:\/\/www\.zhihu\.com\/appview\/v3\/zhmore url reject
+^https:\/\/api\.zhihu\.com\/search\/(hot_search|preset_words) url reject-dict
+^https:\/\/api\.zhihu\.com\/search\/recommend_query\/v2\? url response-body recommend_queries:\{.+\} response-body recommend_queries:{}
+^https:\/\/www\.zhihu\.com\/api\/v4\/search\/clicked_recommendation\? url reject-dict
+^https:\/\/www\.zhihu\.com\/api\/v4\/search\/related_queries\/(?:article|answer)\/\d+ url reject-dict
+^https:\/\/api\.zhihu\.com\/comment_v5\/(?:articles|answers)\/\d+\/list-headers url reject-dict
+^https:\/\/api\.zhihu\.com\/comment_v5\/(answers|pins)\/\d+\/root_comment\? url jsonjq-response-body 'del(.["atmosphere_voting_config"])'
+^https:\/\/api\.zhihu\.com\/prague\/related_suggestion_native\/feed\? url reject-dict
+^https:\/\/api\.zhihu\.com\/related_recommend\/feed\/waterfall\? url reject-dict
+^https:\/\/api\.zhihu\.com\/questions\/\d+(?:\/answers|\/feeds|\?include=) url jsonjq-response-body 'del(.ad_info, .data.ad_info?, .query_info) | if (.data | type) == "array" then .data |= map(select(.target?.answer_type? // "" | tostring | contains("paid") | not)) else . end'
+^https:\/\/api\.zhihu\.com\/v5\.1\/topics\/answer\/\d+\/relation url reject-dict
+^https:\/\/api\.zhihu\.com\/ab\/api\/v1\/products\/zhihu\/platforms\/ios\/config url reject-dict
+^https:\/\/api\.zhihu\.com\/ad-style-service\/request url reject-dict
+^https:\/\/appcloud2\.zhihu\.com\/v3\/resource\?group_name=mp url reject-dict
+^https:\/\/link\.zhihu\.com\/\?target=(?:https?)?(?:%3A|:)?(?:\/\/|%2F%2F)?(.*) url 302 http://$1
+^https:\/\/api\.zhihu\.com\/distribute\/rhea\/qa_ad_card\/h5\/recommendation\? url reject-dict
+^https:\/\/www\.zhihu\.com\/api\/v4\/hot_recommendation url reject-dict
+^https:\/\/www\.zhihu\.com\/api\/v4\/mcn\/v2\/linkcards\? url reject-dict
+^https:\/\/www\.zhihu\.com\/api\/v4\/(?:answers|questions)\/\d+\/related-readings url reject-dict
+^https:\/\/www\.zhihu\.com\/commercial_api\/banners_v3\/mobile_banner url reject-dict
+^https:\/\/zhuanlan\.zhihu\.com\/api\/articles\/\d+\/recommendation url reject-dict
+^https:\/\/(?:api|page-info)\.zhihu\.com\/(?:answers|articles)\/v2\/\d+ url script-response-body https://rucu6.pages.dev/Scripts/zhihu.js
+^https:\/\/api\.zhihu\.com\/commercial_api\/app_float_layer url script-response-body https://rucu6.pages.dev/Scripts/zhihu.js
+^https:\/\/api\.zhihu\.com\/feed\/render\/tab\/config\? url script-response-body https://rucu6.pages.dev/Scripts/zhihu.js
+^https:\/\/api\.zhihu\.com\/(?:moments_v3|topstory\/hot-lists\/total|topstory\/recommend) url script-response-body https://rucu6.pages.dev/Scripts/zhihu.js
+^https:\/\/api\.zhihu\.com\/root\/tab url script-response-body https://rucu6.pages.dev/Scripts/zhihu.js
+^https:\/\/api\.zhihu\.com\/v2\/topstory\/hot-lists\/everyone-seeing\? url script-response-body https://rucu6.pages.dev/Scripts/zhihu.js
+^https:\/\/api\.zhihu\.com\/next-(?:bff|data|render) url script-response-body https://rucu6.pages.dev/Scripts/zhihu.js
+^https:\/\/www\.zhihu\.com\/api\/v4\/(?:articles|answers)\/\d+\/recommendations?\? url script-response-body https://rucu6.pages.dev/Scripts/zhihu.js
+^https:\/\/appcloud2\.zhihu\.com\/v3\/config url script-response-body https://rucu6.pages.dev/Scripts/zhihu.js
+^https:\/\/m-cloud\.zhihu\.com\/api\/cloud\/zhihu\/config\/all\? url script-response-body https://rucu6.pages.dev/Scripts/zhihu.js
+
+hostname = m-cloud.zhihu.com, api.zhihu.com, page-info.zhihu.com, zhida.zhihu.com, www.zhihu.com, appcloud2.zhihu.com, link.zhihu.com, zhuanlan.zhihu.com

@@ -1,0 +1,15 @@
+#!name = 彩云天气Pro
+#!desc = 过滤彩云天气广告，解锁SVIP功能。\nApp版本低于7.20.2。（转自 Loon Lab ColorfulCloudsWeatherPro.lpx，2026-10-02 12:00）
+#!author = RuCu6[https://github.com/RuCu6], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/ColorfulCloudsWeatherPro.png
+
+host, abyss.cyapi.cn, reject
+host, ad.cyapi.cn, reject
+host, gather.colorfulclouds.net, reject
+^https:\/\/biz\.cyapi\.cn\/(p\/v1\/entries|p\/v1\/trial_card\/info|v2\/product) url reject-dict
+^https:\/\/starplucker\.cyapi\.cn\/v3\/(config\/cypage\/\w+\/conditions|notification\/message_center|operation\/homefeatures) url reject-dict
+
+# ↓ 兜底：来自可莉（ColorfulClouds_remove_ads.lpx）
+^https:\/\/(wrapper\.cyapi\.cn|api\.caiyunapp\.com|cdn-w\.caiyunapp\.com)\/v1\/activity\? url script-response-body https://kelee.one/Resource/JavaScript/ColorfulClouds/ColorfulClouds_remove_ads.js
+
+hostname = biz.cyapi.cn, starplucker.cyapi.cn, api.caiyunapp.com, cdn-w.caiyunapp.com

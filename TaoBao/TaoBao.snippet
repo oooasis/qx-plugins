@@ -1,0 +1,17 @@
+#!name = 淘宝
+#!desc = 过滤淘宝广告（转自 Loon Lab TaoBao.lpx，2026-10-02 12:00）
+#!author = RuCu6[https://github.com/RuCu6], ishowshu[https://github.com/ishowshu], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/TaoBao.png
+
+host, adashx.m.taobao.com, reject
+host, ossgw.alicdn.com, reject
+host, ems.youku.com, reject
+host, hudong.alicdn.com, reject
+host, h-adashx.ut.taobao.com, reject
+host, ut.taobao.com, reject
+^https:\/\/heic\.alicdn\.com\/imgextra\/i\d\/[A-Za-z0-9_!]+-\d+-tps-\d+-\d+\.png_\d+x\d*q\d+\.jpg_\.heic$ url reject-dict
+^https:\/\/heic\.alicdn\.com\/imgextra\/i\d\/[A-Za-z0-9_!]+-\d+-tps-\d+-\d+\.jpg_\d+x\d*q\d+\.jpg_\.heic$ url reject-dict
+^https:\/\/heic\.alicdn\.com\/imgextra\/i\d\/\d*\/?[\w!]+-\d-(?:octopus|tps)-(?:1080|1125)-\d{4}\.(?:jpg|png)_(?:1\d{3}|9\d{2})x(?:\d|1\d{3}|9\d{2})q[59]0 url reject-dict
+^https?:\/\/gw\.alicdn\.com\/imgextra\/i\d+\/[^\/]+_!!\d+-\d+-tps-(720-1280|1080-1920|1125-1602|1242-2208)\.(jpg|png|jpeg)_[^\/]+\.webp url reject-dict
+
+hostname = heic.alicdn.com, gw.alicdn.com

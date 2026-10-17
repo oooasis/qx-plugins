@@ -1,11 +1,15 @@
 #!name = 埋堆堆
-#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 505 行，[M] 段；替换为 lab:MaiDuiDui.lpx（2026-10-02 12:00）的 3 条规则
+#!desc = 过滤埋堆堆广告（转自 Loon Lab MaiDuiDui.lpx，2026-10-02 12:00）
 #!author = ddgksf2013[https://github.com/ddgksf2013]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/MaiDuiDui.png
 
-
-# ↓ 来自 lab:MaiDuiDui.lpx「埋堆堆」
 host, ubixioe.com, reject
+^http:\/\/119\.29\.29\.90\/d url reject
+^https?:\/\/mob\.mddcloud\.com\.cn\/api\/app\/getConfigList396\.action url jsonjq-response-body '.data.appOprConfigs=[]'
+^https?:\/\/mob\.mddcloud\.com\.cn\/api\/module\/listTabModules\.action url jsonjq-response-body '.data |= map(select(.moduleType!=16)) | .data |= map(if .moduleType==21 then .moduleData |= map(select(.redirectType == 2)) else . end)'
+^https?:\/\/mob\.mddcloud\.com\.cn\/api\/layout\/info url jsonjq-response-body '.data.layoutInfo.entranceList |= map(select(.name | IN("首页", "会员")))'
 ^https?:\/\/maiduidui.*sensorsdata\.cn\/api\/v\d\/sfo\/(user_)?popup_displays url reject-200
 ^https?:\/\/mob\.mddcloud\.com\.cn\/adApi url reject-200
+^https?:\/\/mob\.mddcloud\.com\.cn\/api\/search\/hotKeyword\.action url jsonjq-response-body '.data=[{"isAppointRedirect":0,"iconImg":"","category":11,"keyword":"搜索","uuid":"","seq":1}]'
 
 hostname = mob.mddcloud.com.cn, maiduidui.*.saas.sensorsdata.cn

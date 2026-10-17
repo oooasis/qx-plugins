@@ -1,0 +1,10 @@
+#!name = 金山文档
+#!desc = 过滤金山文档广告（转自 Loon Lab KDocs.lpx，2026-10-02 12:00）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/KDocs.png
+
+^https:\/\/www\.kdocs\.cn\/kdg\/api\/v1\/cards\/type\/3\?iosVer=\d+\.\d+\.\d+&isGetList=1 url reject-dict
+^https:\/\/www\.kdocs\.cn\/kdg\/api\/v1\/cards\/type\/27\?iosVer=\d+\.\d+\.\d+&isGetList=1 url reject-dict
+^https:\/\/f-api\.kdocs\.cn\/godfather\/api\/thirdparty\/v1\/viewpager\?showLocal=mobileWebIndex url reject-dict
+
+hostname = www.kdocs.cn, f-api.kdocs.cn

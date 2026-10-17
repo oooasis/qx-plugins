@@ -1,7 +1,7 @@
 #!name = 百度文库
-#!desc = 移除开屏广告、横幅广告、弹窗广告、信息流推广、搜索发现、热门搜索、资料库搜索推荐，精简我的页面。（转自可莉 BaiduWenku_remove_ads.lpx，2026-10-02 13:57:49）
+#!desc = 过滤百度文库广告（转自 Loon Lab BaiduWenku.lpx，2026-10-02 12:00）
 #!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
-#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/BaiduWenku.png
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/BaiduWenku.png
 
 ^https:\/\/appwk\.baidu\.com\/xpage\/interface\/wknaad\? url reject-dict
 ^https:\/\/appwk\.baidu\.com\/appapi\/index\/home\? url jsonjq-response-body 'del(.["data"]["bannerInfo"], .["data"]["bannerList"], .["data"]["bannerListV2"])'

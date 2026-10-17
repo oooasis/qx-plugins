@@ -1,0 +1,11 @@
+#!name = 爱奇艺体育
+#!desc = 过滤爱奇艺体育广告（转自 Loon Lab IQIYI_Ssports.lpx，2026-10-02 12:00）
+#!author = mist-whisper[https://github.com/mist-whisper]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/IQIYI_Ssports.png
+
+^https:\/\/json\.ssports\.com\/json\/recommend url jsonjq-response-body '.retData |= (del(.mybanner, .databanner10) | select(. != {}))'
+^https:\/\/show\.ssports\.com\/x\?brand url jsonjq-response-body 'del(.retData.mybanner, .retData.databanner10)'
+^https:\/\/json\.ssports\.com\/json\/channel\/ios\/v2\/newMy\.json$ url jsonjq-response-body '(.retData.moduleList) |= map(select((.isAd != 1) and (.moduleName | test("回放|集锦") | not)))'
+^https:\/\/show\.ssports\.com\/s\?brand url reject-dict
+
+hostname = json.ssports.com, show.ssports.com

@@ -1,0 +1,12 @@
+#!name = 大麦
+#!desc = 过滤大麦广告（转自 Loon Lab DaMai.lpx，2026-10-02 12:00）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/DaMai.png
+
+^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.wireless\.home\.welcome\/ url reject-dict
+^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.mec\.popup\.get\/ url reject-dict
+^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.wireless\.user\.my\.content\.get\/ url jsonjq-response-body 'del(.["data"]["banner"], .["data"]["performFilmVip"]["userProfitList"])'
+^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.wireless\.mypage\.feed\/ url jsonjq-response-body 'del(.["data"]["feedCard"])'
+^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.mec\.aristotle\.get\/ url jsonjq-response-body 'del(.["data"]["data"]["top"]["keywords"])'
+
+hostname = acs.m.taobao.com

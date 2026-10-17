@@ -1,9 +1,11 @@
 #!name = 波点音乐
-#!desc = 精简应用配置，禁用P2P传输。移除开屏广告、横幅推广、悬浮广告、歌曲广告、商城入口、搜索推广、评论区推广、试听语音提醒。（转自可莉 BodianMusic_remove_ads.lpx，2026-10-02 13:57:49）
-#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
-#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/BodianMusic.png
+#!desc = 过滤波点音乐广告，解锁会员功能。\n使用前请在BoxJS中添加订阅https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/boxjs.json并同意相关免责声明，或添加持久化数据「KUWO_AGREE 我同意」。（转自 Loon Lab BodianMusic.lpx，2026-10-02 12:00）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md], ZenmoFeiShi[https://github.com/ZenmoFeiShi], mist-whisper[https://github.com/mist-whisper], GieGie777[https://t.me/GieGie777]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/BodianMusic.png
 
+^https:\/\/ad\.tencentmusic\.com\/config\/uni url reject-dict
 ^https:\/\/bd-api\.kuwo\.cn\/api\/(play|service|advert)\/advert\/ url reject-dict
+^https?:\/\/h5s\.kuwo\.cn\/m\/bd_launch_popup\/index url reject
 ^https:\/\/bd-api\.kuwo\.cn\/api\/service\/conf\/all\? url jsonjq-response-body 'del(.["data"]["groupSign"]["adStartAppDialog"], .["data"]["groupSign"]["adGuideTest"], .["data"]["groupSign"]["playTips"], .["data"]["groupSign"]["adExitChange"], .["data"]["conf"]["adGuidePopCount"], .["data"]["conf"]["adDownListOpen"])'
 ^https:\/\/bd-api\.kuwo\.cn\/api\/service\/conf\/all\? url jsonjq-response-body '.["data"]["conf"]["flowControlConfig"]["uploadEnable"] = false | .["data"]["conf"]["flowControlConfig"]["p2pEnable"] = false'
 ^https:\/\/ab-bodian\.kuwo\.cn\/abtest\/ui\/info\? url jsonjq-response-body 'del(.["data"]["mapTestInfo"]["CommentADPosition"], .["data"]["mapTestInfo"]["DiscoverADPosition"], .["data"]["mapTestInfo"]["DownloadAd"], .["data"]["mapTestInfo"]["FreeModVoiceReminder"], .["data"]["mapTestInfo"]["GamesTrans"], .["data"]["mapTestInfo"]["bodianmvdialog"], .["data"]["mapTestInfo"]["MvTryShowAds"], .["data"]["mapTestInfo"]["insert"])'
@@ -12,9 +14,10 @@
 ^https:\/\/bd-api\.kuwo\.cn\/api\/service\/banner\/ url reject-dict
 ^https:\/\/bd-api\.kuwo\.cn\/api\/ucenter\/vip\/give\/config\? url reject-dict
 ^https:\/\/bd-api\.kuwo\.cn\/api\/search\/topic\/word\/list\? url jsonjq-response-body 'del(.["data"]["hotTopic"], .["data"]["searchFind"], .["data"]["globalJumpInfo"], .["data"]["hotWord"])'
-^https:\/\/bd-api\.kuwo\.cn\/api\/service\/home\/index\? url jsonjq-response-body '.data.moduleList |= map(select(.type | tostring | (. != "8" and . != "1")))'
+^https:\/\/bd-api\.kuwo\.cn\/api\/service\/home\/index\? url jsonjq-response-body '.data.moduleList |= map(select(.type | tostring | (. != "8" and . != "5" and . != "1" and . != "9" and . != "6")))'
 ^https:\/\/bd-api\.kuwo\.cn\/api\/service\/home\/module\?.*&moduleId=6 url reject-dict
 ^https:\/\/bd-api\.kuwo\.cn\/api\/service\/music\/recommendList\? url jsonjq-response-body '.data.musicList[] |= del(.showAd)'
+^https:\/\/bd-api\.kuwo\.cn\/api\/advert\/earning\/app\/config\? url reject-dict
 ^https:\/\/bd-api\.kuwo\.cn\/api\/comments\/v3\/topInfo\? url jsonjq-response-body 'del(.["data"]["putao"], .["data"]["bannerVos"])'
 ^https:\/\/bd-api\.kuwo\.cn\/api\/pay\/vip\/lowPriceText\? url reject-dict
 ^https:\/\/bd-api\.kuwo\.cn\/api\/service\/global\/config\/vipEnter\? url reject-dict
@@ -23,5 +26,7 @@
 ^https:\/\/bd-api\.kuwo\.cn\/api\/service\/version\/popup\? url reject-dict
 ^https:\/\/bd-api\.kuwo\.cn\/api\/pay\/vip\/invitation\/assist\/popup\? url reject-dict
 ^https:\/\/bd-api\.kuwo\.cn\/api\/pay\/h5\/common\/popup\? url reject-dict
+^https:\/\/bd-api\.kuwo\.cn\/api\/service\/resource\/recommend\? url jsonjq-response-body '.data.resourceList[] |= del(.resource)'
+^https:\/\/bd-api\.kuwo\.cn\/api\/voice\/room\/v2\/sidebar url jsonjq-response-body '(.data) = {}'
 
-hostname = bd-api.kuwo.cn
+hostname = ad.tencentmusic.com, bd-api.kuwo.cn, h5s.kuwo.cn, ab-bodian.kuwo.cn

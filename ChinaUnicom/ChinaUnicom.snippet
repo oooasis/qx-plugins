@@ -1,0 +1,17 @@
+#!name = 中国联通
+#!desc = 过滤中国联通广告（转自 Loon Lab ChinaUnicom.lpx，2026-10-02 12:00）
+#!author = mist-whisper[https://github.com/mist-whisper]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/ChinaUnicom.png
+
+host, m1.ad.10010.com, reject
+^https:\/\/m\.client\.10010\.com\/search_service\/tyfbSearch\/searchDiscoverListExpress url jsonjq-response-body '.data = []'
+^https:\/\/m\.client\.10010\.com\/search_service\/search\/searchScrollWord url jsonjq-response-body '.["113000004"] = []'
+^https:\/\/m\.client\.10010\.com\/clientIndex\/v1\/api\/navHome url jsonjq-response-body '.datas.homeTopMenuItems |= map(select(.menuName != "通通" and .menuName != "vowifi" and .menuName != "签到" and .menuName != ""))'
+^https:\/\/m\.client\.10010\.com\/clientIndex\/homefusion\/fuInter url jsonjq-response-body 'del(.["HomeFusion.backGroundQuery"], .["HomeFusion.fuchuangAdv_A8"], .["HomeFusion.bottomLabel"])'
+^https:\/\/m\.client\.10010\.com\/clientMyPage\/v1\/api\/myWallet url jsonjq-response-body '.data.payShowFlag = false'
+^https?:\/\/m\.client\.10010\.com\/mobileserviceimportant\/customer\/querySmartServicekhd.htm url reject
+^https?:\/\/m\.client\.10010\.com\/clientIndex\/api\/v1\/index\/queryIndexExclusiveOffers url reject
+^https?:\/\/m\.client\.10010\.com\/clientMyPage\/v\d\/api\/(myWallet|myPoints|myColorfulRingtone|newUserInfo|getDeviceInfo) url jsonjq-response-body '.data={}'
+^https?:\/\/img\.client\.10010\.com\/homejingxuan12\/js\/(pubuliu|1homeView) url reject
+
+hostname = m.client.10010.com, img.client.10010.com

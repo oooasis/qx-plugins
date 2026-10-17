@@ -1,0 +1,9 @@
+#!name = 腾讯文档
+#!desc = 过滤腾讯文档广告（转自 Loon Lab TencentDocs.lpx，2026-10-02 12:00）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/TencentDocs.png
+
+^https:\/\/tianshu\.qq\.com\/open\/ts_access\/GetAds\? url reject-dict
+^https:\/\/h5\.qzone\.qq\.com\/p\/adboss\/api\/json\/ts_access\/GetAds$ url reject-dict
+
+hostname = tianshu.qq.com, h5.qzone.qq.com

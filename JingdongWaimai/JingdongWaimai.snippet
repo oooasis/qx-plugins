@@ -1,0 +1,13 @@
+#!name = 京东外卖
+#!desc = 过滤京东外卖广告（转自 Loon Lab JingdongWaimai.lpx，2026-10-02 12:00）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/JingdongWaimai.png
+
+^https:\/\/color\.jddj\.com\/client\.action\?functionId=hours_home$ url jsonjq-response-body 'del(.result.config.searchFloor.data[].searchWords) | .result.data |= map(if .tnConfigVO?.businessCode == "nearby_HourlyGo_Operation_Tags" then empty else . end)'
+^https:\/\/color\.jddj\.com\/client\.action\?functionId=uniformRecommend url reject-dict
+^https:\/\/color\.jddj\.com\/client\.action\?functionId=wmHome$ url jsonjq-response-body '(.floors |= map(del(.data.tnData.newsInfo?))) | .floors |= (map(select(.mId != "newWalletIdFloor" and .mId != "recommendfloor"))) | .floors |= (map(.data |= (if .tnData? then del(.tnData.cardList, .tnData.cardListStatic, .tnData.walletList) else . end)))'
+^https:\/\/api\.m\.jd\.com\/client\.action$ url jsonjq-response-body 'del(.["data"]["searchDTO"]["searchWords"], .["data"]["wishlistDTO"]["bubbleTip"])'
+^https:\/\/api\.m\.jd\.com\/client\.action$ url jsonjq-response-body '.data.tabList |= (map(select(.code == "recommendation" or .code == "find_food")) | map(if .code == "recommendation" then .dpHomeFeedTabResultDTOList = .dpHomeFeedTabResultDTOList[0:2] else . end | .dpHomeBannerResultDTOList = []))'
+^https:\/\/color\.jddj\.com\/client\.action\?functionId=search_recommendRanking$ url reject-dict
+
+hostname = color.jddj.com, api.m.jd.com

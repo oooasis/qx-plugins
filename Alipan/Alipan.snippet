@@ -1,0 +1,17 @@
+#!name = 阿里云盘
+#!desc = 过滤阿里云盘广告（转自 Loon Lab Alipan.lpx，2026-10-02 12:00）
+#!author = RuCu6[https://github.com/RuCu6], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/Alipan-01.png
+
+ip-cidr, 203.107.1.1/24, reject
+^https:\/\/member\.alipan\.com\/v2\/activity\/sign_in_luckyBottle url reject-dict
+^https:\/\/api\.alipan\.com\/adrive\/v1\/file\/getTopFolders url reject-dict
+^https:\/\/(biz)?api\.alipan\.com\/apps\/v\d\/users?\/home\/news url jsonjq-response-body 'if .result|length>0 then .result|=map(select(.code|contains("productUpdate")|not)) else . end'
+^https:\/\/(biz)?api\.alipan\.com\/apps\/v\d\/users?\/home\/widgets url jsonjq-response-body 'delpaths([["album"],["banners"],["coreFeatures"],["introduceAlipan"],["minorBackup"]])'
+^https:\/\/member\.alipan\.com\/v1\/users\/onboard_list url jsonjq-response-body 'if .result|length>0 then .result|=map(select(.anchor|IN("backup_list_under_mydevice_banner","backup_top_banner","home_bulletin_board","home_top_banner","resource_top_banner","video_top_banner")|not)) else . end'
+
+# ↓ 兜底：来自可莉（AliYunDrive_remove_ads.lpx）
+^https:\/\/(biz)?api\.alipan\.com\/apps\/v\d\/users?\/home\/(news|widgets) url script-response-body https://kelee.one/Resource/JavaScript/AliYunDrive/AliYunDrive_remove_ads.js
+^https:\/\/member\.alipan\.com\/v1\/users\/onboard_list url script-response-body https://kelee.one/Resource/JavaScript/AliYunDrive/AliYunDrive_remove_ads.js
+
+hostname = member.alipan.com, api.alipan.com, bizapi.alipan.com

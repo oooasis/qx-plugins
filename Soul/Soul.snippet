@@ -1,25 +1,64 @@
 #!name = Soul
-#!desc = 移除开屏广告、移除话题页面热Soul话题、移除评论区礼物榜、移除更新提示、移除青少年弹窗、移除我的页面推广、移除悬浮部件。（转自可莉 Soul_remove_ads.lpx，2026-10-02 13:57:49）
-#!author = ZenmoFeiShi[https://github.com/ZenmoFeiShi], RuCu6[https://github.com/RuCu6], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
-#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Soul.png
+#!desc = Soul全面净化（转自 Loon Lab Soul.lpx，2026-10-02 12:00）
+#!author = ZenmoFeiShi[https://github.com/ZenmoFeiShi], ishowshu[https://github.com/ishowshu], RuCu6[https://github.com/RuCu6], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/Soul.png
 
 host-suffix, soulapp.cn, direct
 ip-cidr, 8.210.3.170/32, direct
 ip-cidr, 47.75.72.47/32, direct
+ip-cidr, 13.127.149.196/32, direct
+ip-cidr, 52.194.158.59/32, direct
+ip-cidr, 47.56.131.76/32, direct
+ip-cidr, 3.0.163.78/32, direct
 host, ad-h5-cdn.soulapp.cn, reject
 host, ad-h5-station-cdn.soulapp.cn, reject
 host, ad-r.soulapp.cn, reject
 host, soul-ad.soulapp.cn, reject
-ip-cidr, 47.56.131.76/32, reject
+host, ssp.soulapp.cn, reject
+host, ssp.1rtb.com, reject
+host, impdsp.meituan.com, reject
+host, ssp.maplehaze.cn, reject
 ip-cidr, 47.97.215.55/32, reject
 ip-cidr, 47.99.42.29/32, reject
 ip-cidr, 47.110.187.87/32, reject
 ip-cidr, 47.243.147.125/32, reject
 ip-cidr, 120.27.235.201/32, reject
 ip-cidr, 121.196.197.147/32, reject
-^https:\/\/ssp\.soulapp\.cn\/api\/q url reject-dict
 ^https:\/\/chat-live\.soulapp\.cn\/live\/planet\/recListV2 url reject-200
 ^https:\/\/(?:api-\w+|gateway-mobile-gray|post)\.soulapp\.cn\/(?:furion\/position\/content|hot\/soul\/rank|mobile\/app\/version\/queryIos|official\/scene\/module|teenager\/config|v2\/post\/gift\/list|v\d\/post\/homepage\/guide\/card) url jsonjq-response-body 'del(.["data"])'
-^https:\/\/(?:api-\w+|chat-live|post)\.soulapp\.cn\/(?:chat\/limitInfo|chatroom\/chatClassifyRoomList|homepage\/diamond\/position\/info|v2\/post\/recSquare\/subTabs|v6\/planet\/config) url script-response-body https://kelee.one/Resource/JavaScript/Soul/Soul_remove_ads.js
+^https:\/\/ssp\.soulapp\.cn\/api\/q url reject-dict
+^https:\/\/47\.110\.187\.87\/winterfell\/(?:v2\/)?getIpByDomain url reject-dict
+^https:\/\/post\.soulapp\.cn\/v\d\/post\/homepage\/guide\/card url reject-dict
+^https:\/\/api-account\.soulapp\.cn\/teenager\/config url reject-dict
+^https:\/\/api-a\.soulapp\.cn\/official\/scene\/module url reject-dict
+^https:\/\/api-user\.soulapp\.cn\/furion\/position\/content url reject-dict
+^https:\/\/api-chat\.soulapp\.cn\/addressBook\/showBubblingEnter url reject
+^https:\/\/api-chat\.soulapp\.cn\/chat\/interact\/getEmojiList url reject
+^https:\/\/increase-openapi\.soulapp\.cn\/increase\/fission\/getHomePageRedIcon url reject
+^https:\/\/api-chat\.soulapp\.cn\/similar\/post\/intersect\/trigger url reject
+^https:\/\/api-chat\.soulapp\.cn\/chat\/guide\/defaultWord url reject
+^https:\/\/api-chat\.soulapp\.cn\/chat\/emoji\/recommend url reject
+^https:\/\/api-a\.soulapp\.cn\/shara\/app\/url url reject
+^https:\/\/api-chat\.soulapp\.cn\/chat\/quick\/menu url reject
+^https:\/\/api-chat\.soulapp\.cn\/chat\/session\/quickButtonCheck url reject-dict
+^https:\/\/chat-live\.soulapp\.cn\/live\/config\/rec-feedback url reject-dict
+^https:\/\/post\.soulapp\.cn\/post\/relationUser\/chatRooms url reject-dict
+^https:\/\/increase-openapi\.soulapp\.cn\/increase\/dusting\/getAddressBookDustings url reject-dict
+^https:\/\/chat-live\.soulapp\.cn\/live\/queryRelevantList url reject-dict
+^https:\/\/api-user\.soulapp\.cn\/user\/desc\/getUserPersonalDesc url reject-dict
+^https:\/\/post\.soulapp\.cn\/v1\/post\/homepage\/ai\/assistant\/guide url reject-dict
+^https:\/\/api-chat\.soulapp\.cn\/chatList\/limitAvatar\/entrance url reject-dict
+^https:\/\/api-chat\.soulapp\.cn\/chatList\/top\/recommendList url reject-dict
+^https:\/\/activity\.soulapp\.cn\/commercial\/room\/resources url reject-dict
+^https:\/\/chat-live\.soulapp\.cn\/official\/scene\/module url reject-dict
+^https:\/\/chat-live\.soulapp\.cn\/live\/queryFollowRoomList url jsonjq-response-body '.data.recUserFeedList = []'
+^https:\/\/chat-live\.soulapp\.cn\/square\/relation\/guideUserList url jsonjq-response-body '.data.userDTOList = []'
+^https:\/\/api-user\.soulapp\.cn\/v6\/planet\/config url jsonjq-response-body '.data.showRedMind = false | .data.showLuckyBag = false | .data.coreCards |= map(select(.type != 27))'
+^https:\/\/chat-live\.soulapp\.cn\/chatroom\/chatClassifyRoomList url jsonjq-response-body '.data.positionContentRespList = []'
+^https:\/\/post\.soulapp\.cn\/homepage\/tabs\/v2 url jsonjq-response-body '.data.selectedTagPool = {} | .data.headTabDTOList |= map(select(.tabCode != "STAR_TRAILS"))'
+^https:\/\/chat-live\.soulapp\.cn\/chatroom\/getRoomTagInfo url jsonjq-response-body '.data.res |= map(.iconConfig = null)'
+^https:\/\/api-user\.soulapp\.cn\/user\/homepage\/metrics url script-response-body https://raw.githubusercontent.com/ishowshu/qx/main/script/soul.js
+^https:\/\/api-chat\.soulapp\.cn\/chat\/limitInfo url script-response-body https://raw.githubusercontent.com/ishowshu/qx/main/script/soul.js
+^https:\/\/api-chat\.soulapp\.cn\/snapchat\/url url script-response-body https://raw.githubusercontent.com/ishowshu/qx/main/script/soul.js
 
-hostname = ssp.soulapp.cn, api*.soulapp.cn, gateway-mobile-gray.soulapp.cn, post.soulapp.cn
+hostname = chat-live.soulapp.cn, post.soulapp.cn, api-account.soulapp.cn, api-a.soulapp.cn, gateway-mobile-gray.soulapp.cn, api-user.soulapp.cn, api-chat.soulapp.cn, ssp.soulapp.cn, 47.110.187.87, increase-openapi.soulapp.cn, activity.soulapp.cn

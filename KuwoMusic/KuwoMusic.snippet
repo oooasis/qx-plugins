@@ -1,0 +1,30 @@
+#!name = 酷我音乐
+#!desc = 过滤酷我音乐广告，解锁会员功能。\n使用前请在BoxJS中添加订阅https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/boxjs.json并同意相关免责声明，或添加持久化数据「KUWO_AGREE 我同意」。（转自 Loon Lab KuwoMusic.lpx，2026-10-02 12:00）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md], Yuheng0101[https://github.com/Yuheng0101]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/KuwoMusic.png
+
+^http:\/\/rich\.kuwo\.cn\/AdService\/ url reject-dict
+^http:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/user\/freeMode\/ url reject-dict
+^http:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/app\/pasterAdvert\/ url reject-dict
+^http:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/app\/startup\/config url reject-dict
+^http:\/\/rich\.kuwo\.cn\/EcomResourceServer\/ url reject-dict
+ip-cidr, 111.206.98.63/32, reject
+^http:\/\/searchrecterm\.kuwo\.cn\/recterm\.s url reject-dict
+^http:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/app\/newMenuList\/menuListInfo url reject-dict
+^http:\/\/vip\d\.kuwo\.cn\/vip\/v\d\/sysinfo\?op=getRePayAndDoPayBox url reject-dict
+^http:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/album\/adBar\/ url reject-dict
+^https:\/\/vip\d\.kuwo\.cn\/commercia\/vipconf\/projectPage\/getPageContent url reject-dict
+^https:\/\/tingshu\.kuwo\.cn\/v2\/api\/pay\/user\/info url reject-dict
+^https:\/\/appi\.kuwo\.cn\/kuwopay\/personal\/cells url reject-dict
+^http:\/\/wapi\.kuwo\.cn\/openapi\/v\d\/tingshu\/index\/radio url jsonjq-response-body 'walk(if type == "object" and .type == "stripAdvert" then del(.child) else . end)'
+^https?:\/\/mobilead\.kuwo\.cn\/EcomResourceServer\/get(IOSIsHideAd|Motor)\.do url reject-200
+^https?:\/\/rich\.kuwo\.cn\/(AdService|ecom)\/kaiping\/ad[iI]nfo url reject-200
+^https?:\/\/wapi\.kuwo\.cn\/openapi\/v\d+\/(?:user\/)?(?:(?:config|adVip|pop|freeMode(?:\/h5)?)(?:\/))?(?:info|text|homePage|message|give\/time)(?:[\/?#]|$) url reject-200
+^https?:\/\/appi\.kuwo\.cn\/kuwopay\vip-tab\/setting url reject-200
+^https?:\/\/(mgxhtj|nmobi|searchrecterm)\.kuwo\.cn\/(mgxh|mobi|recterm)\.s url script-response-body https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/kuwo/kuwo.js
+^https?:\/\/audiobookpay\.kuwo\.cn\/a\.p url script-response-body https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/kuwo/kuwo.js
+^https?:\/\/musicpay\.kuwo\.cn\/music\.pay url script-response-body https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/kuwo/kuwo.js
+^https?:\/\/vip1\.kuwo\.cn\/vip\/(enc\/user\/vip\?op=ui|v\d\/theme\?op=gd) url script-response-body https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/kuwo/kuwo.js
+^https?:\/\/vip1\.kuwo\.cn\/vip\/v\d\/user\/vip\?op=ui url script-response-body https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/kuwo/kuwo.js
+
+hostname = tingshu.kuwo.cn, appi.kuwo.cn, mobilead.kuwo.cn, rich.kuwo.cn, wapi.kuwo.cn, mgxhtj.kuwo.cn, nmobi.kuwo.cn, searchrecterm.kuwo.cn, audiobookpay.kuwo.cn, musicpay.kuwo.cn, vip1.kuwo.cn

@@ -1,6 +1,6 @@
 #!name = 酷狗音乐
 #!desc = 移除开屏广告、应用各类弹窗、各类横幅广告、评论区广告和播放器界面广告。（转自可莉 KuGou_remove_ads.lpx，2026-10-02 13:57:49）
-#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md], ddgksf2013[https://github.com/ddgksf2013]
 #!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/KuGou.png
 
 host, ads.service.kugou.com, reject
@@ -27,5 +27,8 @@ host, splashimgretrybssdl.cloud.kugou.com, reject
 ^https:\/\/m1fxgroup\.kugou\.com\/fxsing\/yqc\/alongInfo\/getUserAlongInfo url reject-dict
 ^https:\/\/hwstore\.kugou\.com\/v\d\/get_store_data url reject-dict
 ^https:\/\/ep\.kugou\.com\/v\d\/album_shop\/get_entrance_info url reject-dict
+
+# ↓ 兜底：来自墨鱼 StartUpAds（kugou）
+^http:\/\/ads.?s?ervice(retry)?\.(kugou|kglink).(com|cn)\/v\d\/ url reject-200
 
 hostname = fx.service.kugou.com, gatewayretry.kugou.com, gateway.kugou.com, gzacshow.kugou.com, m1fxgroup.kugou.com, hwstore.kugou.com, ep.kugou.com

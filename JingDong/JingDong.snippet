@@ -1,0 +1,22 @@
+#!name = 京东
+#!desc = 1.过滤京东广告；2.历史比价信息，任选其一即可。（首次使用请先打开【慢慢买App-我的】，提示【获取ck成功🎉】即可正常比价。）\n此插件仅支持京东标准模式。（转自 Loon Lab JingDong.lpx，2026-10-02 12:00）
+#!author = RuCu6[https://github.com/RuCu6], Maasea[https://github.com/Maasea], MuTu[https://github.com/githubdulong], 苍井灰灰[https://github.com/wf021325], mw418[https://github.com/mw418], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/JingDong.png
+
+^http:\/\/\w{32}\.jddebug\.com\/diagnose\? url reject
+^https?:\/\/m\.360buyimg\.com\/mobilecms\/s1125x2436_jfs url reject-200
+^https?:\/\/api\.m\.jd\.com\/\?loginType=11 url reject-dict
+^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=getWidgetV1052 url reject
+^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=lite_advertising url response-body jdLiteAdvertisingVO response-body sooyaaabo
+^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=basicConfig url jsonjq-response-body '.["data"]["JDMessage"]["socketmonitor"]["isSocketEstablishedAhead"] = 0 | .["data"]["JDMessage"]["socketmonitor"]["isSocketReport"] = 0 | .["data"]["JDHttpToolKit"]["httpdns"]["httpdns"] = 0'
+^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=cart url jsonjq-response-body 'del(.["cartLocationMap"]["loc_emptyCartFloor2"], .["emptyCartRecommendFloor"])'
+^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(?:cartCouponRecommendGoods|intelligentRecommendSku|obtainGrowingInfo|recommendShop|searchBoxWord|stationPullService|uniformRecommend) url reject-dict
+^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(?:deliverLayer|getTabHomeInfo|myOrderInfo|orderTrackBusiness|personinfoBusiness|start|welcomeHome) url script-response-body https://rucu6.pages.dev/Scripts/jingdong.js
+^https?:\/\/apapia-sqk-weblogic\.manmanbuy\.com\/baoliao\/center\/menu$ url script-request-body https://raw.githubusercontent.com/mw418/Loon/main/script/jd_price.js
+^https?:\/\/in\.m\.jd\.com\/product\/graphext\/\d+\.html url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/jd_price.js
+
+# ↓ 兜底：来自可莉（JD_remove_ads.lpx）
+^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(searchBoxWord|stationPullService|uniformRecommend[06]) url reject-dict
+^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(deliverLayer|getTabHomeInfo|myOrderInfo|orderTrackBusiness|personinfoBusiness|start|welcomeHome) url script-response-body https://kelee.one/Resource/JavaScript/JD/JD_remove_ads.js
+
+hostname = m.360buyimg.com, api.m.jd.com, apapia-sqk-weblogic.manmanbuy.com, in.m.jd.com

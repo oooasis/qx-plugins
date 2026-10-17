@@ -1,0 +1,73 @@
+#!name = 银行App
+#!desc = 过滤部分银行应用广告（转自 Loon Lab Bank.lpx，2026-10-02 12:00）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/Other/CNY.png
+
+host, adv.ccb.com, reject
+^http:\/\/mps\.95508\.com\/mps\/icppweb\/images\/mps\/migration\/mpspics\/ url reject
+^https:\/\/static\.95508\.com\/icppweb\/images\/modelMaterial\/advertising\/ url reject
+^https?:\/\/static\.95508\.com\/icppweb\/images\/modelMaterial\/accurate\/202\d{5}\/.*.(png|jpg) url reject-200
+^https?:\/\/static\.95508\.com\/icppweb\/images\/modelMaterial\/advertising\/202\d{5}\/.*.(png|jpg) url reject-200
+^https?:\/\/mps\.95508\.com\/mps\/club\/cardPortals\/adv\/\d{25}\.(png|jpg) url reject-img
+^https:\/\/unionsr\.chinalifeonline\.com\.cn\/gslm\/upload\/ url reject-200
+^https:\/\/imcs\.citicbank\.com\/cloud\/[a-zA-Z0-9]{32}\.(?:jpg|jpeg|png)\?width=(?:5..|6..|7..|1125|1242|1400|1863|1330|1500|1080)&height=(?:2436|2688|1624|12..|3031|4032|2688|1137|2880|3248|720|23..|1462) url reject
+^https?:\/\/(autoload\.bank\.ecitic\.com\/imcslego|imcs\.citicbank\.com)\/cloud\/\w+\.png\?width=([1-9]\d{0,2}|1[0-2]\d\d|1300)&height=(1[5-9]\d\d|2[0-6]\d\d) url reject
+^https:\/\/imcs\.citicbank\.com\/cloud\/([a-fA-F0-9]{32})\.(?:jpg|jpeg|png)\?width=[0-9]{4}&height=[0-9]{4} url reject
+^https?:\/\/wap\.bank\.ecitic\.com:6443\/NMBFOServer\/cbframework\.do\?act=CUBEPAGEDATA url reject-200
+^https?:\/\/imcs\.citicbank\.com\/cloud\/.+(1125.+2436|1242.+2688|750.+1638|563.+1218) url reject-dict
+^https:\/\/lban\.spdb\.com\.cn\/mspmk-web-component\/getAdvertisementList\.ah$ url reject-dict
+^https:\/\/lban\.spdb\.com\.cn\/mspmk-web-component\/getAdvList\.ah$ url reject-dict
+^https:\/\/lban\.spdb\.com\.cn\/mspmk-web-component\/prefetchAdvList\.ah url reject-dict
+^https?:\/\/wap\.spdb\.com\.cn\/mspmk-web-homeassist\/OpenScreenAdv\.ah$ url reject
+^https?:\/\/image\.spdbccc\.com\.cn\/group\d\/M00\/[A-Z0-9]{2}\/[A-Z0-9]{2}\/.+(4038|0571|M511|V-008|g549|b0628|fg817|5w501|Jo341|Z4583|oo845|i4905|MY245|YU472|Y401|w428|s000) url reject-dict
+^https:\/\/s3gw\.cmbimg\.com\/mbappinitads\/ url reject
+^https?:\/\/webappcfg\.paas\.cmbchina\.com\/v\d\/func\/getmarketconfig url reject-200
+^https?:\/\/mbmodule-openapi\.paas\.cmbchina\.com\/graphic\/v2\/module\/graphic url reject-dict
+^http:\/\/image1\.ccb\.com\/newsinfo\/eBranch\/check\/(?:nf\/newfin\/activity|po\/poortheme\/activity)\/\w+\.png url reject
+^https?:\/\/download1\.bankcomm\.com\/chngweb\/CHNRCSP\/media url reject
+^https?:\/\/download1\.bankcomm\.com\/mobs6-inner\/offline\/static\/releaseConf url reject
+^https?:\/\/mres\.aibank\.com\/app\/resource\/cim\/cim0000001\/.+\.jpg url reject-200
+^https?:\/\/cdnmobibank\.bankofbeijing\.com\.cn\/cdn\/MarketingCloud\/.+\/.+\/99_1\/.+\.jpg url reject-200
+^https?:\/\/cdn-xyk-app\.bankofbeijing\.com\.cn\/cdn\/resource\/image\/advertise url reject-200
+^https?:\/\/mobile\.cebbank\.com\/cebclient\/ClientNoticeList url reject-200
+^https?:\/\/yghsh\.cebbank\.com\/static\/picture\/.*.jpg url reject-200
+^https?:\/\/pv\.elife\.icbc\.com\.cn\/OFSTPV\/utm\.gif url reject-200
+^https?:\/\/mbank\.grcbank\.com\/ydyh\/resources\/startpage\/.*.(jpg|png) url reject-200
+^https?:\/\/static\.creditcard\.hxb\.com\.cn\/mcube\/apps\/group\d\/M00\/00\/2[A-Z0-9]{1}\/amRG7WO.+\.jpg url reject-200
+^https?:\/\/m\.prod\.app\.hsbcfts\.com\.cn\/api\/sapp\/biz\/config\/open\/queryappversion\?channelCode= url reject-dict
+^https?:\/\/cdn\.jlbank\.com\.cn\/jlstaticresource\/APPSTART url reject-200
+^https?:\/\/yunbusiness\.ccb\.com\/clp_service\/txCtrl\?txcode=A3341A(002|006|009|119|120) url reject-200
+^https?:\/\/yunbusiness\.ccb\.com\/clp_service\/txCtrl\?txcode=A3341C147 url reject-200
+^https?:\/\/yunbusiness\.ccb\.com\/basic_service\/txCtrl\? url response-body "TAG_AD_INFO" response-body "fmz200"
+^https?:\/\/waimai-guide\.ele\.me\/\w+\/mtop\.alsc\.eleme\.\w+\.trigger\.respond url reject-dict
+^https?:\/\/waimai-guide\.ele\.me\/\w+\/mtop\.alsc\.wamai\.store\.detail\.miniapp\.popup url reject
+^https?:\/\/waimai-guide\.ele\.me\/\w+\/mtop\.venus\.shopcouponpopupservice\.getshopcouponspopup url reject
+^https?:\/\/waimai-guide\.ele\.me\/\w+\/mtop\.venus\.shopresourceservice\.getshopresource url response-body posterList response-body fmz200
+^https?:\/\/www\.cmbc\.com\.cn\/m\/image\/loadingpage\/ url reject-200
+^https?:\/\/www\.cmbc\.com\.cn\/m\/image\/banner\/.*.png url reject-200
+^https?:\/\/midc\.cdn-static\.abchina\.com\.cn\/distributecenterimg\/file\/download\/(ed64|74b5) url reject
+^https?:\/\/enjoy\.cdn-static\.abchina\.com\/yx-engine-web\/file\/download\/(?!7dc2|fe96|cea3|06a8|1b11|d57b|6918|61db|2d58|aa23|) url reject-200
+^https?:\/\/firefly\.abchina\.com\.cn\/firefly-collection\/Collect url reject-200
+^https?:\/\/cdn\.sdb\.com\.cn\/widget\/magic-module-sprite\/general-banner url reject-200
+^https?:\/\/cdn\.sdb\.com\.cn\/widget\/magic-module-sprite\/dialog-normal url reject-dict
+^https?:\/\/cdn\.sdb\.com\.cn\/widget\/pb\/pb-plugins-recomend-content url reject-dict
+^https?:\/\/mobile\.1qianbao\.com\/mtp-web\/ui\/op_common_query_business_yqb\.json url reject-200
+^https?:\/\/pacdn\.m\.stock\.pingan\.com\/images\/ url reject-dict
+^https?:\/\/cgbank\.oss-cn-shenzhen\.aliyuncs\.com\/visual\/advertisingImg\/.+.jpg url reject-200
+^https?:\/\/chl\.tf\.cn\/channelmg\/sys\/socso\/order\/queryOrderInfo url response-body "imgUrl" response-body "imgUrl0"
+^https?:\/\/chl\.tf\.cn\/channelmg\/sys\/socso\/socsonew\/queryIsRealNameAdertInfo url reject-dict
+^https?:\/\/wechat\.tf\.cn\/mini-financial\/model\/queryPopup url reject-dict
+^https?:\/\/images\.cib\.com\.cn\/commons\/uploads\/commons\/[a-zA-Z0-9]{32}\.jpg\?ver=20221[1-2]{1} url reject-200
+^https?:\/\/file\.cibfintech\.com\/file\/M0[1-9]{1}\/*\/*\/.*.zip url reject-img
+^https?:\/\/static.xyzq.cn\/image\/splash\/opera3.*.jpg url reject-200
+^https?:\/\/static.psbc.com:8090\/mbank_f\/images\/[0-9]+\.png url reject-200
+^https?:\/\/mcc.psbc.com:9090\/mcc\/resources\/[0-9]+\.(jpg|png) url reject-200
+^https?:\/\/d\.psbc\.com:9091\/mcc\/resources\/[0-9]+\.(jpg|png|jpeg) url reject-200
+^https?:\/\/static\.mobile-bank\.psbc\.com\/mgs url reject
+^https?:\/\/mlife\.jf365\.boc\.cn\/AppPrj\/FirstPic\.do\?txnId=2PIC000001 url reject-200
+^https?:\/\/mbasecc\.(bas|bcs)\.cmbchina\.com\/Edge\/api\/mlife\.clientface\.clientservice\.api\.advertiseService\/preCacheAdvertiseSec url reject-dict
+^https?:\/\/intellicc\.bas\.cmbchina\.com\/Edge\/api\/mlife\.intelli\.render\.api\.render\/getDynamicDataSec url reject
+^https?:\/\/intellicc\.bcs\.cmbchina\.com\/Edge\/api\/mlife\.intelli\.adrender\.api\.AdWork\/getAdsBySlotId url reject-dict
+^https?:\/\/direct\.z-bank\.com\/portal\/AdvertImageDownLoad4Mobile\.do url reject-200
+
+hostname = static.95508.com, mps.95508.com, unionsr.chinalifeonline.com.cn, imcs.citicbank.com, wap.bank.ecitic.com, lban.spdb.com.cn, wap.spdb.com.cn, image.spdbccc.com.cn, s3gw.cmbimg.com, webappcfg.paas.cmbchina.com, mbmodule-openapi.paas.cmbchina.com, download1.bankcomm.com, mres.aibank.com, cdnmobibank.bankofbeijing.com.cn, cdn-xyk-app.bankofbeijing.com.cn, mobile.cebbank.com, yghsh.cebbank.com, pv.elife.icbc.com.cn, mbank.grcbank.com, static.creditcard.hxb.com.cn, m.prod.app.hsbcfts.com.cn, cdn.jlbank.com.cn, yunbusiness.ccb.com, waimai-guide.ele.me, www.cmbc.com.cn, midc.cdn-static.abchina.com.cn, enjoy.cdn-static.abchina.com, firefly.abchina.com.cn, cdn.sdb.com.cn, mobile.1qianbao.com, pacdn.m.stock.pingan.com, cgbank.oss-cn-shenzhen.aliyuncs.com, chl.tf.cn, wechat.tf.cn, images.cib.com.cn, file.cibfintech.com, static.xyzq.cn, static.psbc.com, mcc.psbc.com, d.psbc.com, static.mobile-bank.psbc.com, mlife.jf365.boc.cn, mbasecc.bas.cmbchina.com, mbasecc.bcs.cmbchina.com, intellicc.bas.cmbchina.com, intellicc.bcs.cmbchina.com, direct.z-bank.com

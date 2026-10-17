@@ -1,7 +1,7 @@
 #!name = 马蜂窝
-#!desc = 移除首页信息流广告、商城横幅推广、我的页面弹窗。（转自可莉 MaFengWo_remove_ads.lpx，2026-10-02 13:57:49）
+#!desc = 过滤马蜂窝广告（转自 Loon Lab MaFengWo.lpx，2026-10-02 12:00）
 #!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
-#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/MaFengWo.png
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/MaFengWo.png
 
 host, advert.mafengwo.cn, reject
 ^https:\/\/mapi\.mafengwo\.cn\/discovery\/get_index\/v7\? url jsonjq-response-body '.data.list |= map(select(.data.business_type != "gdcpm"))'

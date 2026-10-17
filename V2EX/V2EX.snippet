@@ -1,0 +1,12 @@
+#!name = V2EX
+#!desc = 过滤V2EX社区广告；V2EX每日签到，访问V2EX个人主页自动获取保存Cookie。（转自 Loon Lab V2EX.lpx，2026-10-02 12:00）
+#!author = ddgksf2013[https://github.com/ddgksf2013], curtinp118[https://github.com/curtinp118]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/V2EX-03.png
+
+host-suffix, v2ex.com, proxy
+^https?:\/\/pagead.*googlesyndication\.com\/pagead url reject-200
+^https?:\/\/.*v2ex\.com\/pro\/emitter url reject-200
+^https?:\/\/www\.v2ex\.com\/(mission|member).*$ url script-request-header https://raw.githubusercontent.com/curtinp118/Scripthub/main/scripts/v2ex/v2ex.js
+^https?:\/\/.*v2ex\.com\/(?!(.*(api|login|cdn-cgi|verify|auth|captch|(\.(js|css|jpg|jpeg|png|webp|gif|zip|woff|woff2|m3u8|mp4|mov|m4v|avi|mkv|flv|rmvb|wmv|rm|asf|asx|mp3|json|ico|otf|ttf))))) url script-response-body https://ddgksf2013.top/scripts/v2ex.ads.js
+
+hostname = pagead*.googlesyndication.com, *.v2ex.com, www.v2ex.com

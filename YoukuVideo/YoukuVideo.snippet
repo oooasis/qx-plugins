@@ -1,0 +1,31 @@
+#!name = 优酷视频
+#!desc = 为好内容 全力以赴 [为好广告 全力以赴]（转自 Loon Lab YoukuVideo.lpx，2026-10-02 12:00）
+#!author = RuCu6[https://github.com/RuCu6], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/YoukuVideo.png
+
+host, push.m.youku.com, direct
+host, un-acs.youku.com, direct
+host, dorangesource.alicdn.com, direct
+host, h-adashx.ut.taobao.com, reject
+host, adx-core.youku.com, reject
+host, adx-open-service.youku.com, reject
+host, yk-ssp.ad.youku.com, reject
+host, cad.youku.com, reject
+host, ykad-data.youku.com, reject
+host, amdc.m.youku.com, reject
+host, nbsdk-baichuan.alicdn.com, reject
+host, youku-crm-product.youku.com, reject
+host, dr-danmu.youku.com, reject
+host, group-ssl-danmu-ori.youku.com, reject
+host, m.atm.youku.com, reject
+host, mc.atm.youku.com, reject
+host, vali-g1.cp31.ott.cibntv.net, reject
+host, vali-ugc.cp31.ott.cibntv.net, reject
+host-suffix, iyes.youku.com, reject
+host, adsmind.ugdtimg.com, reject
+host, pre-acs.youku.com, reject
+host, youku-acs.m.taobao.com, reject
+^https:\/\/un-acs\.youku\.com\/gw\/mtop\.youku\.play\.ups\.appinfo\.get url jsonjq-response-body 'del(.["data"]["data"]["ad"], .["data"]["data"]["watermark"], .["data"]["data"]["ykad"])'
+^https:\/\/push\.m\.youku\.com\/collect-api\/get_push_interval_config_wx\? url jsonjq-response-body 'del(.["data"]["tipContent"], .["data"]["tipContentNew"])'
+
+hostname = un-acs.youku.com, push.m.youku.com

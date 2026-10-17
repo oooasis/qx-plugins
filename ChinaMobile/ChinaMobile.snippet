@@ -1,0 +1,12 @@
+#!name = 中国移动
+#!desc = 过滤中国移动广告，可自定义。（转自 Loon Lab ChinaMobile.lpx，2026-10-02 12:00）
+#!author = sooyaaabo[https://github.com/sooyaaabo], ccyykk666[https://github.com/ccyykk666], ddgksf2013[https://github.com/ddgksf2013]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/ChinaMobile.png
+
+^https?:\/\/(client\.app\.coc|app)\.10086\.cn\/biz-orange\/DN\/(explorePage\/getAdverList|init\/startInit|emotionMarket) url reject-200
+^https?:\/\/client\.app\.coc\.10086\.cn\/biz-orange\/(?:DN\/(?:dropsAdverService\/getDropsAdverNew|homepagePopup\/getSortInfo|toast\/getToastRule)|DH\/toast\/august\/getToast|DA\/liveSuspension\/getPageCode)(?:\?.*)?$ url reject-dict
+
+# ↓ 兜底：来自墨鱼 StartUpAds（zhongguoyidong）
+^https?:\/\/client\.app\.coc\.10086\.cn\/biz-orange\/DN\/init\/startInit url reject-200
+
+hostname = client.app.coc.10086.cn, app.10086.cn

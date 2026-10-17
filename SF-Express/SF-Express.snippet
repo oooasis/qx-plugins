@@ -1,10 +1,14 @@
 #!name = 顺丰速运
-#!desc = 移除开屏广告、首页下拉抽屉、首页推广、应用内悬浮窗、横幅广告，移除主题，精简我的页面。（转自可莉 SF-Express_remove_ads.lpx，2026-10-02 13:57:49）
+#!desc = 过滤顺丰速运广告（转自 Loon Lab SF-Express.lpx，2026-10-02 12:00）
 #!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
-#!icon = https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/SF-Express.png
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/SF-Express.png
 
 ^https:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/ad\/ url reject-dict
 ^https:\/\/ucmp\.sf-express\.com\/proxy\/esgcempcore\/memberGoods\/pointMallService\/goodsList$ url reject-dict
 ^https:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/appHomeConfig\/query$ url jsonjq-response-body '.obj |= map(select(.position != 2))'
+^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-video\/video\/app\/video\/labelClusterList url reject-dict
+^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/ad\/queryInfoFlow url reject-dict
+^https?:\/\/ccsp-egmas\.sf-express\.com\/cx-app-base\/base\/app\/bms\/queryRecommend url reject-dict
+^https?:\/\/mapi\.sfbest\.com\/brokerservice-server\/cms\/getPositionById.* url reject
 
-hostname = ccsp-egmas.sf-express.com, ucmp.sf-express.com
+hostname = ccsp-egmas.sf-express.com, ucmp.sf-express.com, mapi.sfbest.com

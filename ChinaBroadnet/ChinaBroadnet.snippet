@@ -1,0 +1,10 @@
+#!name = 中国广电
+#!desc = 过滤中国广电广告（转自 Loon Lab ChinaBroadnet.lpx，2026-10-02 12:00）
+#!author = ddgksf2013[https://github.com/ddgksf2013]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/ChinaBroadnet.png
+
+^https?:\/\/app\.10099\.com\.cn\/contact-web\/api\/version\/getFlashScreenPage url reject-200
+^https?:\/\/app\.10099\.com\.cn\/contact-web\/api\/content\/qryPosterStand url jsonjq-response-body '.data |= map(select(.posterStandName | test("中部业务菜单|导航栏|我的-特色|个人中心|客服")))'
+^https?:\/\/app\.10099\.com\.cn\/contact-web\/api\/content\/qryNavigationMenuList url jsonjq-response-body '.data[]?.children |= map(select(.catalogName!="视听"))'
+
+hostname = app.10099.com.cn

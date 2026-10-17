@@ -1,0 +1,15 @@
+#!name = 咪咕视频
+#!desc = 过滤咪咕视频广告（转自 Loon Lab MiguVideo.lpx，2026-10-02 12:00）
+#!author = ddgksf2013[https://github.com/ddgksf2013]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/MiguVideo.png
+
+^https:\/\/.*miguvideo\.com\/request\/sdk url reject-200
+^https:\/\/.*miguvideo\.com\/deliver\/site\/batchMatch\/mergeSpot\/miguvideo url reject-200
+^https:\/\/.*miguvideo\.com\/recommend-dynamic\/dataSource\/v\d\/recommend url jsonjq-response-body '.body.data=[]'
+^https:\/\/.*migu\.cn\/search\/hotword url jsonjq-response-body '.body={}'
+^https?:\/\/(play|play-pre|v|v[0-9]?-sc|vmesh|app-sc|vms-sc|display(-sc)?|common-sc|program-sc|d[0-9]-sc|fs-sc|fsdv-sc|mp-user|recommend-dy|chat|chat-wx|public-deliver[0-9]?|public-operbiz[0-9]?|public-img)\.miguvideo\.com\/.+ url script-request-header https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/migu_vip.js
+^https?:\/\/(passport|uem|push|jadeite|jadeiteapp|hound|feedback|rcsdk)\.migu\.cn\/.+ url script-request-header https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/migu_vip.js
+^https:\/\/.*miguvideo\.com\/app-management\/v\d\/staticcache\/navigation-list\/miguvideo\/ios url script-response-body https://ddgksf2013.top/scripts/migu.ads.js
+^https:\/\/.*miguvideo\.com\/display\/v\d\/static\/PERSONAL_CENTER url script-response-body https://ddgksf2013.top/scripts/migu.ads.js
+
+hostname = *.miguvideo.com, *.migu.cn, passport.migu.cn, uem.migu.cn, push.migu.cn, jadeite.migu.cn, jadeiteapp.migu.cn, hound.migu.cn, feedback.migu.cn, rcsdk.migu.cn

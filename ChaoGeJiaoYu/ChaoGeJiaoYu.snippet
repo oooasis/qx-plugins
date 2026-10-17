@@ -1,0 +1,9 @@
+#!name = 超格教育
+#!desc = 过滤超格教育广告（转自 Loon Lab ChaoGeJiaoYu.lpx，2026-10-05 15:00）
+#!author = sooyaaabo[https://github.com/sooyaaabo]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/ChaoGeJiaoYu.png
+
+^https:\/\/mapi\.chaogejiaoyu\.com\/api\/outline\/getAppBanner\?(?:[^#]*&)?adv_flag=2(?:&|$) url jsonjq-response-body '.data = [(.data[0] | .banner_img = "https://i.im.ge/QQdilvc/CGBanner.png" | .banner_img_new = "https://i.im.ge/QQdilvc/CGBanner.png" | .title = "超格教育" | .content = "" | .source_type = "0" | .source_id = "0" | .h5_url = "")]'
+^https:\/\/mapi\.chaogejiaoyu\.com\/api\/user\/checkToken(?:\?|$) url jsonjq-response-body '.data.has_ad_page_list = [] | .data.startup.show_promotion = 0 | .data.startup.promotion_url = "" | .data.startup.home_top_menu_list |= map(select(.type != "ad_btn"))'
+
+hostname = mapi.chaogejiaoyu.com

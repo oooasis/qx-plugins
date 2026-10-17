@@ -1,10 +1,216 @@
 #!name = 微信
-#!desc = 拆自 ddgksf2013 StartUpAds.conf（2026-08-29）第 797 行，[W] 段；替换为 kelee:Weixin_Official_Accounts_remove_ads.lpx（2026-10-02 13:57:49）的 2 条规则
-#!author = ddgksf2013[https://github.com/ddgksf2013], RuCu6[https://github.com/RuCu6]
+#!desc = 微信公众号、小程序去广告以及微信外部链接解锁（转自 Loon Lab WeChat.lpx，2026-10-02 12:00）
+#!author = RuCu6[https://github.com/RuCu6], zZPiglet[https://github.com/zZPiglet], blackmatrix7[https://github.com/blackmatrix7], zirawell[https://github.com/zirawell], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/WeChat.png
 
-
-# ↓ 来自 kelee:Weixin_Official_Accounts_remove_ads.lpx「微信公众号去广告」
+host-suffix, wxs.qq.com, reject
+host, badjs.weixinbridge.com, reject
+host, dns.weixin.qq.com.cn, reject
+host, wxsnsdy.wxs.qq.com, reject
+host, wxsmsdy.video.qq.com, reject
+host, wxsnsdythumb.wxs.qq.com, reject
+host, ads-shopping.shouqianba.com, reject
+host, ad.maoyan.com, reject
+host, e.jparking.cn, reject
+host-suffix, ad.duoduo.link, reject
+host-suffix, wxsnsdythumb.wxs.qq.com, reject
+host, et.ykccn.com, reject
 ^https:\/\/mp\.weixin\.qq\.com\/mp\/(cps_product_info|getappmsgad|jsmonitor|masonryfeed|relatedarticle)\? url reject-dict
 ^https:\/\/mp\.weixin\.qq\.com\/mp\/relatedsearchword url reject-dict
+^https:\/\/webapi\.qmai\.cn\/web\/catering\/advertising\/ url reject-dict
+^https:\/\/webapi\.qmai\.cn\/web\/cmk-center\/marketing\/canvas\/advert-reach url reject
+^https:\/\/images\.qmai\.cn\/s214925\/2023 url reject-dict
+^https:\/\/creditcardapp\.bankcomm\.com\/cnsvPmpaMdbcardWeb\/page\/getGuidePageAds url reject
+^https:\/\/mbmodule-openapi\.paas\.cmbchina\.com\/graphic\/v2\/module\/graphic url reject
+^https:\/\/webchatapp\.fcbox\.com\/fcboxactivityweb\/api\/v2\/clientPage\/modulesAggregated\? url reject-dict
+^https:\/\/webchatapp\.fcbox\.com\/fcboxactivityweb\/api\/v2\/clientPage\/getHomeLiveInfo$ url reject-dict
+^https:\/\/dsp\.fcbox\.com\/adSearch\/ url reject-dict
+^https:\/\/webchatapp\.fcbox\.com\/post\/suggestion\/query$ url reject-dict
+^https:\/\/webchatapp\.fcbox\.com\/fcboxactivityweb\/marketingEntrance\/v2\/infoWithItems$ url reject-dict
+^https:\/\/webchatapp\.fcbox\.com\/fcboxactivityweb\/marketingEntrance\/info$ url reject-dict
+^https:\/\/app\.95504\.net\/app\/json\/page_ad\/initPageAd\?ver= url reject
+^https:\/\/minipro\.95504\.net\/app\/json\/ad\/getPopAdData url reject
+^https:\/\/minipro\.95504\.net\/app\/json\/ad\/getIndexAdData url reject
+^https:\/\/flow\.dmall\.com\/app\/home\/pops url reject
+^https:\/\/api\.yonghuivip\.com\/api\/fp\/homepage\/pop url reject
+^https:\/\/activity\.yonghuivip\.com\/api\/app\/fp\/homepage\/pop url reject
+^https:\/\/activity\.yonghuivip\.com\/api\/\/web\/shensuan\/ad url reject
+^https:\/\/sauron-report\.yonghuivip\.com\/collect url reject
+^https:\/\/res\.pizzahut\.com\.cn\/CRM url reject-dict
+^https:\/\/api\.mcd\.cn\/bff\/portal\/home\/hotActivity url reject-dict
+^https:\/\/3pp\.starbucks\.com\.cn\/wxmem\/popup url reject-dict
+^https:\/\/3pp\.starbucks\.com\.cn\/wxmem\/index\/banner url reject-dict
+^https:\/\/3pp\.starbucks\.com\.cn\/wxmem\/index\/global url reject-dict
+^https:\/\/wechat-api\.i-xiaoma\.com\.cn\/app\/v1\/bus\/wechat\/content url reject-dict
+^https:\/\/apiproxy\.zuche\.com\/resource\/carrctapi\/home\/marketing url reject-dict
+^https:\/\/apiproxy\.zuche\.com\/resource\/carrctapi\/home\/page\/advertising url reject-dict
+^https:\/\/miniprogram\.ishansong\.com\/cms\/faq\/query url reject-dict
+^https:\/\/ads\.ishansong\.com\/advert url reject-dict
+^https?:\/\/ec\.ems\.com\.cn\/mailAd$ url reject
+^https?:\/\/ec\.ems\.com\.cn\/ecr-exp-web\/advert url reject
+^https?:\/\/ump\.ems\.com\.cn\/mailAd$ url reject
+^https:\/\/minicap\.caocaokeji\.cn\/advert-bss\/pullAdvert url reject-dict
+^https:\/\/r2\.gzyct\.com\/qrcode\/advert url reject-dict
+^https:\/\/applets\.jtexpress\.com\.cn url reject-dict
+^https:\/\/api\.hellobike\.com\/api\?adx url reject-dict
+^https:\/\/api\.kuaidihelp\.com\/g_order_core\/v2\/mina\/User\/getBannerList url reject-dict
+^https:\/\/wxproj\.seeyouyima\.com\/data\/today_tips url reject-dict
+^https:\/\/suyun-guest\.daojia\.com\/api\/kuaigou\/banjia\/review url reject-dict
+^https:\/\/ne\.gdsz\.sinopec\.com\/gateway\/api\/omp\/mt\/appAdvertising url reject-dict
+^https:\/\/qapi\.huolala\.cn\/ads url reject-dict
+^https:\/\/qapi\.huolala\.cn\/home_new_user url reject-dict
+^https:\/\/qapi\.huolala\.cn\/get_service_list url reject-dict
+^https:\/\/appuser-static\.huolala\.cn\/imgs url reject-dict
+^https:\/\/apis\.alenable\.com\/mall\/v1\/api\/mall\/skin\/user\/get url reject-dict
+^https:\/\/apis\.alenable\.com\/ycx\/v1\/api\/adPut url reject-dict
+^https:\/\/dock\.tenchii\.com\/DockCard\/api\/mini\/card\/list url reject-dict
+^https:\/\/customer-app\.sto\.cn\/api\/app\/banner\/banner url reject-dict
+^https:\/\/sto-customer-app\.oss-cn-shanghai\.aliyuncs\.com\/images url reject-dict
+^https:\/\/supplier-api\.imdada\.cn\/fe\/public\/ad\/spot\?forwardServiceName=growth-activity url reject-dict
+^https:\/\/hdgateway\.zto\.com\/getApolloConfig url reject
+^https:\/\/hdgateway\.zto\.com\/track url reject
+^https:\/\/hdgateway\.zto\.com\/getAdInfo url reject
+^https:\/\/hdgateway\.zto\.com\/listJumperShow url reject
+^https:\/\/fscdn\.zto\.com\/fs1 url reject
+^https:\/\/mobile-api\.imlaidian\.com\/api\/args url reject-dict
+^https:\/\/wxs-weixin\.sd\.zhumanggroup\.com\/api\/v2\/ad url reject-dict
+^https:\/\/s\.jiediankeji\.com\/adv url reject-dict
+^https:\/\/smarket\.dian\.so url reject-dict
+^https:\/\/file\.dian\.so\/c\/leto url reject-dict
+^https:\/\/aag\.enmonster\.com\/apa\/index\/advert\/skin url reject
+^https:\/\/ad\.xiaotucc\.com\/advert url reject
+^https:\/\/api-marketing\.zhinengxiyifang\.cn\/api\/v2\/cloudcode\/wechat\/bid url reject
+^https:\/\/api\.songguo7\.com\/(\w{3})?mp\/v2\/misc\/(toast|user_operate_info|unlock_without_order|unlock_operate_info) url reject-dict
+^https:\/\/ccmsupport-sz\.tenpay\.com\/cgi-bin\/common\/ccm_page_element.cgi url reject
+^https:\/\/tm-api\.pin-dao\.cn\/home\/api\/index\/activeConfig\/v2 url reject-dict
+^https:\/\/tm-api\.pin-dao\.cn\/home\/api\/resource\/config\/homeBannerNodes url reject-dict
+^https:\/\/api-fouth-mem\.huazhu\.com\/api\/rights\/bannerList url reject-dict
+^https:\/\/wxapp\.bestwehotel\.com\/gw3\/app-mini\/trip-hotel-banner\/activity\/getActivityInfo url reject-dict
+^https:\/\/wx\.bthhotels\.com\/miniapp\/weixin\/v1\/home\/index_banner url reject-dict
+^https:\/\/app\.homeinns\.com\/api\/v6\/indexs url reject-dict
+^https:\/\/app\.homeinns\.com\/api\/v5\/local url reject-dict
+^https:\/\/app\.homeinns\.com\/api\/v5\/index url reject-dict
+^https:\/\/mxsa\.mxbc\.net\/api\/v1\/adinfo\/adplace\/query url reject-dict
+^https:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=cms\.htw\.delivery url reject-dict
+^https:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=hm\.fa\.combineHomepageInfo url reject-dict
+^https:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=hm\.fa\.mallRecommend url reject-dict
+^https:\/\/lawsonapi\.yorentown\.com\/area\/sh-lawson\/app\/v1\/mina\/systemSetting url reject-dict
+^https:\/\/plt\.yorentown\.com\/pltapp\/v1\/banner url reject-dict
+^https:\/\/member\.lxjchina\.com\.cn\/mini-server\/home\/page\/banner url reject-dict
+^https:\/\/cbd-gateway-service-applets\.hualala\.com\/arch\/api\/banner\/QueryBannerImgList url reject-dict
+^https:\/\/alittle-tea\.oss-cn-shanghai\.aliyuncs\.com\/images\/platform\/alittle url reject-dict
+^https:\/\/api\.prod\.dj\.mstand\.cn\/scrm\/app\/mdm\/index\/listAdv\?types url reject-dict
+^https:\/\/gw-passenger-wap\.01zhuanche\.com\/gw-passenger-wap\/zhuanche-passenger-token\/commonSkipToken\/common\/getAdList url reject-dict
+^https:\/\/www\.deppon\.com\/gwapi\/memberService\/eco\/member\/grade\/commonInterface url reject-dict
+^https:\/\/passengerapi\.saicmobility\.com\/(ad\/requestAd|pay\/v1\/queryOpenedCouponPackages) url reject-dict
+^https:\/\/passenger\.t3go\.cn\/passenger-activity-api\/notoken\/api\/v1\/resource\/getSource url reject-dict
+^https:\/\/m\.ctrip\.com\/restapi\/soa2\/13916\/tripAds url reject-dict
+^https:\/\/m\.ctrip\.com\/restapi\/soa2\/12673\/queryWeChatHotEvent url reject-dict
+^https:\/\/ad\.maoyan\.com\/api\/position\/detail url reject-dict
+^https:\/\/wx\.maoyan\.com\/maoyansh\/api\/mobile\/(hotMatchList|eSportsIps) url reject-dict
+^https:\/\/vod-movie\.maoyan\.com\/vod\/video\/onlineMovies\.json url reject-dict
+^https:\/\/wx\.maoyan\.com\/maoyansh\/myshow\/ajax\/movie\/wonderShow url reject-dict
+^https:\/\/wx\.maoyan\.com\/maoyansh\/myshow\/ajax\/performances\/calendar\/0 url reject-dict
+^https:\/\/wx\.maoyan\.com\/maoyansh\/myshow\/ajax\/performances\/rob\/main url reject-dict
+^https:\/\/wx\.maoyan\.com\/maoyansh\/myshow\/ajax\/celebrityBasicList\/query url reject-dict
+^https:\/\/wx\.maoyan\.com\/maoyansh\/myshow\/ajax\/recommend\/performances url reject-dict
+^https:\/\/api\.maoyan\.com\/sns\/common\/feed\/channel\/v2\/list\.json url reject-dict
+^https:\/\/wx\.maoyan\.com\/maoyansh\/myshow\/ajax\/ad\/detail url reject-dict
+^https:\/\/mkt-gateway\.tuhu\.cn\/mkt-scene-marketing-service\/api\/scene\/queryScheme url reject-dict
+^https:\/\/api\.hengdianfilm\.com\/\/cinema\/queryAvailableBannerInfo\/2\?cid= url reject-dict
+^https:\/\/api\.hengdianfilm\.com\/\/cinema\/queryAvailableBannerInfo\/4\?cid= url reject-dict
+^https:\/\/tbgapplet\.carlsberg\.asia\/tuborg\/banner\/(loading|index) url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/ktt_gateway\/activity\/feeds\/personal_home_page\/ url reject
+^https:\/\/api\.szbgcx\.cn\/account\/adv\/ url reject
+^https:\/\/mobile\.12306\.cn\/wxxcx\/openplatform-inner\/miniprogram\/wifiapps\/appFrontEnd\/v2\/lounge\/open-smooth-common\/qrCode\/getAdvInfo$ url reject-dict
+^https:\/\/mobile\.12306\.cn\/wxxcx\/openplatform-inner\/miniprogram\/wifiapps\/tourism\/tourismBase\/api\/scenic\/getThemeProduct? url reject-dict
+^https:\/\/mobile\.12306\.cn\/wxxcx\/openplatform-inner\/miniprogram\/wifiapps\/appFrontEnd\/v2\/lounge\/open-smooth-common\/carService\/getCivilzedSlogan url reject-dict
+^https:\/\/ucmp\.sf-express\.com\/proxy\/operation-platform\/info-flow-adver\/query url reject-dict
+^https:\/\/ucmp\.sf-express\.com\/proxy\/esgcempcore\/memberGoods\/pointMallService\/goodsList url reject-dict
+^https?:\/\/mcs-mimp-web\.sf-express\.com\/mcs-mimp\/integralPlanet\/getCxAdvertiseList url reject-dict
+^https?:\/\/ucmp-static\.sf-express\.com\/proxy\/wxbase\/wxTicket\/wxLiveStreamInfo\?pageNo url reject-dict
+^https?:\/\/ucmp\.sf-express\.com\/proxy\/esgcempcore\/memberManage\/memberEquity\/queryRecommendEquity url reject-dict
+^https?:\/\/ucmp\.sf-express\.com\/proxy\/esgcempcore\/memberActLengthy\/fullGiveActivityService\/fullGiveInfo url reject-dict
+^https:\/\/as\.xiaojukeji\.com\/ep\/as\/conf\?ns=daijia-front&name= url reject-dict
+^https:\/\/daijia\.kuaidadi\.com\/gateway\?api=prado\.cms\.delivery\.batch&apiVe url reject-dict
+^https:\/\/mcsp\.cloudpnr\.com\/api\/miniapp\/popular\/T_MINIAPP$ url jsonjq-response-body 'del(.["data"])'
+^https:\/\/saas-ad\.cloudpnr\.com\/huifuad-base-api\/api\/tactics\/ad$ url jsonjq-response-body 'del(.["data"][0], .["data"][1], .["data"][2])'
+^https:\/\/wx\.17u\.cn\/xcxhomeapi\/aggregator\/index url reject-dict
+^https:\/\/wx\.17u\.cn\/mytourapi\/mytrip\/blankflight url reject-dict
+^https:\/\/wx\.17u\.cn\/membermessageuserapi\/message\/list url reject-dict
+^https:\/\/wx\.17u\.cn\/wechatmypubapi\/myInfo\/messageBox url reject-dict
+^https:\/\/wx\.17u\.cn\/membermessageuserapi\/category\/getCategory url reject-dict
+^https:\/\/wx\.17u\.cn\/homemarketapi\/search\/recommend url reject-dict
+^https:\/\/wx\.17u\.cn\/mytourapi\/blankpage\/recommendList url reject-dict
+^https:\/\/wx\.17u\.cn\/wxocbdapi\/adService\/getAd url reject-dict
+^https:\/\/wx\.17u\.cn\/homemarketapi\/aggregator\/index url reject-dict
+^https:\/\/wx\.17u\.cn\/xcxhomeapi\/home\/converge url reject-dict
+^https:\/\/wx\.17u\.cn\/platformpubapi\/customer\/lead\/getInfo url reject-dict
+^https:\/\/wx\.17u\.cn\/mytourapi\/mytrip\/toptips url reject-dict
+^https:\/\/wx\.17u\.cn\/vacation\/webapp\/tailor\/miniHomeConfig url reject-dict
+^https:\/\/wx\.17u\.cn\/wireless\/monitor\/wx\/common\/compressevent url reject-dict
+^https:\/\/wx\.17u\.cn\/wechatmypubapi\/myInfo\/listIcons url reject-dict
+^https:\/\/a1d5b283e-wx621112590b635086\.sh\.wxgateway\.com\/xcxhomeapi\/home\/screen url reject-dict
+^https:\/\/mapi\.dianping\.com\/baymax\/adrec\/getrecads url reject-dict
+^https:\/\/mapi\.dianping\.com\/baymax\/getSlotAds url reject-dict
+^https:\/\/rms\.meituan\.com\/api\/v1\/rmsmina\/c\/queryShopPortalInfo\? url jsonjq-response-body 'del(.["data"]["popUpWindows"])'
+^https:\/\/web\.meituan\.com\/api\/miniprogram\/my\/novelZone url reject-dict
+^https:\/\/web\.meituan\.com\/api\/miniprogram\/my\/resources url reject-dict
+^https:\/\/npay\.meituan\.com\/conch\/flow\/mypage-wallet-info url reject-dict
+^https:\/\/web\.meituan\.com\/api\/miniprogram\/index\/popWindow url reject-dict
+^https:\/\/web\.meituan\.com\/api\/miniprogram\/index\/couponInfo url reject-dict
+^https:\/\/web\.meituan\.com\/api\/miniprogram\/index\/cust\/arenaResult url reject-dict
+^https:\/\/web\.meituan\.com\/newUser\/returnMoney\/popWindow url reject-dict
+^https:\/\/npay\.meituan\.com\/conch\/walletv3\/wechat-pop-window url reject-dict
+^https:\/\/apimobile\.meituan\.com\/group\/v1\/deal\/searchpage\/defaultword url reject-dict
+^https:\/\/chong\.qq\.com\/tws\/wxmobile\/GetProduct4App\? url jsonjq-response-body 'del(.respInfo.reserveProductList) | .respInfo.shortcut |= map(select(.name != "充流量" and .name != "领话费券"))'
+^https:\/\/chong\.qq\.com\/tws\/wxmobile4app\/GetSecondProduct\? url jsonjq-response-body 'del(.respInfo.productList) | .respInfo.shortcut |= map(select(.name != "充流量" and .name != "领话费券"))'
+^https:\/\/chong\.qq\.com\/tws\/usernumberinfo\/GetUserInfo\? url jsonjq-response-body 'del(.["data"]["request"]["number"]["markSeat"]["servicehallOperList"], .["data"]["request"]["number"]["servicehallOperList"], .["data"]["request"]["number"]["markSeat"]["servicehallFuncList"], .["data"]["request"]["number"]["servicehallFuncList"])'
+^https:\/\/wx\.online-cmcc\.cn\/contactpoint\/customer\/api\/list\? url reject-dict
+^https:\/\/wx\.10086\.cn\/qwhdhub\/activity\/info url reject-dict
+^https?:\/\/misc-api-prd-mx\.wandafilm\.com\/commend\/common_banner_batch\.api\?bannerInfos=%5B%7B%22cinemaI url response-body WX_index_mp-&-boxAD response-body fmz200
+^https?:\/\/ocrifs\.ejoy\.sinopec\.com\/advertitfs\/advert\/findAdvertInfo url reject-dict
+^https:\/\/gw3\.ykccn\.com\/api\/omp\/mt\/enterpriseWeChatConfig\/app\/queryCityConfig url reject-dict
+^https:\/\/gw3\.ykccn\.com\/api\/omp\/mt\/appAdvertising\/queryAdvertisingByParams url reject-dict
+^https:\/\/gw3\.ykccn\.com\/api\/omp\/mt\/charge\/activity\/package\/newest url reject-dict
+^https?:\/\/clubmed\.bd\.clubmedmnp\.com\/miniorder\/api\/basic\/common url reject-dict
+^https?:\/\/gugongmini\.dpm\.org\.cn\/gugong_applet\/open-screen url reject-dict
+^https?:\/\/service\.haiersmarthomes\.com\/management\/banner\/getBannerList\?source=4 url reject-dict
+^https?:\/\/cdb\.meituan\.com\/marketing\/source\/getPageSlotList url reject-dict
+^https:\/\/energy\.xiaojukeji\.com\/mission\/api\/page\/activityInfo url reject-dict
+^https:\/\/energy\.xiaojukeji\.com\/mission\/api\/page\/getPageDetail url reject-dict
+^https:\/\/energy\.xiaojukeji\.com\/energy\/hummer\/api\/resource\/display url reject-dict
+^https:\/\/energy\.xiaojukeji\.com\/am\/marketing\/api\/member\/facade\/charge\/personal\/center url reject-dict
+^https?:\/\/gateway\.cotticoffee\.com\/cotti-capi\/customer\/position\/adSortList url reject-dict
+^https?:\/\/e\.weather\.com\.cn\/weChat\/typhoonNull\.json url reject-dict
+^https?:\/\/capis(-\d)?\.didapinche\.com\/adbase url reject
+^https?:\/\/capis(-\d)?\.didapinche\.com\/ad\/ url reject
+^https?:\/\/adx-cn\.anythinktech\.com\/bid url reject-dict
+^https?:\/\/capis(-?\w*)?\.didapinche\.com\/publish\/api\/upgrade url reject-dict
+^https?:\/\/www\.didapinche\.com\/app\/adstat\/ url reject-200
+^https\:\/\/(?:weixin110\.qq|security\.wechat)\.com\/cgi-bin\/mmspamsupport-bin\/newredirectconfirmcgi\? url script-response-body https://kelee.one/Resource/JavaScript/Weixin/Weixin_external_links_unlock.js
+^https:\/\/webapi\.qmai\.cn\/web\/catering\/design\/homePage-Config url script-response-body https://kelee.one/Resource/JavaScript/WexinMiniPrograms/kff/kff.js
+^https?:\/\/ec\.ems\.com\.cn\/ecr-qry-web\/redis\/pageInfoByChannel url script-response-body https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/wechatApplet.js
+^https?:\/\/ump\.ems\.com\.cn\/new-generation-extend\/redis\/pageInfoByChannel url script-response-body https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/wechatApplet.js
+^https:\/\/ump\.ems\.com\.cn\/new-generation-extend\/redis\/pageInfoByChannel url script-response-body https://kelee.one/Resource/JavaScript/WexinMiniPrograms/ems/ems.js
+^https:\/\/mapi\.xiaotucc\.com\/(mall\/main|main_page\/index\/getActivity) url script-response-body https://kelee.one/Resource/JavaScript/WexinMiniPrograms/xiaotucc/xiaotucc.js
+^https:\/\/minifm\.maxxipoint\.com\/banner\/list url script-response-body https://kelee.one/Resource/JavaScript/WexinMiniPrograms/FamilyMart/FamilyMart.js
+^https:\/\/lawsonapi\.yorentown\.com\/area\/sh-lawson\/app\/v1\/home url script-response-body https://kelee.one/Resource/JavaScript/WexinMiniPrograms/lawson/lawson.js
+^https:\/\/miniapp\.sexytea2013\.com\/cms\/slot\/queryByCodes\?codes=INDEX_TOP_BANNER url script-response-body https://kelee.one/Resource/JavaScript/WexinMiniPrograms/chayanyuese/chayanyuese_remove_ads.js
+^https:\/\/coco-com\.e\.verystar\.net\/v1\/home\/info url script-response-body https://kelee.one/Resource/JavaScript/WexinMiniPrograms/coco/coco.js
+^https:\/\/htwkop\.xiaojukeji\.com\/gateway\?api=hm\.fa\.homeConfig url script-response-body https://kelee.one/Resource/JavaScript/WexinMiniPrograms/qingju/qingju.js
+^https:\/\/cappapi\.alittle-tea\.com\/open\?method=catering\.set\.ad url script-response-body https://kelee.one/Resource/JavaScript/WexinMiniPrograms/alittle-tea/alittle-tea.js
+^https:\/\/api\.prod\.dj\.mstand\.cn\/scrm\/mini\/app\/index\/info url script-response-body https://kelee.one/Resource/JavaScript/WexinMiniPrograms/M_Stand/M_Stand.js
+^https:\/\/passenger\.t3go\.cn\/(solution\-|common\-)?(passenger\-)?(activity\-|app\-)?api\/notoken\/(trip\/)?api\/(home\/|common\/)?(v[1-3]\/)?(ad\/getNegativescreen|solution\/passenger\/open\/getHomeMenu|leftmenu|getHomeInfoGlobal) url script-response-body https://kelee.one/Resource/JavaScript/WexinMiniPrograms/T3/T3.js
+^https:\/\/newton\.gumingnc\.com\/newton-buyer\/newton\/buyer\/(ump|touch|external\/front) url script-response-body https://kelee.one/Resource/JavaScript/WexinMiniPrograms/ming/ming.js
+^https:\/\/web\.meituan\.com\/api\/miniprogram\/index\/aggregate url script-response-body https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/MeiTuanNoAd.js
+^https:\/\/web\.meituan\.com\/api\/miniprogram\/tabbar\/all\/query url script-response-body https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/MeiTuanNoAd.js
+^https:\/\/web\.meituan\.com\/api\/miniprogram\/my\/novelZone url script-response-body https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/MeiTuanNoAd.js
+^https:\/\/web\.meituan\.com\/api\/miniprogram\/my\/resources url script-response-body https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/MeiTuanNoAd.js
+^https:\/\/npay\.meituan\.com\/conch\/flow\/mypage-wallet-info url script-response-body https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/MeiTuanNoAd.js
+^https:\/\/npay\.meituan\.com\/conch\/verify\/queryInfo url script-response-body https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/MeiTuanNoAd.js
+^https?:\/\/apis\.folidaymall\.com\/online\/capi\/component\/getPageComponents url script-response-body https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/foliday.js
+^https?:\/\/gateway\.cotticoffee\.com\/cotti-capi\/customer\/position\/list$ url script-response-body https://raw.githubusercontent.com/zirawell/R-Store/main/Res/Scripts/AntiAd/cotti.js
+^https?:\/\/wx\.mygolbs\.com\/WxBusServer\/ApiData\.do url script-response-body https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/zhangshanggongjiao.js
 
-hostname = mp.weixin.qq.com
+hostname = mp.weixin.qq.com, webapi.qmai.cn, images.qmai.cn, creditcardapp.bankcomm.com, mbmodule-openapi.paas.cmbchina.com, webchatapp.fcbox.com, dsp.fcbox.com, app.95504.net, minipro.95504.net, flow.dmall.com, api.yonghuivip.com, activity.yonghuivip.com, sauron-report.yonghuivip.com, res.pizzahut.com.cn, api.mcd.cn, 3pp.starbucks.com.cn, wechat-api.i-xiaoma.com.cn, apiproxy.zuche.com, miniprogram.ishansong.com, ads.ishansong.com, ec.ems.com.cn, ump.ems.com.cn, minicap.caocaokeji.cn, r2.gzyct.com, applets.jtexpress.com.cn, api.hellobike.com, api.kuaidihelp.com, wxproj.seeyouyima.com, suyun-guest.daojia.com, ne.gdsz.sinopec.com, qapi.huolala.cn, appuser-static.huolala.cn, apis.alenable.com, dock.tenchii.com, customer-app.sto.cn, sto-customer-app.oss-cn-shanghai.aliyuncs.com, supplier-api.imdada.cn, hdgateway.zto.com, fscdn.zto.com, mobile-api.imlaidian.com, wxs-weixin.sd.zhumanggroup.com, s.jiediankeji.com, smarket.dian.so, file.dian.so, aag.enmonster.com, ad.xiaotucc.com, api-marketing.zhinengxiyifang.cn, api.songguo7.com, ccmsupport-sz.tenpay.com, tm-api.pin-dao.cn, api-fouth-mem.huazhu.com, wxapp.bestwehotel.com, wx.bthhotels.com, app.homeinns.com, mxsa.mxbc.net, htwkop.xiaojukeji.com, lawsonapi.yorentown.com, plt.yorentown.com, member.lxjchina.com.cn, cbd-gateway-service-applets.hualala.com, alittle-tea.oss-cn-shanghai.aliyuncs.com, api.prod.dj.mstand.cn, gw-passenger-wap.01zhuanche.com, www.deppon.com, passengerapi.saicmobility.com, passenger.t3go.cn, m.ctrip.com, ad.maoyan.com, wx.maoyan.com, vod-movie.maoyan.com, api.maoyan.com, mkt-gateway.tuhu.cn, api.hengdianfilm.com, tbgapplet.carlsberg.asia, api.pinduoduo.com, api.szbgcx.cn, mobile.12306.cn, ucmp.sf-express.com, mcs-mimp-web.sf-express.com, ucmp-static.sf-express.com, as.xiaojukeji.com, daijia.kuaidadi.com, mcsp.cloudpnr.com, saas-ad.cloudpnr.com, wx.17u.cn, a1d5b283e-wx621112590b635086.sh.wxgateway.com, mapi.dianping.com, rms.meituan.com, web.meituan.com, npay.meituan.com, apimobile.meituan.com, chong.qq.com, wx.online-cmcc.cn, wx.10086.cn, misc-api-prd-mx.wandafilm.com, ocrifs.ejoy.sinopec.com, gw3.ykccn.com, clubmed.bd.clubmedmnp.com, gugongmini.dpm.org.cn, service.haiersmarthomes.com, cdb.meituan.com, energy.xiaojukeji.com, gateway.cotticoffee.com, e.weather.com.cn, capis*.didapinche.com, adx-cn.anythinktech.com, www.didapinche.com, mapi.xiaotucc.com, minifm.maxxipoint.com, miniapp.sexytea2013.com, coco-com.e.verystar.net, cappapi.alittle-tea.com, newton.gumingnc.com, apis.folidaymall.com, wx.mygolbs.com

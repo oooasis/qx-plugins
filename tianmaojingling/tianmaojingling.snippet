@@ -3,5 +3,7 @@
 #!author = ddgksf2013[https://github.com/ddgksf2013]
 
 ^https?:\/\/zconfig\.alibabausercontent\.com\/zconfig url reject-200
+^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba\.aicloud\.splash url reject-200
+^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba.*mytab url jsonjq-response-body '.data.model.children |= map(select(.name | contains("营销") | not))'
 
-hostname = zconfig.alibabausercontent.com
+hostname = zconfig.alibabausercontent.com, acs.m.taobao.com

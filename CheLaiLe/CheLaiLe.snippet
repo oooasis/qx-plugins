@@ -1,0 +1,19 @@
+#!name = 车来了
+#!desc = 过滤车来了广告（转自 Loon Lab CheLaiLe.lpx，2026-10-14 11:00）
+#!author = CaoXiaoMann[https://github.com/CaoXiaoMann]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/CheLaiLe.png
+
+host, ad.chelaile.net.cn, reject
+host, atrace.chelaile.net.cn, reject
+host-suffix, pangolin-sdk-toutiao.com, reject
+host-suffix, pangolin-sdk-toutiao1.com, reject
+host-suffix, pangolin-sdk-toutiao-b.com, reject
+host-suffix, yg84.com, reject
+host-suffix, mobads.baidu.com, reject
+host-suffix, pos.baidu.com, reject
+host-suffix, sofire.baidu.com, reject
+^https?:\/\/[^\/]*chelaile(?:app)?\.cn\/(?:adpub|goocity\/advert|goocity\/flowPos\/home|feserver\/vip-page\/images\/).* url reject
+^https?:\/\/[^\/]*chelaile\.net\.cn\/adpub\/.* url reject
+^https?:\/\/api-access\.pangolin-sdk-toutiao(?:1)?\.com\/api\/ad\/union\/sdk\/.* url reject
+^https?:\/\/adx\.yg84\.com\/sdk\/ad\/.* url reject
+^https?:\/\/mobads\.baidu\.com\/.* url reject

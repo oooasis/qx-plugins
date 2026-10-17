@@ -1,0 +1,10 @@
+#!name = 迅雷
+#!desc = 过滤迅雷广告，解锁部分会员功能。（转自 Loon Lab ThunderCloudDisk.lpx，2026-10-02 12:00）
+#!author = 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md], Marol62926[https://github.com/Marol62926]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/ThunderCloudDisk.png
+
+^https:\/\/conf-m-ssl\.xunlei\.com\/external\/ url jsonjq-response-body 'del(.["values"]["me_config"]["entrance_list_vertical_enable"], .["values"]["me_config"]["common_service_list"], .["values"]["me_config"]["banner_service_list"])'
+^https:\/\/api-shoulei-ssl\.xunlei\.com\/flowhub\/v1\/slots:batchGet$ url jsonjq-response-body '.slots |= map(select(.id == "xl_ios_mytab_vipicon" or (.native.assets.title.text.value? and (.native.assets.title.text.value | . == "清理助手" or . == "云盘容量" or . == "远程设备"))))'
+^https:\/\/xluser-ssl\.xunlei\.com\/xluser\.core\.login\/v3\/getuserinfo url script-response-body https://raw.githubusercontent.com/Marol62926/MarScrpt/main/xunlei.js
+
+hostname = conf-m-ssl.xunlei.com, api-shoulei-ssl.xunlei.com, xluser-ssl.xunlei.com

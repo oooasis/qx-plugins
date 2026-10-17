@@ -1,0 +1,15 @@
+#!name = 铁路12306
+#!desc = 过滤铁路12306广告（转自 Loon Lab Railway12306.lpx，2026-10-02 12:00）
+#!author = RuCu6[https://github.com/RuCu6], kokoryh[https://github.com/kokoryh], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md], ddgksf2013[https://github.com/ddgksf2013]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/Railway12306.png
+
+host, ad.12306.cn, direct
+
+# ↓ 兜底：来自可莉（12306_remove_ads.lpx）
+^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$ url jsonjq-response-body 'del(.["materialsList"], .["advertParam"])'
+^https:\/\/mobile\.12306\.cn\/otsmobile\/app\/mgs\/mgw\.htm$ url script-request-header https://kelee.one/Resource/JavaScript/12306/12306_remove_ads.js
+
+# ↓ 兜底：来自墨鱼 StartUpAds（12306）
+^https?:\/\/ad\.12306\.cn\/ad\/ser\/getAdList url script-analyze-echo-response https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/12306.js
+
+hostname = ad.12306.cn, mobile.12306.cn

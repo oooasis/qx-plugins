@@ -1,0 +1,16 @@
+#!name = 财新
+#!desc = 过滤财新广告（转自 Loon Lab CaiXin.lpx，2026-10-02 12:00）
+#!author = ZenmoFeiShi[https://github.com/ZenmoFeiShi]
+#!icon = https://raw.githubusercontent.com/sooyaaabo/IconLibrary/main/App/CaiXin.png
+
+host, dolphin.caixin.com, reject
+host, gg.caixin.com, reject
+^https:\/\/cxdata\.caixin\.com\/api\/dataplus\/stkData\/list url reject-dict
+^https:\/\/entities\.caixin\.com\/api\/public\/push\/appIndex\?target=index url reject-dict
+^https:\/\/gateway\.caixin\.com\/api\/app-api\/search\/getkeyword url reject-dict
+^https:\/\/gateway\.caixin\.com\/api\/app-api\/caixinminiapp\/appinfo url reject-dict
+^https:\/\/gateway\.caixin\.com\/api\/app-api\/articlesHotRecommend\/getHotRecommendArticles url reject-dict
+^https:\/\/www\.caixin\.com\/ai\/question.+ url reject-dict
+^https?:\/\/(msgapi|mappsv5|gateway|entities)\.caixin\.com\/(msg_api\/annmsg\/annlist|channelv5\/article_ad_ios_info\.json) url reject-dict
+
+hostname = cxdata.caixin.com, entities.caixin.com, gateway.caixin.com, www.caixin.com, msgapi.caixin.com, mappsv5.caixin.com
